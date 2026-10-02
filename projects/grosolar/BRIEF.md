@@ -71,8 +71,8 @@ Real project numbers (owner-supplied). Only projects that are **installed and ru
 ## 6. Open decisions (made after this brief is complete)
 
 - Ad style and look: owner wants something **unique and premium, not a template look**; **chosen: the mix** of "The Switch-Off" hook, "From Sun to Yours" explainer and "Powering Lagos" proof (see `STORYBOARD.md`)
-- Voiceover: **female AI voice** (owner's choice); Nigerian English accent to be auditioned
-- Music mood
+- Voiceover: **recorded female voice** (owner's choice, changed from AI because Nigerian AI voices need a paid ElevenLabs plan); see `VOICEOVER.md`
+- Music: licensed, warm uplifting Afro-house groove (Splice loops), kept under the voice
 - Whether AI-generated imagery is used for supporting shots (if so, labelled per the kit's rules)
 
 ## Sources used for this draft

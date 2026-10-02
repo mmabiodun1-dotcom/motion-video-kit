@@ -1,0 +1,380 @@
+<!doctype html>
+<!-- GroSolar 30s vertical brand ad (storyboard v0.5, look v2). 1080x1920.
+     Every visual state is a pure function of timeline time t (seek-safe, deterministic).
+     Snapshot: npx hyperframes snapshot . --at 0.5,2,3.5,5.5,8.5,10.5,13,16.8,21,27 -o shots
+     Render:   npx hyperframes render . --fps 30 --output renders/picture.mp4 -->
+<html><head><meta charset="utf-8">
+<script src="./gsap.min.js"></script>
+<style>
+@font-face{font-family:Poppins;src:url(./fonts/poppins-latin-500-normal.woff2) format('woff2');font-weight:500}
+@font-face{font-family:Poppins;src:url(./fonts/poppins-latin-600-normal.woff2) format('woff2');font-weight:600}
+@font-face{font-family:Poppins;src:url(./fonts/poppins-latin-800-normal.woff2) format('woff2');font-weight:800}
+:root{--navy:#002552;--sun:linear-gradient(135deg,#F6DA4C,#FCBA34 50%,#FE9636);--paper:#F4F7FB;--white:#fff;--mute-d:#B9C7DA;--mute-l:#46586F}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--navy)}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:Poppins,sans-serif;color:var(--navy)}
+.L{position:absolute;inset:0;overflow:hidden;transform-origin:50% 40%}
+.A{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform,opacity}
+.h{font-weight:800;letter-spacing:-.03em;line-height:.98;margin:0;white-space:nowrap}
+.g{background:var(--sun);-webkit-background-clip:text;background-clip:text;color:transparent}
+.small{font-size:44px;font-weight:500;margin:0;white-space:nowrap}
+.card{position:absolute;border-radius:28px;overflow:hidden;box-shadow:0 30px 70px rgba(0,22,52,.35)}
+.card img{width:100%;height:100%;object-fit:cover;display:block;transform-origin:50% 50%}
+.chip{position:absolute;display:flex;align-items:center;gap:16px;background:#fff;border-radius:16px;padding:10px 22px;color:var(--navy);white-space:nowrap}
+.kw{font-weight:800;letter-spacing:-.02em}
+</style></head>
+<body><div id="root" data-composition-id="grosolar" data-width="1080" data-height="1920" data-duration="29.9">
+
+<!-- ============ S1-S3 OPENING (0-4.4): night layer, day layer revealed by the sunlight wipe ============ -->
+<div class="L" id="open">
+  <div class="L" id="night" style="background:var(--navy)"></div>
+  <div class="L" id="day" style="background:var(--paper)"></div>
+  <div class="A" id="beam" style="width:300px;height:2700px;background:linear-gradient(90deg,rgba(252,186,52,0),rgba(246,218,76,.95) 45%,rgba(254,150,54,.9) 55%,rgba(252,186,52,0));filter:blur(6px);transform-origin:50% 50%"></div>
+</div>
+
+<!-- ============ S4 PANELS (4.4-6.6) ============ -->
+<div class="L" id="s4" style="background:var(--paper)">
+  <p class="h A" id="s4h1" style="font-size:104px">Solar, funded</p>
+  <p class="h A" id="s4h2" style="font-size:104px">by GroSolar.</p>
+  <div class="card A" id="s4card" style="width:960px;height:640px"><img src="./img/vi-carport.jpg" id="s4img"></div>
+  <div class="A" id="s4line" style="height:14px;border-radius:7px;background:var(--sun);box-shadow:0 0 30px rgba(252,186,52,.9)"></div>
+</div>
+
+<!-- ============ S5 HOME / BUSINESS / INDUSTRY (6.6-9.4) ============ -->
+<div class="L" id="s5" style="background:var(--paper)">
+  <div class="A" id="rail" style="width:14px;border-radius:7px;background:var(--sun);box-shadow:0 0 30px rgba(252,186,52,.9)"></div>
+  <div id="bldgs"></div>
+</div>
+
+<!-- ============ S6 NOTHING UPFRONT (9.4-11.4) ============ -->
+<div class="L" id="s6" style="background:var(--paper)">
+  <div class="A" id="s6beam" style="width:640px;height:2700px;background:linear-gradient(90deg,rgba(252,186,52,0),rgba(252,186,52,.42),rgba(254,150,54,0));transform-origin:50% 50%"></div>
+  <p class="h A" id="s6a" style="font-size:186px">NOTHING</p>
+  <p class="h A" id="s6b" style="font-size:186px">UPFRONT.</p>
+  <div class="A" id="s6u" style="height:26px;border-radius:13px;background:var(--sun);box-shadow:0 0 40px rgba(252,186,52,.7)"></div>
+</div>
+
+<!-- ============ S7 INSTALLED AND MAINTAINED (11.4-14.0) ============ -->
+<div class="L" id="s7" style="background:var(--paper)">
+  <p class="h A" id="s7a" style="font-size:100px">Installed and</p>
+  <p class="h A" id="s7b" style="font-size:100px">maintained</p>
+  <p class="h A g" id="s7c" style="font-size:100px">for you.</p>
+  <div class="card A" id="s7card" style="width:920px;height:690px"><img src="./img/hillside-43.jpg" id="s7img">
+    <div class="chip" id="s7chip" style="left:24px;bottom:24px;font-size:40px;font-weight:600">Maintenance continues after payoff</div>
+  </div>
+  <svg class="A" id="s7badge" width="150" height="150" viewBox="0 0 150 150">
+    <defs><linearGradient id="bg7" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6DA4C"/><stop offset=".5" stop-color="#FCBA34"/><stop offset="1" stop-color="#FE9636"/></linearGradient></defs>
+    <circle cx="75" cy="75" r="72" fill="url(#bg7)" stroke="#fff" stroke-width="6"/>
+    <path id="s7check" d="M42 78 L66 101 L110 52" fill="none" stroke="#002552" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="110" stroke-dashoffset="110"/>
+  </svg>
+</div>
+
+<!-- ============ S8 PAY IN INSTALMENTS -> OWNED (14.0-18.4) ============ -->
+<div class="L" id="s8" style="background:var(--paper)">
+  <div class="A" id="s8photo" style="width:1080px;height:680px;overflow:hidden">
+    <img src="./img/vi-carport.jpg" id="s8img" style="width:100%;height:100%;object-fit:cover;transform-origin:50% 50%">
+    <div style="position:absolute;left:0;top:0;width:1080px;height:260px;background:linear-gradient(var(--paper),rgba(244,247,251,0))"></div>
+  </div>
+  <p class="h A" id="s8a" style="font-size:112px">Pay in</p>
+  <p class="h A" id="s8b" style="font-size:112px">instalments.</p>
+  <div class="A" id="s8track" style="width:860px;height:60px;border-radius:30px;background:rgba(0,37,82,.12);overflow:hidden"><div id="s8fill" style="height:100%;width:0;background:var(--sun)"></div></div>
+  <div class="A" id="s8ticks" style="width:860px;display:flex;justify-content:space-between;padding:0 6px;box-sizing:border-box"></div>
+  <div class="A" id="s8stamp" style="border-radius:24px;padding:10px 40px 20px;background:var(--navy);box-shadow:0 18px 40px rgba(0,37,82,.35),inset 0 0 0 8px rgba(252,186,52,.9);transform-origin:50% 50%"><p class="h" style="font-size:150px;color:#fff">OWNED.</p></div>
+  <p class="small A" id="s8c" style="font-weight:600;color:var(--navy)">Then it's yours.</p>
+</div>
+
+<!-- ============ S9 REAL PROJECTS (18.4-23.0) ============ -->
+<div class="L" id="s9" style="background:var(--navy)">
+  <p class="h A" id="s9a" style="font-size:104px;color:#fff">Real GroSolar</p>
+  <p class="h A" id="s9b" style="font-size:104px;color:#fff">projects.</p>
+  <div class="card A" id="s9c1" style="width:880px;height:540px;transform-origin:50% 50%;box-shadow:0 30px 70px rgba(0,0,0,.45)"><img src="./img/broadcaster-aerial.jpg" id="s9i1" style="object-position:50% 40%">
+    <div class="chip" style="left:28px;bottom:28px"><span class="kw g" style="font-size:62px">150 kW</span><span style="font-size:34px;font-weight:600;line-height:1.1">National<br>broadcaster</span></div></div>
+  <div class="card A" id="s9c2" style="width:820px;height:290px;transform-origin:50% 50%;box-shadow:0 30px 70px rgba(0,0,0,.45)"><img src="./img/vi-carport-wide.jpg" id="s9i2">
+    <div class="chip" style="left:24px;bottom:24px"><span class="kw g" style="font-size:54px">100 kW</span><span style="font-size:34px;font-weight:600">Victoria Island</span></div></div>
+  <div class="A" id="s9glow" style="width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(246,218,76,.95),rgba(252,186,52,.5) 30%,rgba(252,186,52,0) 65%);transform-origin:50% 50%"></div>
+</div>
+
+<!-- ============ S10 END CARD (23.0-29.9) ============ -->
+<div class="L" id="s10" style="background:var(--navy)">
+  <div class="A" id="e_glow2" style="width:1100px;height:1100px;border-radius:50%;background:radial-gradient(circle,rgba(252,186,52,.22),rgba(252,186,52,0) 62%);transform-origin:50% 50%"></div>
+  <div class="A" id="e_glow" style="width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(246,218,76,.9),rgba(252,186,52,.45) 28%,rgba(252,186,52,0) 62%);transform-origin:50% 50%"></div>
+  <img class="A" id="e_logo" src="./brand/logo-lockup.png" style="width:860px;transform-origin:12% 50%">
+  <p class="h A" id="e1" style="font-size:92px;color:#fff">Check if you</p>
+  <p class="h A" id="e2" style="font-size:92px;color:#fff">qualify.</p>
+  <div class="A" id="e3" style="display:flex;align-items:center;gap:18px;color:#fff">
+    <svg width="64" height="64" viewBox="0 0 64 64"><defs><linearGradient id="ig" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6DA4C"/><stop offset="1" stop-color="#FE9636"/></linearGradient></defs><circle cx="32" cy="32" r="32" fill="url(#ig)"/><path d="M23 18c2-1 4 0 5 2l3 6c1 2 0 3-1 4l-2 2c2 4 5 7 9 9l2-2c1-1 3-2 4-1l6 3c2 1 3 3 2 5-1 4-5 6-9 5-12-3-20-11-23-23-1-4 1-8 4-10z" fill="#002552"/></svg>
+    <svg width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="url(#ig)"/><path d="M32 14c-10 0-18 8-18 17 0 3 1 6 3 9l-3 10 10-3c2 1 5 2 8 2 10 0 18-8 18-18S42 14 32 14zm0 6c6 0 12 5 12 11s-6 12-12 12c-2 0-4-1-6-2l-5 2 2-5c-2-2-3-4-3-7 0-6 6-11 12-11z" fill="#002552"/></svg>
+    <span style="font-size:44px;font-weight:600">Call or WhatsApp</span>
+  </div>
+  <p class="h A g" id="e4" style="font-size:110px;letter-spacing:-.02em;transform-origin:0 50%">0705 370 0000</p>
+  <p class="A" id="e5" style="font-size:44px;font-weight:600;margin:0;color:#fff;white-space:nowrap">Lagos and across Nigeria</p>
+  <p class="A" id="e6" style="font-size:44px;font-weight:500;margin:0;color:#fff;white-space:nowrap">GroSolar NG app · Google Play</p>
+  <p class="small A" id="e7" style="color:var(--mute-d)">Subject to approval. Terms apply.</p>
+</div>
+
+<!-- ============ PERSISTENT: logo bug (4.4-23.0), finance small print (10.0-18.4) ============ -->
+<div class="A" id="bug" style="width:76px;height:71px;border-radius:17px;overflow:hidden"><img src="./brand/logo-icon.png" style="width:100%;height:100%;display:block"></div>
+<p class="small A" id="fine" style="color:var(--mute-l)">Subject to approval. Terms apply.</p>
+
+</div>
+<script>
+// ---------- helpers (pure) ----------
+const cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const P=(t,a,b)=>cl((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3), ei=x=>x*x*x, eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const back=x=>{const c=1.6;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const L=(a,b,k)=>a+(b-a)*k;
+const $=id=>document.getElementById(id);
+const tf=(el,x,y,s=1,r=0,o=1)=>{el.style.transform=`translate(${x}px,${y}px) rotate(${r}deg) scale(${s})`;el.style.opacity=o;};
+const vis=(el,on)=>{el.style.visibility=on?'visible':'hidden';};
+// enter from offset (dx,dy) over [a,a+d], exit to (ex,ey) over [b,b+d2]
+function mv(el,t,x,y,{a=0,d=.4,dx=0,dy=60,b=99,d2=.35,ex=0,ey=-80,s=1,r=0}={}){
+  const i=eo(P(t,a,a+d)),o=ei(P(t,b,b+d2));
+  tf(el,x+dx*(1-i)+ex*o,y+dy*(1-i)+ey*o,s,r,i*(1-o));
+}
+
+// ---------- opening scene SVG (night and day versions of the same composition) ----------
+const shop=(day)=>`
+ <g transform="translate(0,190)">
+  <ellipse cx="560" cy="1418" rx="440" ry="40" fill="#000" opacity="${day?.08:.25}"/>
+  <polygon points="740,920 900,830 900,1300 740,1390" fill="${day?'#D5DEEA':'#08305F'}"/>
+  <polygon points="200,920 360,830 900,830 740,920" fill="${day?'#E8EEF5':'#123F78'}"/>
+  ${day?`<g><polygon points="250,905 380,832 860,832 730,905" fill="#002552"/>
+     <g stroke="#3D6AA8" stroke-width="3"><line x1="370" y1="905" x2="500" y2="832"/><line x1="490" y1="905" x2="620" y2="832"/><line x1="610" y1="905" x2="740" y2="832"/><line x1="315" y1="868" x2="795" y2="868"/></g></g>`:''}
+  <polygon points="200,895 360,805 900,805 740,895" fill="${day?'#C9D5E4':'#1B4C8A'}" opacity="${day?0:1}"/>
+  <rect x="200" y="905" width="540" height="18" fill="${day?'#C9D5E4':'#1B4C8A'}"/>
+  <rect x="200" y="920" width="540" height="470" fill="${day?'#FFFFFF':'#0E3A70'}" stroke="${day?'#002552':'none'}" stroke-width="4"/>
+  <rect x="222" y="944" width="496" height="74" rx="6" fill="url(#${day?'sgd':'sgn'})" opacity="${day?1:.55}"/>
+  <text x="470" y="995" text-anchor="middle" font-family="Poppins" font-weight="800" font-size="42" fill="#002552" letter-spacing="3">PROVISIONS</text>
+  <rect x="252" y="1040" width="436" height="350" fill="${day?'#C3CEDD':'#2A4E7E'}"/>
+  <g stroke="${day?'#A3B2C7':'#1C3F6C'}" stroke-width="3">${[0,1,2,3,4,5,6,7,8].map(i=>`<line x1="252" y1="${1062+i*22}" x2="688" y2="${1062+i*22}"/>`).join('')}</g>
+  <rect x="252" y="1250" width="436" height="140" fill="${day?'#FFF3D6':'#00183A'}"/>
+  ${day?'<rect x="252" y="1250" width="436" height="140" fill="url(#sgd)" opacity=".35"/>':''}
+  <rect x="430" y="1232" width="80" height="14" rx="7" fill="${day?'#7D8FA8':'#5F7699'}"/>
+ </g>`;
+const bulb=(day)=>`
+  <line x1="850" y1="0" x2="850" y2="330" stroke="${day?'#002552':'#B9C7DA'}" stroke-width="4"/>
+  <rect x="834" y="330" width="32" height="34" rx="4" fill="${day?'#002552':'#B9C7DA'}"/>
+  ${day?'<circle cx="850" cy="430" r="150" fill="url(#glow)"/>':''}
+  <path d="M818 362 h64 v8 q22 30 22 62 a54 54 0 1 1 -108 0 q0 -32 22 -62z" fill="${day?'url(#sgd)':'#0B3A73'}" stroke="${day?'#002552':'#B9C7DA'}" stroke-width="5"/>`;
+const gen=(day)=>`
+ <g id="gen_${day?'d':'n'}">
+  <g id="genbody_${day?'d':'n'}">
+   <rect x="830" y="1430" width="190" height="130" rx="12" fill="${day?'#E3EAF3':'#3C5F8E'}" stroke="${day?'#002552':'#0A2347'}" stroke-width="5"/>
+   <rect x="850" y="1450" width="90" height="60" rx="6" fill="${day?'#C9D5E4':'#2A4E7E'}"/>
+   <circle cx="985" cy="1480" r="18" fill="${day?'#C9D5E4':'#2A4E7E'}" stroke="${day?'#002552':'#0A2347'}" stroke-width="4"/>
+   <rect x="845" y="1560" width="20" height="14" fill="${day?'#002552':'#0A2347'}"/><rect x="985" y="1560" width="20" height="14" fill="${day?'#002552':'#0A2347'}"/>
+   <rect x="860" y="1405" width="18" height="30" fill="${day?'#7D8FA8':'#0A2347'}"/>
+   <g id="lever_${day?'d':'n'}" transform="rotate(-35 985 1530)"><rect x="980" y="1500" width="10" height="34" rx="5" fill="#FE9636"/></g>
+  </g>
+  <rect x="770" y="1500" width="50" height="70" rx="8" fill="${day?'#C7D2E0':'#7A3A33'}" stroke="${day?'#002552':'#0A2347'}" stroke-width="4"/>
+  <rect x="782" y="1488" width="18" height="16" fill="${day?'#002552':'#0A2347'}"/>
+ </g>`;
+const defs=`<defs>
+  <linearGradient id="sgn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6DA4C"/><stop offset=".5" stop-color="#FCBA34"/><stop offset="1" stop-color="#FE9636"/></linearGradient>
+  <linearGradient id="sgd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6DA4C"/><stop offset=".5" stop-color="#FCBA34"/><stop offset="1" stop-color="#FE9636"/></linearGradient>
+  <radialGradient id="glow"><stop offset="0" stop-color="#F6DA4C" stop-opacity=".75"/><stop offset="1" stop-color="#FCBA34" stop-opacity="0"/></radialGradient></defs>`;
+const puffs=[0,1,2,3].map(i=>`<circle class="puff" cx="869" cy="1395" r="22" fill="#9FB0C8"/>`).join('');
+const openText=(day)=>`
+  <div class="A ot1" style="left:0;top:0"><p class="h" style="font-size:176px;color:${day?'#002552':'#fff'}">NO</p></div>
+  <div class="A ot2"><p class="h" style="font-size:176px;color:${day?'#002552':'#fff'}">LIGHT.</p></div>
+  <div class="A ot3"><p class="h g" style="font-size:176px">AGAIN?</p></div>
+  <div class="A ot4"><p class="h" style="font-size:150px;color:${day?'#002552':'#fff'}">Less</p></div>
+  <div class="A ot5"><p class="h" style="font-size:150px;color:${day?'#002552':'#fff'}">generator.</p></div>
+  <div class="A ot6"><p class="h g" style="font-size:150px">More sun.</p></div>`;
+for(const day of [0,1]){
+  const host=$(day?'day':'night');
+  host.innerHTML=`<svg width="1080" height="1920" style="position:absolute;inset:0">${defs}<g class="bulbg">${bulb(day)}</g>${shop(day)}${gen(day)}${day?'':puffs}</svg>${openText(day)}`;
+}
+
+// ---------- S5 buildings (flat, Lagos-style) ----------
+const BL=[
+ {k:'HOME',y:290,svg:`<rect x="62" y="112" width="216" height="178" fill="#fff" stroke="#002552" stroke-width="5"/>
+   <polygon points="278,112 312,96 312,274 278,290" fill="#C9D5E4" stroke="#002552" stroke-width="5"/>
+   <rect x="50" y="92" width="240" height="24" fill="#DDE5EF" stroke="#002552" stroke-width="5"/>
+   <g class="pv"><polygon points="84,90 104,58 252,58 232,90" fill="#002552"/><g stroke="#3D6AA8" stroke-width="3"><line x1="134" y1="90" x2="154" y2="58"/><line x1="184" y1="90" x2="204" y2="58"/><line x1="94" y1="74" x2="242" y2="74"/></g></g>
+   ${[[86,140],[196,140],[86,212]].map(([x,y])=>`<rect class="w" x="${x}" y="${y}" width="58" height="48" fill="#002552"/>`).join('')}
+   <rect x="196" y="212" width="50" height="78" fill="#002552"/>`},
+ {k:'BUSINESS',y:690,svg:`<rect x="40" y="120" width="260" height="170" fill="#fff" stroke="#002552" stroke-width="5"/>
+   <polygon points="300,120 330,104 330,274 300,290" fill="#C9D5E4" stroke="#002552" stroke-width="5"/>
+   <g class="pv"><polygon points="52,118 80,84 318,84 290,118" fill="#002552"/><g stroke="#3D6AA8" stroke-width="3"><line x1="110" y1="118" x2="138" y2="84"/><line x1="170" y1="118" x2="198" y2="84"/><line x1="230" y1="118" x2="258" y2="84"/></g></g>
+   <rect class="w" x="56" y="134" width="228" height="40" rx="4" fill="#002552"/>
+   <rect x="74" y="188" width="192" height="102" fill="#C3CEDD"/>${[0,1,2,3].map(i=>`<line x1="74" y1="${202+i*18}" x2="266" y2="${202+i*18}" stroke="#A3B2C7" stroke-width="3"/>`).join('')}
+   <rect class="w" x="74" y="262" width="192" height="28" fill="#002552"/>`},
+ {k:'INDUSTRY',y:1090,svg:`<rect x="14" y="150" width="300" height="140" fill="#fff" stroke="#002552" stroke-width="5"/>
+   <polygon points="6,152 164,80 322,152" fill="#E8EEF5" stroke="#002552" stroke-width="5"/>
+   <g class="pv"><polygon points="170,84 314,148 250,148 170,112" fill="#002552"/><polygon points="160,84 18,148 82,148 160,112" fill="#002552"/></g>
+   <rect x="120" y="196" width="88" height="94" fill="#C3CEDD" stroke="#002552" stroke-width="4"/>${[0,1,2,3].map(i=>`<line x1="120" y1="${212+i*18}" x2="208" y2="${212+i*18}" stroke="#A3B2C7" stroke-width="3"/>`).join('')}
+   ${[[36,186],[236,186]].map(([x,y])=>`<rect class="w" x="${x}" y="${y}" width="58" height="36" fill="#002552"/>`).join('')}`},
+];
+$('bldgs').innerHTML=BL.map((b,i)=>`
+  <div class="A" id="node${i}" style="width:34px;height:34px;border-radius:50%;background:#fff;border:8px solid #FCBA34;box-sizing:border-box"></div>
+  <div class="A" id="arm${i}" style="height:10px;border-radius:5px;background:var(--sun)"></div>
+  <svg class="A" id="b${i}" width="450" height="397" viewBox="0 0 340 300" style="overflow:visible">
+    <defs><linearGradient id="wg${i}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6DA4C"/><stop offset="1" stop-color="#FE9636"/></linearGradient></defs>
+    ${b.svg}</svg>
+  <p class="h A" id="lab${i}" style="font-size:50px">${b.k}</p>`).join('');
+// lit-window overlays: clone each .w with the sun gradient
+BL.forEach((b,i)=>{const s=$('b'+i);s.querySelectorAll('.w').forEach(w=>{const c=w.cloneNode();c.setAttribute('fill',`url(#wg${i})`);c.classList.remove('w');c.classList.add('wl');s.appendChild(c);});});
+// payment ticks
+$('s8ticks').innerHTML=Array.from({length:9},()=>'<i style="width:4px;height:22px;background:#002552;opacity:.45;display:block"></i>').join('');
+
+// time at which the eased rail head (y = 250 + 1270*eio(P(t,6.62,8.7))) reaches y: binary search, pure
+function railT(y){let lo=6.62,hi=8.7;for(let k=0;k<40;k++){const m=(lo+hi)/2;(250+1270*eo(P(m,6.62,8.7))<y)?lo=m:hi=m;}return lo;}
+// ---------- the render function: everything is a function of t ----------
+function draw(t){
+  // ===== S1-S3 opening =====
+  const OPEN_END=4.6;
+  vis($('open'),t<OPEN_END);
+  if(t<OPEN_END){
+    // camera: slow push; fast exit upward 4.3-4.6
+    const ex=ei(P(t,4.3,4.6));
+    $('open').style.transform=`translateY(${-1400*ex}px) scale(${1+.04*P(t,0,4.4)})`;
+    // sunlight wipe 2.25-3.15: day region is x + .55y < c
+    const w=eio(P(t,2.25,3.15)), c=L(-420,2560,w);
+    $('day').style.clipPath=`polygon(0 0, ${c}px 0, ${c-1056}px 1920px, 0 1920px)`;
+    const bc=c-528; tf($('beam'),bc-150,960-1350,1,28.8,P(t,2.2,2.35)*(1-P(t,3.05,3.25)));
+    for(const day of [0,1]){
+      const host=$(day?'day':'night'), q=s=>host.querySelector(s);
+      // text 1: NO / LIGHT. (frame 0 complete), AGAIN? punches in from right at 0.3; all exit up 1.65-1.95
+      mv(q('.ot1'),t,80,300,{a:-1,d:.01,b:1.65,d2:.3,ey:-220});
+      mv(q('.ot2'),t,80,468,{a:-1,d:.01,b:1.68,d2:.3,ey:-220});
+      mv(q('.ot3'),t,80,654,{a:.28,d:.3,dx:420,dy:0,b:1.71,d2:.3,ey:-220});
+      // text 2: Less / generator. / More sun.
+      mv(q('.ot4'),t,80,300,{a:1.97,d:.38,dy:140,b:4.25,d2:.3,ey:-160});
+      mv(q('.ot5'),t,80,450,{a:2.03,d:.38,dy:140,b:4.27,d2:.3,ey:-160});
+      mv(q('.ot6'),t,80,620,{a:2.12,d:.38,dx:-380,dy:0,b:4.29,d2:.3,ey:-160});
+      // generator: slides in 0.75-1.0, shakes until 1.6, dead still after
+      q('.bulbg').setAttribute('transform',`rotate(${6*Math.cos(t*2.6)*Math.exp(-t*.25)} 850 0)`);
+      const g=q('#gen_'+(day?'d':'n')), gb=q('#genbody_'+(day?'d':'n')), lv=q('#lever_'+(day?'d':'n'));
+      const gi=eo(P(t,.72,1.0)); g.setAttribute('transform',`translate(${300*(1-gi)},0)`); g.style.opacity=gi;
+      const shaking=t>=.8&&t<1.6; const sx=shaking?Math.sin(t*95)*5:0, sy=shaking?Math.cos(t*120)*3:0;
+      gb.setAttribute('transform',`translate(${sx},${sy})`);
+      lv.setAttribute('transform',`rotate(${t<1.6?-35:L(-35,35,eo(P(t,1.6,1.72)))} 985 1530)`);
+    }
+    // bulb flicker (night): frame 0 off, two brief flickers 0.05-0.25 are skipped to keep frame 0 clean
+    // haze puffs (night only): rise while running, clear after 1.6
+    $('night').querySelectorAll('.puff').forEach((p,i)=>{
+      const ph=((t*1.6+i*.25)%1); const run=t>=.85&&t<1.6; const fade=1-P(t,1.6,1.95);
+      const k=cl(run?ph:((1.6*1.6+i*.25)%1)+(t-1.6)*.8);
+      p.setAttribute('cy',1395-200*k); p.setAttribute('cx',869+30*Math.sin(k*5+i)); p.setAttribute('r',18+40*k);
+      p.style.opacity=(t<.85?0:(1-k)*.8*fade);
+    });
+  }
+
+  // ===== logo bug =====
+  vis($('bug'),t>=4.4&&t<23.2); tf($('bug'),80,258,1,0,eo(P(t,4.4,4.7))*(1-P(t,22.8,23.1)));
+
+  // ===== S4 panels (4.3-6.9) =====
+  vis($('s4'),t>=4.3&&t<6.95);
+  if(t>=4.3&&t<6.95){
+    $('s4').style.transform=`translateY(${-1500*ei(P(t,6.6,6.95))}px)`;
+    mv($('s4h1'),t,80,370,{a:4.4,d:.4,dy:120});
+    mv($('s4h2'),t,80,482,{a:4.48,d:.4,dy:120});
+    const ci=eo(P(t,4.3,4.75)); tf($('s4card'),60,L(1500,700,ci),1,0,1);
+    $('s4img').style.transform=`scale(${1.04+.08*P(t,4.4,6.9)})`;
+    // the sunlight line draws across the card top, then turns down the right edge
+    const lw=eo(P(t,4.75,5.35)); tf($('s4line'),60,680,1,0,P(t,4.75,4.8)); $('s4line').style.width=(960*lw)+'px';
+  }
+
+  // ===== S5 home / business / industry (6.6-9.6) =====
+  vis($('s5'),t>=6.6&&t<9.65);
+  if(t>=6.6&&t<9.65){
+    const ex=ei(P(t,9.3,9.65));
+    $('s5').style.transform=`translateX(${-1100*ex}px) scale(${1+.03*P(t,6.6,9.4)})`;
+    const rh=eo(P(t,6.62,8.7)); tf($('rail'),143,250,1,0,1); $('rail').style.height=(1270*rh)+'px';
+    BL.forEach((b,i)=>{
+      const at=railT(b.y+167); // exact time the rail head reaches this building's node
+      const li=eo(P(t,at,at+.35));
+      tf($('node'+i),133,b.y+150,L(.3,1,back(P(t,at-.05,at+.25))),0,P(t,at-.05,at+.05));
+      tf($('arm'+i),165,b.y+162,1,0,li); $('arm'+i).style.width=(40*li)+'px';
+      const bs=$('b'+i), rin=eo(P(t,6.6+i*.12,7.05+i*.12)); tf(bs,190,b.y-40+90*(1-rin),L(.94,1,li),0,L(.32,1,li)*rin); bs.style.filter=`grayscale(${1-li})`;
+      bs.querySelectorAll('.wl').forEach(w=>w.style.opacity=li); bs.querySelectorAll('.pv').forEach(p=>p.style.opacity=L(.25,1,li));
+      mv($('lab'+i),t,650,b.y+150,{a:at+.08,d:.35,dx:120,dy:0});
+    });
+  }
+
+  // ===== S6 nothing upfront (9.35-11.7) =====
+  vis($('s6'),t>=9.35&&t<11.7);
+  if(t>=9.35&&t<11.7){
+    $('s6').style.transform=`translateY(${-1500*ei(P(t,11.25,11.6))}px) scale(${1+.03*P(t,9.4,11.4)})`;
+    tf($('s6beam'),L(-420,-120,P(t,9.35,11.7)),-400,1,28,1);
+    mv($('s6a'),t,80,760,{a:9.42,d:.36,dx:-700,dy:0});
+    mv($('s6b'),t,80,948,{a:9.58,d:.36,dx:700,dy:0});
+    const u=eo(P(t,9.85,10.35)); tf($('s6u'),80,1170,1,0,P(t,9.85,9.9)); $('s6u').style.width=(880*u)+'px';
+  }
+
+  // ===== finance small print (10.0-18.4, same place throughout) =====
+  vis($('fine'),t>=10&&t<18.6); tf($('fine'),80,1440,1,0,P(t,10.0,10.3)*(1-P(t,18.2,18.38)));
+
+  // ===== S7 installed and maintained (11.4-14.3) =====
+  vis($('s7'),t>=11.4&&t<14.3);
+  if(t>=11.4&&t<14.3){
+    $('s7').style.transform=`translateX(${-1100*ei(P(t,13.95,14.3))}px)`;
+    const ci=eo(P(t,11.4,11.85)); tf($('s7card'),80,L(1700,730,ci),1,0,1);
+    $('s7img').style.transform=`scale(${1.03+.07*P(t,11.4,14.3)})`;
+    mv($('s7a'),t,80,370,{a:11.4,d:.38,dy:110});
+    mv($('s7b'),t,80,470,{a:11.46,d:.38,dy:110});
+    mv($('s7c'),t,80,570,{a:11.52,d:.38,dy:110});
+    tf($('s7badge'),830,660,back(P(t,12.1,12.45)),0,P(t,12.1,12.2));
+    $('s7check').setAttribute('stroke-dashoffset',110*(1-eo(P(t,12.35,12.7))));
+    $('s7chip').style.opacity=eo(P(t,12.5,12.8)); $('s7chip').style.transform=`translateY(${30*(1-eo(P(t,12.5,12.8)))}px)`;
+  }
+
+  // ===== S8 pay in instalments -> OWNED (14.0-18.7) =====
+  vis($('s8'),t>=14.0&&t<18.75);
+  if(t>=14.0&&t<18.75){
+    $('s8').style.transform=`scale(${1+.03*P(t,14,18.4)})`;
+    tf($('s8photo'),0,L(1920,1500,eo(P(t,14.0,14.6))),1,0,1);
+    $('s8img').style.transform=`scale(${1.02+.06*P(t,14,18.7)})`;
+    mv($('s8a'),t,80,410,{a:14.05,d:.38,dx:900,dy:0,b:18.4,d2:.3,ey:-200});
+    mv($('s8b'),t,80,527,{a:14.13,d:.38,dx:900,dy:0,b:18.42,d2:.3,ey:-200});
+    tf($('s8track'),80,790,1,0,eo(P(t,14.3,14.6))*(1-P(t,18.4,18.6)));
+    tf($('s8ticks'),80,866,1,0,eo(P(t,14.4,14.7))*(1-P(t,18.4,18.6)));
+    // fill in nine eased steps 14.6-16.35, then OWNED slams at 16.45
+    let f=0; for(let k=0;k<9;k++) f+=eo(P(t,14.6+k*.195,14.6+k*.195+.17))/9;
+    $('s8fill').style.width=(100*f)+'%';
+    const sp=P(t,16.45,16.65); tf($('s8stamp'),220,945,L(1.7,1,eo(sp))+(sp>=1?.018*Math.sin((t-16.65)*40)*Math.exp(-(t-16.65)*9):0),-7,P(t,16.45,16.52)*(1-P(t,18.4,18.6)));
+    mv($('s8c'),t,80,1190,{a:16.85,d:.35,dy:40,b:18.4,d2:.25,ey:-60});
+  }
+
+  // ===== S9 real projects (18.4-23.2) =====
+  vis($('s9'),t>=18.4&&t<23.25);
+  if(t>=18.4&&t<23.25){
+    const wipe=eo(P(t,18.4,18.8)); $('s9').style.clipPath=`inset(${1920*(1-wipe)}px 0 0 0)`;
+    mv($('s9a'),t,80,370,{a:18.7,d:.4,dy:100,b:22.6,d2:.3,ey:-120});
+    mv($('s9b'),t,80,470,{a:18.78,d:.4,dy:100,b:22.62,d2:.3,ey:-120});
+    // cards deal in, drift, then collapse into a point of light at the logo's sun position
+    const col=eio(P(t,22.55,23.1)), cx=188, cy=410;
+    const i1=eo(P(t,19.0,19.6)), i2=eo(P(t,19.55,20.15)), drift=Math.sin((t-19)*1.3);
+    const c1x=L(L(1200,90,i1),cx-440,col), c1y=L(620+6*drift,cy-270,col);
+    tf($('s9c1'),c1x,c1y,L(1,.05,col),L(L(12,-2.5,i1),0,col),1-P(t,22.85,23.1));
+    const c2x=L(L(-1000,110,i2),cx-410,col), c2y=L(1205-6*drift,cy-145,col);
+    tf($('s9c2'),c2x,c2y,L(1,.05,col),L(L(-10,2,i2),0,col),1-P(t,22.85,23.1));
+    $('s9i1').style.transform=`scale(${1.02+.05*P(t,19,23)})`; $('s9i2').style.transform=`scale(${1.02+.05*P(t,19.5,23)})`;
+    tf($('s9glow'),cx-300,cy-300,L(.1,1.3,eo(P(t,22.7,23.2))),0,P(t,22.7,22.9));
+  }
+
+  // ===== S10 end card (23.0-29.9) =====
+  vis($('s10'),t>=23.0);
+  if(t>=23.0){
+    const dr=-14*P(t,25,29.9);
+    tf($('e_glow'),188-350,410-350,L(1.3,.55,eo(P(t,23.0,23.8)))*(1+.04*Math.sin((t-23)*2.2)),0,1-.6*P(t,23.4,24.2));
+    tf($('e_glow2'),380,1180+dr*2,1+.05*Math.sin((t-23)*1.4),0,P(t,23.6,24.4));
+    const li=eo(P(t,23.1,23.6)); tf($('e_logo'),80,300+dr,L(.6,1,li),0,li);
+    mv($('e1'),t,80,640+dr,{a:23.55,d:.38,dy:70});
+    mv($('e2'),t,80,730+dr,{a:23.63,d:.38,dy:70});
+    mv($('e3'),t,80,890+dr,{a:24.05,d:.35,dy:50});
+    const ni=eo(P(t,24.2,24.6)); tf($('e4'),80,980+dr,L(.92,1,ni),0,ni);
+    mv($('e5'),t,80,1160+dr,{a:24.55,d:.35,dy:40});
+    mv($('e6'),t,80,1230+dr,{a:24.7,d:.35,dy:40});
+    mv($('e7'),t,80,1320+dr,{a:24.85,d:.35,dy:40});
+  }
+}
+
+// ---------- timeline: GSAP only drives t ----------
+const st={t:0};
+window.__timelines=window.__timelines||{};
+window.__timelines.grosolar=gsap.timeline({paused:true}).to(st,{t:29.9,duration:29.9,ease:'none',onUpdate:()=>draw(st.t)});
+draw(0);
+</script>
+</body></html>

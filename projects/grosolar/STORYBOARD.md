@@ -72,7 +72,8 @@ No phone videos are coming, so the opening is fully illustrated (in the style of
 | Isometric scenes, payment bar, logo build | Built in code | We build |
 | Look | `BRAND.md` + style frames v1 | Awaiting approval |
 | Official logo | Owner (placeholder wordmark until then) | Needed before publishing |
-| Voice | Female AI voice, Nigerian English; test that it says "GroSolar" correctly | To audition |
+| Voice | **Recorded by a real person** (owner's choice; AI Nigerian voices need a paid ElevenLabs plan). Guide: `VOICEOVER.md` | Awaiting recording |
+| Music | Licensed: Splice stack "Warm uplifting Afro-house, 115 BPM" (drums, congas, bass, keys) | Awaiting OK to spend Splice credits |
 
 ## Still to confirm before building
 
