@@ -1,4 +1,4 @@
-# GroSolar brand ad: brief (draft v0.3)
+# GroSolar brand ad: brief (draft v0.4)
 
 Status: **base agreed, details still to confirm.** Nothing here is final until every "TO CONFIRM" item is answered. The ad style is chosen *after* this brief is complete.
 
@@ -22,7 +22,7 @@ Status: **base agreed, details still to confirm.** Nothing here is final until e
 | Where it runs | Instagram Reels, TikTok, WhatsApp Status/broadcast |
 | Format | **Vertical 9:16 (1080×1920)**, readable on a phone screen, works on mute (big on-screen words) |
 | Voice | English voiceover + on-screen text that carries the message on mute |
-| Single action (CTA) | **Call or WhatsApp** GroSolar; mention the GroSolar NG app. Number found online: +234 705 370 0000. TO CONFIRM: correct, and is it also the WhatsApp line? |
+| Single action (CTA) | **Call or WhatsApp** GroSolar; mention the GroSolar NG app. **+234 705 370 0000** (confirmed by owner) |
 
 ## 3. The core message (working, not final)
 
@@ -58,19 +58,19 @@ Real project numbers (owner-supplied; TO CONFIRM spellings and permission to nam
 
 | Project | Size | Type | Note |
 |---|---|---|---|
-| Adeola Hopewell (Victoria Island) | 100 kW | TO CONFIRM | |
+| Adeola Hopewell (Victoria Island) | 100 kW | Commercial (GroSolar office address) | Drone footage in Drive |
 | "Sinari" (spelling unclear) | 100 kW | Commercial & industrial (C&I) | |
-| National TV broadcaster | 150 kW | Commercial | Client **not named** on screen (owner's decision) |
-| Epe | 100 kW | TO CONFIRM | |
+| National TV broadcaster | 150 kW | Commercial | Client **not named** on screen; Drive shows proposals only, TO CONFIRM completed |
+| Epe (IFGREEN site) | 100 kW | TO CONFIRM solar (site also has a biogas system) | Drone footage in Drive |
 | More projects | | | TO ADD |
 
 - [ ] Logo, brand colours and fonts: **to be taken from grosolar.co** (blocked from the build environment so far; owner to allow the site or share a screenshot/logo file)
-- [ ] Project photos and videos (owner has them; to be shared, noting which clients agreed to be shown)
+- [x] Project photos and drone footage found in Google Drive: see `ASSETS.md` (files still to be exported to the edit)
 
 ## 6. Open decisions (made after this brief is complete)
 
 - Ad style and look: owner wants something **unique and premium, not a template look**; **chosen: the mix** of "The Switch-Off" hook, "From Sun to Yours" explainer and "Powering Lagos" proof (see `STORYBOARD.md`)
-- Voiceover: AI voice or a real person; accent and gender
+- Voiceover: **female AI voice** (owner's choice); Nigerian English accent to be auditioned
 - Music mood
 - Whether AI-generated imagery is used for supporting shots (if so, labelled per the kit's rules)
 
