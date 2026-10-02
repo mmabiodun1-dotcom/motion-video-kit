@@ -1,75 +1,83 @@
-# GroSolar brand ad: storyboard (draft v0.1)
+# GroSolar brand ad: storyboard (draft v0.2)
 
-30 s · vertical 9:16 (1080×1920) · English voiceover · built to work on mute · CTA: call or WhatsApp
-Style: the agreed **mix**: (A) "The Switch-Off" hook → (B) "From Sun to Yours" explainer → (C) "Powering Lagos" proof → close.
+29.9 s · vertical 9:16 (1080×1920) · female AI voiceover (Nigerian English) · built to work on mute · CTA: call or WhatsApp 0705 370 0000
+Style: the agreed **mix**: "The Switch-Off" hook → "From Sun to Yours" explainer → real-project proof → CTA.
+
+v0.2 applies storyboard critic 1 (`review/storyboard-critic-1.md`, verdict REVISE) and the Drive footage audit (`ASSETS.md`). What changed:
+- **Real order of events:** install now comes before paying off and owning.
+- **No map and no kW total.** Proof is a stack of real drone shots.
+- **Every voice line now fits its beat** (max 2.3 words/s).
+- **Finance small print** sits on the offer frame.
+- **CTA starts at 23.0 s,** with a logo bug from 4.4 s.
+- **The hook is local:** "No light" in a shop.
 
 ## The idea in one line
 
-A single line of **sunlight** runs through the whole ad. It cuts the generator's noise, powers a home, a shop and a factory, turns into a payment bar that fills until the system is **OWNED**, then maps GroSolar's real projects, and finally folds back into the sun in the logo.
+A single line of **sunlight** runs through the whole ad. It cuts the generator's noise, powers a home, a shop and a warehouse, becomes the payment bar that fills until **OWNED**, carries the real project shots, and folds into the GroSolar logo.
 
-That sunlight line is the ad's "persistent actor" (motion-grammar rule 2): it is what makes 30 seconds feel like one film instead of a slideshow.
+## Signature moments
 
-## Three signature moments
-
-1. **The switch-off:** the generator roar cuts to sudden silence, and a beam of sunlight slices the frame open.
-2. **Light becomes ownership:** the same beam that lights the home turns into a payment bar, month by month, until it stamps **OWNED**.
-3. **Proof on the map:** the bar lifts into a route that connects GroSolar's real installations, then collapses into the sun of the logo.
+1. **Visible silence:** the generator's shaking stops dead, the haze clears, and a beam of sunlight slices the frame open. This works on mute.
+2. **Light becomes ownership:** the beam becomes a payment bar, month by month, until it stamps **OWNED**.
+3. **Real proof:** the bar becomes a rail that deals out real drone shots of GroSolar sites, which then collapse into the logo.
 
 ## Beat by beat
 
-| Time (s) | What the viewer sees | On-screen words | Voiceover | Business job | Transition out (what carries over) |
+| Time (s) | What the viewer sees | On-screen words | Voiceover (words) | Business job | Out (what carries over) |
 |---|---|---|---|---|---|
-| 0.0–2.6 | Daylight close-up of a petrol generator shaking, exhaust haze, a fuel jerrycan beside it. Bright, not moody. Frame 0 is already complete. | **POWER OUT.** **AGAIN.** (two words punching in on opposite axes) | *(no voice; generator roar)* | Hook: the pain every viewer knows | A hand flips the generator's switch |
-| 2.6–4.4 | Roar cuts to **silence**. A diagonal beam of sunlight slices across and wipes the generator away, revealing blue sky. | **Switch off the generator.** → **Switch on the sun.** | "Switch off the generator. Switch on the sun." | The turn: there is another way | The beam keeps travelling down the frame |
-| 4.4–6.8 | The beam lands on a **real GroSolar panel** (client footage, macro); light glints across the cells. The camera pulls back to the full array. | **Solar, funded by GroSolar.** | "GroSolar funds your solar system…" | Says what GroSolar is | The beam leaves the panel as a glowing line |
-| 6.8–10.0 | The line runs along one rail through three clean 3D/illustrated vignettes, each lighting up as it arrives: a **home**, a **shop**, a **factory**. The camera tracks with the line. | **HOME · BUSINESS · INDUSTRY** (each label lands with its building) | "…for homes, businesses and industry…" | Speaks to every audience in one move | The line runs off the factory roof and straightens |
-| 10.0–12.2 | Typographic impact. Huge words fill 80% of the frame; the line underlines them. | **NOTHING UPFRONT.** | "…with nothing upfront." | The core offer, unmissable | The underline thickens into a bar |
-| 12.2–16.4 | The line becomes a **payment bar**. Month ticks roll past (Month 1, 2, 3…), the bar fills in steps and the camera pushes in slowly. At 100% a stamp lands: **OWNED.** | **Pay over time.** → **Then it's yours.** · small: *Subject to credit approval* | "Pay over time, at a pace that works for you. Once it's paid off, it's yours." | Explains amortized payment and ownership simply | The stamp's flash wipes to the next shot |
-| 16.4–18.4 | **Real footage of the GroSolar team** installing panels on a roof, then a technician checking an inverter. | **We install. We maintain.** | "We install it, and we maintain it." | Removes the "who handles it?" worry | Camera tilts up into sky; the line reappears and rises |
-| 18.4–24.4 | The line climbs and the camera rises over a sleek **3D map of Lagos and beyond**. Pins rise as glowing panel arrays, each with a quick cut-in to the real site photo: **100 kW · Adeola Hopewell, Victoria Island** · **100 kW · Epe** · **150 kW · National TV broadcaster** · **100 kW · [project 4, name TBC]**. A counter climbs as each lands. | **450 kW across these four projects** (TO CONFIRM wording) | "Real projects, already running." | Proof for businesses, big clients and investors | The map lines draw inward to one point |
-| 24.4–27.0 | All the lines converge into a sun, which becomes the **GroSolar logo** (logo-as-portal). | **GroSolar** | "Call or WhatsApp GroSolar today." | Brand moment | The logo settles up the frame to make room |
-| 27.0–30.0 | End card, gentle drift (no frozen frame). Phone number large; WhatsApp and phone icons; "Get the GroSolar NG app" badge. | **Nothing upfront. Pay over time. Own it.** · **+234 705 370 0000** (TO CONFIRM) · *Subject to credit approval* | *(music resolves)* | The one action, readable ≥ 2 s | End |
+| 0.0–0.8 | A bright Lagos shop at midday. The light cuts out, the ceiling fan slows, and the owner looks up. Frame 0 is already complete. | **NO LIGHT.** **AGAIN?** | *(room tone; fan winding down)* | Hook in a local idiom | Hard cut on the owner's glance |
+| 0.8–1.6 | Outdoors in daylight: the generator kicks on, roars and shakes, with haze and a jerrycan. | (words hold) | *(generator roar)* | The cost everyone knows | A hand reaches for the switch |
+| 1.6–4.4 | The switch flips. The **shaking stops dead, the haze clears** and the roar cuts to silence. A diagonal beam of sunlight wipes the frame to blue sky. | **Less generator.** **More sun.** | "Less generator. More sun." (4) | The turn | The beam travels down; the logo bug appears at 4.4 |
+| 4.4–6.6 | The beam lands on **real GroSolar panels** (drone shot sliding over the array: Victoria Island or Ikoyi). | **Solar, funded by GroSolar.** | "GroSolar funds your solar" (4) | What GroSolar is | The beam leaves the array as a glowing line |
+| 6.6–9.4 | The line runs along one rail through three **flat isometric illustrations in a Lagos style**: a duplex with a parapet, a shop with a roller shutter, a warehouse. Each lights up as the line arrives. | **HOME · BUSINESS · INDUSTRY** | "for homes, businesses and industry" (5) | Every audience in one move | The line straightens into an underline |
+| 9.4–11.4 | Typographic impact, filling about 80% of the width. The line underlines it. | **NOTHING UPFRONT.** · small (44 px+, stays through 18.4): *Subject to approval. Terms apply.* | "with nothing upfront." (3) | The core offer, with its condition on the same frame | Underline holds; footage slides in behind |
+| 11.4–14.0 | **Real installation footage:** panels going onto a roof, then the inverter and battery wall. Clips screened for harnesses/PPE and with **no funder or client logos visible**. | **Installed and maintained for you.** | "Installed and maintained for you." (5) | Removes the "who handles it?" worry (wording works whether GroSolar's team or a partner installs) | The underline thickens into a bar |
+| 14.0–18.4 | The line becomes a **payment bar**: month ticks roll past and the bar fills in steps with a slow push-in. At 100% a stamp lands: **OWNED.** | **Pay in instalments.** → **Then it's yours.** | "Pay in instalments. Once it's paid off, it's yours." (9) | Amortized payment and ownership, simply | The bar rises and becomes a rail |
+| 18.4–23.0 | Cards fan along the rail: **real drone shots** of GroSolar sites, each with a label: **Home · Ikoyi** · **100 kW · Victoria Island** · **100 kW · Epe** · (+ **150 kW · National broadcaster** only once installed and confirmed). | Card labels only | "Real GroSolar projects." (3) | Proof for every audience, homes included | Cards collapse along the rail into a point of light |
+| 23.0–29.9 | The point of light becomes the sun in the **GroSolar logo**. CTA card with gentle drift (no frozen frame). | Logo · **0705 370 0000** (110 px+) with WhatsApp + phone icons · **Check if you qualify** · *GroSolar NG app · Google Play* · *Subject to approval. Terms apply.* | "Call or WhatsApp to check if you qualify. Get the GroSolar NG app." (13) | One clear action, readable for about 6 s | End |
 
-Voiceover: about 52 words in about 25 seconds, an unhurried pace that leaves room for the silence hook.
+Voiceover: **47 words**, every beat at or below 2.3 words/s.
 
-> Switch off the generator. Switch on the sun.
-> GroSolar funds your solar system, for homes, businesses and industry, with nothing upfront.
-> Pay over time, at a pace that works for you. Once it's paid off, it's yours.
-> We install it, and we maintain it.
-> Real projects, already running.
-> Call or WhatsApp GroSolar today.
+> Less generator. More sun.
+> GroSolar funds your solar for homes, businesses and industry, with nothing upfront.
+> Installed and maintained for you.
+> Pay in instalments. Once it's paid off, it's yours.
+> Real GroSolar projects.
+> Call or WhatsApp to check if you qualify. Get the GroSolar NG app.
 
-## Phone-screen rules (vertical social)
+## Phone-screen rules
 
-- Keep all words and the phone number out of the zones TikTok and Instagram cover: roughly the **top 250 px**, the **bottom 420 px** and the **right 140 px**.
-- Minimum text size about 64 px for headlines and 44 px for small print. The number must be readable on a small phone.
-- Bright, clear imagery throughout. Clients in the kit's case studies rejected dark openers.
+- **Keep clear of platform buttons and captions:** all words, the number and the logo stay inside **y 250–1500 px** and **x ≤ 940 px**.
+- **Text sizes:** headlines 64 px or larger, small print 44 px or larger, phone number 110 px or larger.
+- **Logo bug:** a small logo shows from 4.4 s so a muted viewer always knows who this is.
+- **Bright and clear throughout:** daylight footage only.
 
 ## Sound plan
 
-- 0–2.6 s: real generator roar (recorded or library), then a **hard cut to silence**. This is the hook.
-- Music enters on "Switch on the sun": a warm, uplifting, Afro-leaning instrumental with a light groove (to choose together), kept under the voice.
-- One soft whoosh per real transition, a soft "stamp" on **OWNED**, a gentle tick per map pin. No harsh clicks.
-- Master: about −14 LUFS for social feeds, checked with `scripts/loudness.sh`.
+- **0–1.6 s:** shop room tone, then the generator roar. At 1.6 s a **hard cut to silence**.
+- **Music** enters under "More sun": a warm, uplifting, Afro-leaning instrumental with a light groove, kept under the voice.
+- **Effects:** one soft whoosh per real transition, a soft stamp on **OWNED**, a gentle tick per project card.
+- **Master:** about −14 LUFS, checked with `scripts/loudness.sh`.
 
-## What we need for each beat
+## Footage per beat (see `ASSETS.md`)
 
 | Beat | Source | Status |
 |---|---|---|
-| Generator close-up | Phone video of a running generator in daylight (easy to film), or a labelled AI shot | Needed |
-| Panel macro + array | GroSolar project footage | Owner has it |
-| Team installing / maintaining | GroSolar project footage | Owner has it |
-| Each project site (4) | Photo or video per site, drone if available | Owner has it |
-| Home / shop / factory vignettes, map, payment bar, logo build | Built in code (3D + motion graphics) | We build |
-| Logo, colours, fonts | grosolar.co | Blocked; needs network access or a screenshot |
-| App badge | GroSolar NG app icon/screenshot | Needed |
-| Voiceover | AI voice (Nigerian English) or a real voice artist | To decide |
+| Shop "no light" moment | Short phone video in a real shop (staged, with permission) | Needed |
+| Generator | Phone video of a running generator outdoors in daylight | Needed |
+| Panels from the air | Drive: AH - 13/02/2026 (DJI_0014.MOV), Ikoyi residential (DJI_0016 / DJI_0020.MP4) | Found; to export |
+| Installation | Drive: Installation Pictures (IMG_0486.MOV); more install video wanted | Partly found; **screen for PPE and logos** |
+| Project cards | Drive drone stills: Ikoyi, AH, IFGREEN (Epe) | Found; to export |
+| Isometric scenes, payment bar, logo build | Built in code | We build |
+| Logo, colours, fonts | grosolar.co or a logo file | **Still needed; blocks the colour tokens and the end card** |
+| Voice | Female AI voice, Nigerian English; test that it says "GroSolar" and "Epe" correctly | To audition |
 
 ## Still to confirm before building
 
-1. The fourth project's name (heard as "Sinari"), or drop it.
-2. The phone number, and whether it is also the WhatsApp line.
-3. Wording: "Subject to credit approval" on screen.
-4. The "450 kW across these four projects" line (only true if the four sizes are right).
-5. Brand colours and logo (from grosolar.co).
-6. Voice: AI or a real voice artist, male or female.
+1. **Wording:** is "Installed and maintained for you" right? Does maintenance continue after the system is paid off?
+2. **Broadcaster:** is the 150 kW system installed and running? If not, its card stays out.
+3. **Ikoyi:** is the Ikoyi home a GroSolar-funded system we can show (no house number or owner visible)?
+4. **Epe:** is the 100 kW system at Epe solar?
+5. **Service area:** where does GroSolar serve (Lagos only, or South-West)? If confirmed, add it to the end card.
+6. **Logo and brand colours.**
+7. **ARCON vetting:** Nigerian ads, social included, go to ARCON's Advertising Standards Panel before they run. Allow time for this.
