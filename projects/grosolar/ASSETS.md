@@ -1,35 +1,36 @@
-# GroSolar ad: footage and evidence found (Google Drive, 2 Oct 2026)
+# GroSolar ad: assets
 
-Catalogued from file names and metadata in the owner's Google Drive. Videos have **not been viewed yet**: the drone files (100 MB–1.7 GB) cannot be pulled through the Drive connector, so the owner needs to export the chosen clips (see "Next step"). Private material seen in Drive (bank details, price lists, customers' personal names and addresses, contracts) is deliberately **not** copied here and must never appear in the ad.
+**Source of truth: files the owner supplies directly** (zips and attachments). Google Drive is only a backup for higher-quality originals of the same sites; nothing else from Drive is used.
 
-## Footage by site
+Photos live in `assets/photos/` and are **kept out of Git** (`.gitignore`) because they carry GPS coordinates and addresses.
 
-| Site | Drive folder | What is there | Use in the ad |
-|---|---|---|---|
-| **Adeola Hopewell, Victoria Island** (GroSolar's office address; the owner's 100 kW site) | DRONE / AERIAL FOOTAGE → ADEOLA HOPEWELL → AH - 13/02/2026 | 4 drone stills (DJI_0002–0005), 1 drone video (DJI_0014.MOV, ~104 MB) | Map pin "100 kW · Victoria Island"; hero aerial |
-| **Epe (IFGREEN)** | DRONE / AERIAL FOOTAGE → IFGREEN (EPE) → IFGREEN - 20/02/2026 | Drone stills (DJI_0981, DJI_0982) and 1 drone video (DJI_0983.MP4, ~227 MB) | Map pin "100 kW · Epe" |
-| **Ikoyi residential** | DRONE / AERIAL FOOTAGE → IFGREEN (EPE) → ikoyi residential | About 20 drone stills (JPG + RAW DNG, DJI_0001–0031) and 5 drone videos (DJI_0014/0015/0016/0020/0023.MP4, 40 MB–1.7 GB) | "HOME" beat: a real home with panels, from the air |
-| **Festac / Amuwo-Odofin workspace** (system upgrade, Jul 2026) | Amg Workspace | Inverter and battery wall photos (GPS-stamped) | Equipment close-ups; **check for funder logos** |
-| **Surulere residence** (Aug 2026) | Pictures → Installation Pictures | Battery/inverter photos, 1 phone video (IMG_0486.MOV, ~43 MB), a GPS-stamped photo | "We install / maintain" beat |
-| **Misc. installs** (Jun 2026) | Pictures | WhatsApp photos (small, low resolution) | Backup only |
-| **National TV broadcaster, 150 kW** | Galaxy TV Solar PV & BESS Installation Proposals | Installer proposals only (May 2026); **no photos or completion record found** | Needs completion evidence and footage before use |
+## Owner-supplied photos
 
-## Other evidence found
+### Zip 1 (`assets/photos/onedrive-2026-10-02/`, received 2 Oct 2026)
 
-- **Project experience document** ("Annexure B"): 50 kW hospital systems (General Hospital Shendam, Plateau, and General Hospital Ikole-Ekiti, World Bank × REA programme, 2022–23) and a 1 MWp plant at Fanmilk, Ibadan (2022–23). The file is owned by a different account, so **confirm these are GroSolar's own projects** before the ad uses them.
-- Large-scale proposals (3 MW hybrid; 5 MW solar-biogas for a manufacturer): proposals, **not** completed work. Do not show these as projects.
+| File | What it shows | Size | Usable for | Fixes needed |
+|---|---|---|---|---|
+| `1.jpeg` | Aerial of a 4-storey building, its roof fully covered in panels, plus a ground-level carport array | 335×397 (very small) | Project card only, at small size | **Site to confirm.** A full-resolution original is needed (the drone originals in Drive would be ideal) |
+| `2.jpg` | Adeola Hopewell, Victoria Island: carport array in the foreground, street and buildings behind, sunny | 720×1280 vertical | "Panels" beat (4.4–6.6) and the Victoria Island project card | Crop out the GPS Map Camera stamp (bottom 25%). Keep the neighbouring bank building and its logo out of frame, or blur them. Slightly soft at full screen, so the original resolution is preferred |
+| `3.jpg` | Adeola Hopewell: the carport array from above at an angle, inverter cabinets visible | 1280×720 landscape | Project card; background plate for the payment bar | Crop out the GPS stamp. Keep bank signage out of frame |
 
-## Issues the footage raises (owner to decide)
+### Still to come (owner)
 
-1. **Funder logos on equipment.** Several inverter photos show "Clean Energy Local Currency Fund" stickers. The owner decided not to name the funder, so those shots must be framed or cropped to avoid the logo, or not used.
-2. **Who installs.** Job completion certificates name partner installers (e.g. YotaPro Solutions, OS Systems), and the broadcaster job went to installer proposals. The script line "We install it, and we maintain it" may need to be "We handle installation and maintenance" (GroSolar arranges, manages and stands behind the work). Owner to confirm the wording.
-3. **Broadcaster project status.** Only show it once it is installed and running.
-4. **Fourth project ("Sinari").** Nothing found under that name.
+- National TV broadcaster (150 kW) photos
+- Any other existing project photos (only projects that are **installed and running** go in the ad)
 
-## Next step: getting the footage to the edit
+## Footage still needed
 
-The build needs the actual files. Best route: the owner downloads the chosen clips from Drive and attaches them in the session (or zips a smaller selection). First picks:
-- AH - 13/02/2026: DJI_0014.MOV + 2 stills
-- IFGREEN - 20/02/2026: DJI_0983.MP4 + 1 still
-- Ikoyi residential: DJI_0016.MP4 (234 MB) or DJI_0020.MP4 (41 MB) + 2 stills
-- Installation Pictures: IMG_0486.MOV
+| For | What | Who |
+|---|---|---|
+| Opening (0–0.8 s) | Phone video: a shop as the light goes off (staged, with permission) | Owner |
+| Generator (0.8–1.6 s) | Phone video: a generator running outdoors in daylight | Owner |
+| Installation (11.4–14.0 s) | Phone video of an install in progress (partner OS Systems crew), harnesses/PPE on | Owner |
+| Better quality | Full-resolution originals of `1.jpeg`, `2.jpg` and `3.jpg` (no GPS stamp), or the Adeola Hopewell drone clip (Drive: DJI_0014.MOV) | Owner |
+
+## Rules for every shot
+
+- Funder stickers on equipment **may stay visible** (owner's decision). The funder is still not named in the voiceover or on-screen text.
+- No neighbouring company logos (banks, shops) and no client branding unless approved.
+- No house numbers, car plates or people's faces without permission.
+- PPE visible in any installation shot.

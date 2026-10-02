@@ -1,4 +1,4 @@
-# GroSolar brand ad: brief (draft v0.4)
+# GroSolar brand ad: brief (draft v0.5)
 
 Status: **base agreed, details still to confirm.** Nothing here is final until every "TO CONFIRM" item is answered. The ad style is chosen *after* this brief is complete.
 
@@ -10,7 +10,7 @@ Status: **base agreed, details still to confirm.** Nothing here is final until e
 | Location | 27 Moore Road, off University Road, Yaba, Lagos (from public listings; TO CONFIRM still current) |
 | What it does (owner's words) | A solar **financing** company: GroSolar funds the whole solar system up front, and the client pays later. |
 | What it does (public description) | A "solar as a service" platform that funds stand-alone solar systems (online text says partner companies install them; owner confirms GroSolar's own team installs and maintains); customers switch from diesel/petrol generators to solar with no high upfront cost and pay through a subscription. |
-| Funding partners | **Not named in the ad** (owner's decision, incl. Clean Energy Fund) |
+| Funding partners | **Not named** in voiceover or on-screen text; their stickers on equipment may stay visible (owner's decision) |
 | App | "GroSolar NG" on Google Play is live and **worth mentioning** |
 
 ## 2. The ad
@@ -49,23 +49,21 @@ Payment terms the ad can state (confirmed by owner):
 - **Nothing up front.** GroSolar funds the whole system.
 - **Pay over time:** amortized payments, spread over a period set by what the client can afford.
 - **Who it is for:** anyone interested with good credit history / healthy bank statements. Say "subject to approval" or similar; never "everyone qualifies".
-- **GroSolar's team installs and maintains** the system.
+- **Installation and maintenance are handled for the client:** done mainly by partner installer **OS Systems**, managed by GroSolar. Ad wording: "Installed and maintained for you."
 - **The client owns the system** once it is paid off.
 
 ## 5. Real assets
 
-Real project numbers (owner-supplied; TO CONFIRM spellings and permission to name clients on screen):
+Real project numbers (owner-supplied). Only projects that are **installed and running**, with photos supplied by the owner, appear in the ad:
 
 | Project | Size | Type | Note |
 |---|---|---|---|
-| Adeola Hopewell (Victoria Island) | 100 kW | Commercial (GroSolar office address) | Drone footage in Drive |
-| "Sinari" (spelling unclear) | 100 kW | Commercial & industrial (C&I) | |
-| National TV broadcaster | 150 kW | Commercial | Client **not named** on screen; Drive shows proposals only, TO CONFIRM completed |
-| Epe (IFGREEN site) | 100 kW | TO CONFIRM solar (site also has a biogas system) | Drone footage in Drive |
-| More projects | | | TO ADD |
+| Adeola Hopewell (Victoria Island) | 100 kW | Commercial carport array (GroSolar office address) | Owner photos received |
+| National TV broadcaster | 150 kW | Commercial | Client **not named** on screen; photos coming from owner |
+| Others | | | Owner to send photos of existing projects |
 
 - [ ] Logo, brand colours and fonts: **to be taken from grosolar.co** (blocked from the build environment so far; owner to allow the site or share a screenshot/logo file)
-- [x] Project photos and drone footage found in Google Drive: see `ASSETS.md` (files still to be exported to the edit)
+- [ ] Project photos: owner is sending them directly (zip 1 received); see `ASSETS.md`
 
 ## 6. Open decisions (made after this brief is complete)
 

@@ -3,3 +3,6 @@
 shots/
 snapshots/
 .env
+
+# Client photos/footage (GPS-stamped, private)
+projects/*/assets/
