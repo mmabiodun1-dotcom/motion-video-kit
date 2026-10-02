@@ -7,14 +7,14 @@ Tone: warm, confident, unhurried; like telling a friend good news, not shouting 
 
 Record each line **three times** in a row, with a 2-second pause between takes. One file for everything is fine.
 
-| # | Line | Where it plays | Time it must fit |
+| # | Line | Where it plays (cut 4) | Time it must fit |
 |---|---|---|---|
-| 1 | Less generator. More sun. | The sunlight sweeps the shop | about 2.5 s |
-| 2 | GroSolar funds your solar, for homes, businesses and industry, with nothing upfront. | Panels → home/shop/warehouse → "NOTHING UPFRONT" | about 6.5 s (a short pause after "solar" is good) |
-| 3 | Installed and maintained for you. | Hillside solar farm | about 2.3 s |
-| 4 | Pay in instalments. Once it's paid off, it's yours. | The payment bar fills and stamps OWNED | about 4 s |
-| 5 | Real GroSolar projects. | Project photos | about 2 s |
-| 6 | Call or WhatsApp to check if you qualify. Get the GroSolar NG app. | End card with the phone number | about 5.5 s |
+| 1 | Less generator. More sun. | The sunlight sweeps the shop (1.8–3.8 s) | about 2 s |
+| 2 | GroSolar funds your solar, for homes, businesses and industry, with nothing upfront. | Inverter → home/shop/warehouse → "NOTHING UPFRONT" (3.9–10.2 s) | about 6 s (a short pause after "solar" is good) |
+| 3 | Installed and maintained for you. | Hillside solar farm (10.2–12.4 s) | about 2 s |
+| 4 | Pay in instalments. Once it's paid off, it's yours. | Installers, payment bar, OWNED. (12.4–16.6 s) | about 4 s |
+| 5 | Real GroSolar projects. Four hundred and fifty kilowatts, across four sites. | Project cards and counter (16.7–23 s) | about 5 s (the second sentence is new and optional, and it is true) |
+| 6 | Call or WhatsApp to check if you qualify. Get the GroSolar NG app. | End card with the phone number (23.2–29.9 s) | about 5.5 s |
 
 Say "**GroSolar**" as "Grow-Solar", the same way every time.
 
