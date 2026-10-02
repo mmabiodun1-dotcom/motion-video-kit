@@ -1,4 +1,4 @@
-# GroSolar brand ad: brief (draft v0.7)
+# GroSolar brand ad: brief (draft v0.8)
 
 Status: **base agreed, details still to confirm.** Nothing here is final until every "TO CONFIRM" item is answered. The ad style is chosen *after* this brief is complete.
 
@@ -60,9 +60,11 @@ Real project numbers (owner-supplied). Only projects that are **installed and ru
 
 | Project | Size | Type | Note |
 |---|---|---|---|
-| Adeola Hopewell (Victoria Island) | 100 kW | Commercial carport array (GroSolar office address) | Owner photos received |
+| Adeola Hopewell office complex (Victoria Island) | 100 kW | Commercial: rooftop + carport arrays | Owner drone photo |
+| IFgreen agro-processing facility (Epe) | 100 kW | Industrial rooftop | Owner drone photo |
+| Sinari | 100 kW | Commercial rooftop | Owner photo |
 | National TV broadcaster | 150 kW | Commercial ground-mount (hillside, next to the transmission tower) | Client **not named** on screen; owner photos received |
-| Others | | | Owner to send photos of existing projects |
+| **Total of these four** | **450 kW** | | Shown in the ad as "450 kW across 4 sites" |
 
 - [ ] Colours must **match the GroSolar website** (owner's instruction). Source: website (blocked from the build environment) or the GroSolar flyer in Drive (tagline "Accelerating the Solar Future"); `BRAND.md` layout and type stay, colours get swapped
 - [ ] Official logo file (placeholder wordmark until supplied)

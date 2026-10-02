@@ -21,6 +21,18 @@ Photos live in `assets/photos/` and are **kept out of Git** (`.gitignore`) becau
 | `aerial-tower.jpg` | Drone view: ground-mount arrays around the broadcaster's compound and transmission tower | 1280×960 | 150 kW project card (the tower says "broadcaster" without naming anyone) | Light warm grade (overcast day) |
 | `hillside.jpg` | Ground-mount arrays on a hillside overlooking the city | 1280×960 | "Installed and maintained" beat | Warm grade; crop the sky |
 
+### Projects (`assets/photos/projects-2026-10-02/`, received 2 Oct 2026)
+
+| File | What it shows | Used for |
+|---|---|---|
+| `adeola-hopewell-aerial.jpg` (1500×1125) | Drone view of the Adeola Hopewell office complex, rooftop + carport arrays | Project card, cropped tight on the building and arrays (owner's request) |
+| `ifgreen-epe-aerial.jpg` (2000×1124) | IFgreen agro-processing facility, Epe, rooftop arrays | Project card |
+| `sinari-rooftop.jpg` (608×1080) | Sinari rooftop arrays with installers | Project card |
+| `install-crew-rooftop.jpg` (1125×2000) | Top-down drone shot of an OS Systems crew installing panels, helmets and PPE on | Full-screen background for "Pay in instalments → OWNED" (owner's pick) |
+| `inverter-grosolar.jpg` (1500×2000) | itel inverter with the GroSolar sticker (funder sticker also visible, allowed) | "Solar, funded by GroSolar" with a push-in on the sticker |
+
+The earlier Victoria Island carport phone photos (`2.jpg`, `3.jpg`) are no longer used (owner disliked the 5 s shot).
+
 Any further photos: only projects that are **installed and running** go in the ad.
 
 ## Footage plan
