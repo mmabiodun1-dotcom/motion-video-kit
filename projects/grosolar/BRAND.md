@@ -1,5 +1,7 @@
 # GroSolar ad: look and feel (v1, for owner approval)
 
+> **Owner instruction (2 Oct):** colours must match the GroSolar website. The palette below is a stand-in; it is swapped for the website colours as soon as they are available. Layout, type sizes and rules stay.
+
 The owner asked us to design the look. This is an **ad style**, not a new brand identity: the official GroSolar logo replaces the placeholder wordmark before anything is published.
 
 Style frames: `build/style-frames/` (render: `npx hyperframes snapshot . --at 0.5,1.5,2.5,3.5,4.5 -o shots`).

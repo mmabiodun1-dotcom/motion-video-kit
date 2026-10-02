@@ -1,4 +1,4 @@
-# GroSolar brand ad: storyboard (draft v0.4)
+# GroSolar brand ad: storyboard (draft v0.5)
 
 29.9 s · vertical 9:16 (1080×1920) · female AI voiceover (Nigerian English) · built to work on mute · CTA: call or WhatsApp 0705 370 0000
 Style: the agreed **mix**: "The Switch-Off" hook → "From Sun to Yours" explainer → real-project proof → CTA.
@@ -34,7 +34,7 @@ A single line of **sunlight** runs through the whole ad. It cuts the generator's
 | 11.4–14.0 | The broadcaster's **hillside ground-mount array** (owner photo, slow push). An illustrated spanner-and-check badge draws on; small label "Maintained after payoff too". | **Installed and maintained for you.** · small: *Maintenance continues after payoff* | "Installed and maintained for you." (5) | Removes the "who handles it?" worry (true wording: installs are done mainly by partner OS Systems, under GroSolar) | The underline thickens into a bar |
 | 14.0–18.4 | The line becomes a **payment bar**: month ticks roll past and the bar fills in steps with a slow push-in. At 100% a stamp lands: **OWNED.** | **Pay in instalments.** → **Then it's yours.** | "Pay in instalments. Once it's paid off, it's yours." (9) | Amortized payment and ownership, simply | The bar rises and becomes a rail |
 | 18.4–23.0 | Cards fan along the rail: **real photos of installed GroSolar sites**, each labelled, e.g. **100 kW · Victoria Island** (owner photos `2.jpg`/`3.jpg`) · **150 kW · National broadcaster** (photos coming) · further cards **only for projects that exist**, from photos the owner sends. | Card labels only | "Real GroSolar projects." (3) | Proof (add a home card if a residential project photo is supplied) | Cards collapse along the rail into a point of light |
-| 23.0–29.9 | The point of light becomes the sun in the **GroSolar logo**. CTA card with gentle drift (no frozen frame). | Logo · **0705 370 0000** (110 px+) with WhatsApp + phone icons · **Check if you qualify** · *GroSolar NG app · Google Play* · *Subject to approval. Terms apply.* | "Call or WhatsApp to check if you qualify. Get the GroSolar NG app." (13) | One clear action, readable for about 6 s | End |
+| 23.0–29.9 | The point of light becomes the sun in the **GroSolar logo**. CTA card with gentle drift (no frozen frame). | Logo · **0705 370 0000** (110 px+) with WhatsApp + phone icons · **Check if you qualify** · *Lagos and across Nigeria* · *GroSolar NG app · Google Play* · *Subject to approval. Terms apply.* | "Call or WhatsApp to check if you qualify. Get the GroSolar NG app." (13) | One clear action, readable for about 6 s | End |
 
 Voiceover: **47 words**, every beat at or below 2.3 words/s.
 
@@ -76,7 +76,7 @@ No phone videos are coming, so the opening is fully illustrated (in the style of
 
 ## Still to confirm before building
 
-1. Service area wording for the end card ("Lagos and across ..."): across Nigeria, or across the South-West?
-2. Approval of the look (style frames v1).
+1. Brand colours from the GroSolar website (style frames get recoloured to match).
+2. Approval of the look (style frames v2, in website colours).
 3. Official logo file before publishing (placeholder until then).
 4. ARCON vetting: Nigerian ads, social included, go to ARCON's Advertising Standards Panel before they run. Allow time for this.
