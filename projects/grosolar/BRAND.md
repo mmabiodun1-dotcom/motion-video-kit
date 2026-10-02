@@ -1,31 +1,28 @@
-# GroSolar ad: look and feel (v1, for owner approval)
+# GroSolar ad: look and feel (v2, official GroSolar colours)
 
-> **Owner instruction (2 Oct):** colours must match the GroSolar website. The palette below is a stand-in; it is swapped for the website colours as soon as they are available. Layout, type sizes and rules stay.
-
-The owner asked us to design the look. This is an **ad style**, not a new brand identity: the official GroSolar logo replaces the placeholder wordmark before anything is published.
+Colours are sampled from the official GroSolar logo supplied by the owner (2 Oct), as the owner asked for them to match the website. The logo itself (`build/brand/`) is used on the end card, and its sun icon is the logo bug.
 
 Style frames: `build/style-frames/` (render: `npx hyperframes snapshot . --at 0.5,1.5,2.5,3.5,4.5 -o shots`).
 
-## Idea: "Lagos daylight"
+## Idea: from no light to GroSolar sunlight
 
-Bright, warm, confident. Cream daylight paper, deep green ink, and one amber colour that always means **sunlight**: the beam, the payment bar, the sun in the end card. Real GroSolar photos sit on top as cards with soft shadows; everything else is clean flat illustration in a Lagos style.
+The opening sits in GroSolar **navy**, which reads as darkness and "no light". Once the sunlight line arrives, frames turn to daylight white, and the logo's **yellow-to-orange sun gradient** marks everything that means sunlight: the beam, the payment bar, the kW figures and the phone number. Proof and the end card return to navy, so the brand closes on its own colours.
 
 ## Colours
 
-| Token | Hex | Used for | Contrast |
+| Token | Hex | Source | Used for |
 |---|---|---|---|
-| `--ink` | `#0F2A22` | All main text, outlines | 14.9:1 on cream |
-| `--sun` | `#FFB21E` | The sunlight line, payment bar, highlights, sun | Fill only; never small text on cream |
-| `--sun-deep` | `#E8820C` | Emphasis words ("AGAIN?") | Large text only |
-| `--gro` | `#23874E` | "Gro", the OWNED stamp, WhatsApp icon | 4.5:1 on cream |
-| `--cream` | `#FFF7E8` | Default background | |
-| `--sky` | `#E3F1F6` | Proof-card background | |
-| `--mute` | `#4E5F57` | Small print | 6.6:1 on cream |
+| `--navy` | `#002552` | Logo background | Opening, proof, end card; all text on light frames |
+| `--sun` gradient | `#F6DA4C` → `#FCBA34` → `#FE9636` | Logo sun icon | Beam, bar, highlight words, kW figures, phone number, icons |
+| `--white` | `#FFFFFF` | Logo wordmark | Text on navy |
+| `--paper` | `#F4F7FB` | Derived (daylight) | Background of the offer and payment frames |
+| `--mute-d` / `--mute-l` | `#B9C7DA` / `#46586F` | Derived | Small print on navy / on white |
+
+Contrast: white on navy 15.4:1; sun yellow on navy above 9:1; navy on paper 14.6:1. Orange is never used for small text on white.
 
 ## Type
 
-- **Headlines:** Bricolage Grotesque, ExtraBold (800), tight tracking (−3.5%). Characterful and modern, and works at huge sizes.
-- **Body and labels:** Inter, 400 / 600 / 700.
+- **Everything:** Poppins (500 / 600 / 800), a geometric sans that sits naturally beside the GroSolar wordmark. Headlines are 800 with tight tracking (−3%).
 - **Minimum sizes on 1080×1920:** headlines 96 px, labels 34 px on cards, small print 44 px, phone number 112 px on one line.
 
 ## Layout rules
@@ -34,6 +31,6 @@ Bright, warm, confident. Cream daylight paper, deep green ink, and one amber col
 - Logo bug top-left from 4.4 s.
 - Photos: GPS stamps and third-party signage cropped out; light warm grade on overcast shots.
 
-## Placeholder wordmark
+## Logo
 
-"**Gro**Solar" in Bricolage, with "Gro" in green and a small sun dot. It is used only until the owner supplies the official logo file, and it is marked "LOGO PLACEHOLDER" in review renders.
+The official lockup (sun icon, "GroSolar", "Accelerating the solar future") is used as supplied, on navy only. The supplied file is 589×207 px, which is enough for review. **For the final render, a high-resolution PNG or SVG of the logo is preferred** so it stays sharp at full width.
