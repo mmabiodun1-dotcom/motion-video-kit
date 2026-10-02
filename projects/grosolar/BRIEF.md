@@ -1,4 +1,4 @@
-# GroSolar brand ad: brief (draft v0.2)
+# GroSolar brand ad: brief (draft v0.3)
 
 Status: **base agreed, details still to confirm.** Nothing here is final until every "TO CONFIRM" item is answered. The ad style is chosen *after* this brief is complete.
 
@@ -58,9 +58,9 @@ Real project numbers (owner-supplied; TO CONFIRM spellings and permission to nam
 
 | Project | Size | Type | Note |
 |---|---|---|---|
-| "office floor" (owner's voice note, spelling unclear) | 100 kW | TO CONFIRM | |
+| Adeola Hopewell (Victoria Island) | 100 kW | TO CONFIRM | |
 | "Sinari" (spelling unclear) | 100 kW | Commercial & industrial (C&I) | |
-| Galaxy TV | 150 kW | Commercial | Naming a client needs their OK |
+| National TV broadcaster | 150 kW | Commercial | Client **not named** on screen (owner's decision) |
 | Epe | 100 kW | TO CONFIRM | |
 | More projects | | | TO ADD |
 
@@ -69,7 +69,7 @@ Real project numbers (owner-supplied; TO CONFIRM spellings and permission to nam
 
 ## 6. Open decisions (made after this brief is complete)
 
-- Ad style and look: owner wants something **unique and premium, not a template look**; three directions proposed in chat
+- Ad style and look: owner wants something **unique and premium, not a template look**; **chosen: the mix** of "The Switch-Off" hook, "From Sun to Yours" explainer and "Powering Lagos" proof (see `STORYBOARD.md`)
 - Voiceover: AI voice or a real person; accent and gender
 - Music mood
 - Whether AI-generated imagery is used for supporting shots (if so, labelled per the kit's rules)
