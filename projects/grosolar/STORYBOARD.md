@@ -1,4 +1,4 @@
-# GroSolar brand ad: storyboard (draft v0.3)
+# GroSolar brand ad: storyboard (draft v0.4)
 
 29.9 s · vertical 9:16 (1080×1920) · female AI voiceover (Nigerian English) · built to work on mute · CTA: call or WhatsApp 0705 370 0000
 Style: the agreed **mix**: "The Switch-Off" hook → "From Sun to Yours" explainer → real-project proof → CTA.
@@ -25,13 +25,13 @@ A single line of **sunlight** runs through the whole ad. It cuts the generator's
 
 | Time (s) | What the viewer sees | On-screen words | Voiceover (words) | Business job | Out (what carries over) |
 |---|---|---|---|---|---|
-| 0.0–0.8 | A bright Lagos shop at midday. The light cuts out, the ceiling fan slows, and the owner looks up. Frame 0 is already complete. | **NO LIGHT.** **AGAIN?** | *(room tone; fan winding down)* | Hook in a local idiom | Hard cut on the owner's glance |
-| 0.8–1.6 | Outdoors in daylight: the generator kicks on, roars and shakes, with haze and a jerrycan. | (words hold) | *(generator roar)* | The cost everyone knows | A hand reaches for the switch |
-| 1.6–4.4 | The switch flips. The **shaking stops dead, the haze clears** and the roar cuts to silence. A diagonal beam of sunlight wipes the frame to blue sky. | **Less generator.** **More sun.** | "Less generator. More sun." (4) | The turn | The beam travels down; the logo bug appears at 4.4 |
+| 0.0–0.8 | **Illustrated** Lagos provisions shop (roller shutter, signboard); the hanging bulb clicks off and the scene dims a touch. Frame 0 is already complete. | **NO LIGHT.** **AGAIN?** | *(room tone; fan winding down)* | Hook in a local idiom | Hard cut on the owner's glance |
+| 0.8–1.6 | **Illustrated** generator beside the shop kicks on, shakes and puffs haze; a jerrycan sits next to it. | (words hold) | *(generator roar)* | The cost everyone knows | A hand reaches for the switch |
+| 1.6–4.4 | The switch flips. The **shaking stops dead, the haze clears** and the roar cuts to silence. A diagonal beam of sunlight sweeps the frame to daylight. | **Less generator.** **More sun.** | "Less generator. More sun." (4) | The turn | The beam travels down; the logo bug appears at 4.4 |
 | 4.4–6.6 | The beam lands on **real GroSolar panels**: the Adeola Hopewell carport array (owner photo `2.jpg`, GPS stamp and bank signage cropped out; slow push for motion). | **Solar, funded by GroSolar.** | "GroSolar funds your solar" (4) | What GroSolar is | The beam leaves the array as a glowing line |
 | 6.6–9.4 | The line runs along one rail through three **flat isometric illustrations in a Lagos style**: a duplex with a parapet, a shop with a roller shutter, a warehouse. Each lights up as the line arrives. | **HOME · BUSINESS · INDUSTRY** | "for homes, businesses and industry" (5) | Every audience in one move | The line straightens into an underline |
 | 9.4–11.4 | Typographic impact, filling about 80% of the width. The line underlines it. | **NOTHING UPFRONT.** · small (44 px+, stays through 18.4): *Subject to approval. Terms apply.* | "with nothing upfront." (3) | The core offer, with its condition on the same frame | Underline holds; footage slides in behind |
-| 11.4–14.0 | **Real installation footage:** panels going onto a roof, then the inverter and battery wall. Clips screened for harnesses/PPE; funder stickers on equipment may stay visible; no client or neighbouring logos. | **Installed and maintained for you.** | "Installed and maintained for you." (5) | Removes the "who handles it?" worry (true wording: installs are done mainly by partner OS Systems, under GroSolar) | The underline thickens into a bar |
+| 11.4–14.0 | The broadcaster's **hillside ground-mount array** (owner photo, slow push). An illustrated spanner-and-check badge draws on; small label "Maintained after payoff too". | **Installed and maintained for you.** · small: *Maintenance continues after payoff* | "Installed and maintained for you." (5) | Removes the "who handles it?" worry (true wording: installs are done mainly by partner OS Systems, under GroSolar) | The underline thickens into a bar |
 | 14.0–18.4 | The line becomes a **payment bar**: month ticks roll past and the bar fills in steps with a slow push-in. At 100% a stamp lands: **OWNED.** | **Pay in instalments.** → **Then it's yours.** | "Pay in instalments. Once it's paid off, it's yours." (9) | Amortized payment and ownership, simply | The bar rises and becomes a rail |
 | 18.4–23.0 | Cards fan along the rail: **real photos of installed GroSolar sites**, each labelled, e.g. **100 kW · Victoria Island** (owner photos `2.jpg`/`3.jpg`) · **150 kW · National broadcaster** (photos coming) · further cards **only for projects that exist**, from photos the owner sends. | Card labels only | "Real GroSolar projects." (3) | Proof (add a home card if a residential project photo is supplied) | Cards collapse along the rail into a point of light |
 | 23.0–29.9 | The point of light becomes the sun in the **GroSolar logo**. CTA card with gentle drift (no frozen frame). | Logo · **0705 370 0000** (110 px+) with WhatsApp + phone icons · **Check if you qualify** · *GroSolar NG app · Google Play* · *Subject to approval. Terms apply.* | "Call or WhatsApp to check if you qualify. Get the GroSolar NG app." (13) | One clear action, readable for about 6 s | End |
@@ -61,22 +61,22 @@ Voiceover: **47 words**, every beat at or below 2.3 words/s.
 
 ## Footage per beat (see `ASSETS.md`)
 
+No phone videos are coming, so the opening is fully illustrated (in the style of the home/shop/warehouse scenes) and every real-world shot is an owner photo brought to life with slow camera moves.
+
 | Beat | Source | Status |
 |---|---|---|
-| Shop "no light" moment | Short phone video in a real shop (staged, with permission) | Needed |
-| Generator | Phone video of a running generator outdoors in daylight | Needed |
-| Panels | Owner photo `2.jpg` (Adeola Hopewell); full-resolution original preferred | Have (low-res) |
-| Installation | Phone video of an OS Systems crew installing, with PPE | Needed |
-| Project cards | Owner photos: Victoria Island (have), broadcaster (coming), others as sent | Partly have |
+| Shop, bulb, generator | Illustrated (code-built SVG) | We build |
+| Panels | Owner photo `2.jpg` (Adeola Hopewell), GPS stamp and signage cropped | Have |
+| Installed and maintained | Owner photo: broadcaster hillside array | Have |
+| Project cards | Owner photos: broadcaster aerial with tower (150 kW), Adeola Hopewell carport (100 kW) | Have |
 | Isometric scenes, payment bar, logo build | Built in code | We build |
-| Logo, colours, fonts | grosolar.co or a logo file | **Still needed; blocks the colour tokens and the end card** |
-| Voice | Female AI voice, Nigerian English; test that it says "GroSolar" and "Epe" correctly | To audition |
+| Look | `BRAND.md` + style frames v1 | Awaiting approval |
+| Official logo | Owner (placeholder wordmark until then) | Needed before publishing |
+| Voice | Female AI voice, Nigerian English; test that it says "GroSolar" correctly | To audition |
 
 ## Still to confirm before building
 
-1. Does maintenance continue after the system is paid off? (Decides whether "maintained for you" needs a limit.)
-2. Which site is in `1.jpeg`?
-3. Which other projects are installed and running (cards only for those)?
-4. Service area: Lagos only, or wider? If confirmed, add it to the end card.
-5. Logo and brand colours.
-6. ARCON vetting: Nigerian ads, social included, go to ARCON's Advertising Standards Panel before they run. Allow time for this.
+1. Service area wording for the end card ("Lagos and across ..."): across Nigeria, or across the South-West?
+2. Approval of the look (style frames v1).
+3. Official logo file before publishing (placeholder until then).
+4. ARCON vetting: Nigerian ads, social included, go to ARCON's Advertising Standards Panel before they run. Allow time for this.

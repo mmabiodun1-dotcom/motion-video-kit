@@ -1,4 +1,4 @@
-# GroSolar brand ad: brief (draft v0.5)
+# GroSolar brand ad: brief (draft v0.6)
 
 Status: **base agreed, details still to confirm.** Nothing here is final until every "TO CONFIRM" item is answered. The ad style is chosen *after* this brief is complete.
 
@@ -51,6 +51,8 @@ Payment terms the ad can state (confirmed by owner):
 - **Who it is for:** anyone interested with good credit history / healthy bank statements. Say "subject to approval" or similar; never "everyone qualifies".
 - **Installation and maintenance are handled for the client:** done mainly by partner installer **OS Systems**, managed by GroSolar. Ad wording: "Installed and maintained for you."
 - **The client owns the system** once it is paid off.
+- **Maintenance continues after payoff** (confirmed by owner).
+- **Service area:** Lagos and beyond (exact wording TO CONFIRM).
 
 ## 5. Real assets
 
@@ -59,11 +61,12 @@ Real project numbers (owner-supplied). Only projects that are **installed and ru
 | Project | Size | Type | Note |
 |---|---|---|---|
 | Adeola Hopewell (Victoria Island) | 100 kW | Commercial carport array (GroSolar office address) | Owner photos received |
-| National TV broadcaster | 150 kW | Commercial | Client **not named** on screen; photos coming from owner |
+| National TV broadcaster | 150 kW | Commercial ground-mount (hillside, next to the transmission tower) | Client **not named** on screen; owner photos received |
 | Others | | | Owner to send photos of existing projects |
 
-- [ ] Logo, brand colours and fonts: **to be taken from grosolar.co** (blocked from the build environment so far; owner to allow the site or share a screenshot/logo file)
-- [ ] Project photos: owner is sending them directly (zip 1 received); see `ASSETS.md`
+- [x] Look and colours: owner gave us the lead; ad style designed in `BRAND.md` (awaiting approval)
+- [ ] Official logo file (placeholder wordmark until supplied)
+- [x] Project photos received (zip 1 + broadcaster photos); see `ASSETS.md`. No phone videos: opening is illustrated
 
 ## 6. Open decisions (made after this brief is complete)
 

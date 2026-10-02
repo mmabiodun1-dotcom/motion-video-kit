@@ -14,18 +14,21 @@ Photos live in `assets/photos/` and are **kept out of Git** (`.gitignore`) becau
 | `2.jpg` | Adeola Hopewell, Victoria Island: carport array in the foreground, street and buildings behind, sunny | 720×1280 vertical | "Panels" beat (4.4–6.6) and the Victoria Island project card | Crop out the GPS Map Camera stamp (bottom 25%). Keep the neighbouring bank building and its logo out of frame, or blur them. Slightly soft at full screen, so the original resolution is preferred |
 | `3.jpg` | Adeola Hopewell: the carport array from above at an angle, inverter cabinets visible | 1280×720 landscape | Project card; background plate for the payment bar | Crop out the GPS stamp. Keep bank signage out of frame |
 
-### Still to come (owner)
+### Broadcaster (`assets/photos/broadcaster-2026-10-02/`, received 2 Oct 2026)
 
-- National TV broadcaster (150 kW) photos
-- Any other existing project photos (only projects that are **installed and running** go in the ad)
+| File | What it shows | Size | Usable for | Fixes needed |
+|---|---|---|---|---|
+| `aerial-tower.jpg` | Drone view: ground-mount arrays around the broadcaster's compound and transmission tower | 1280×960 | 150 kW project card (the tower says "broadcaster" without naming anyone) | Light warm grade (overcast day) |
+| `hillside.jpg` | Ground-mount arrays on a hillside overlooking the city | 1280×960 | "Installed and maintained" beat | Warm grade; crop the sky |
 
-## Footage still needed
+Any further photos: only projects that are **installed and running** go in the ad.
+
+## Footage plan
 
 | For | What | Who |
 |---|---|---|
-| Opening (0–0.8 s) | Phone video: a shop as the light goes off (staged, with permission) | Owner |
-| Generator (0.8–1.6 s) | Phone video: a generator running outdoors in daylight | Owner |
-| Installation (11.4–14.0 s) | Phone video of an install in progress (partner OS Systems crew), harnesses/PPE on | Owner |
+| Opening, generator | Not available: **illustrated instead** | We build |
+| Installation | Not available: broadcaster hillside photo used instead | Done |
 | Better quality | Full-resolution originals of `1.jpeg`, `2.jpg` and `3.jpg` (no GPS stamp), or the Adeola Hopewell drone clip (Drive: DJI_0014.MOV) | Owner |
 
 ## Rules for every shot
