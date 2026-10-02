@@ -1,124 +1,121 @@
 <!doctype html>
-<!-- GroSolar 30s vertical brand ad (storyboard v0.5, look v2). 1080x1920.
+<!-- GroSolar 30s vertical brand ad, cut 3 (after film critic 1). 1080x1920.
      Every visual state is a pure function of timeline time t (seek-safe, deterministic).
-     Snapshot: npx hyperframes snapshot . --at 0.5,2,3.5,5.5,8.5,10.5,13,16.8,21,27 -o shots
-     Render:   npx hyperframes render . --fps 30 --output renders/picture.mp4 -->
+     Each scene runs on its own local clock u = t - start, and wipes in OVER the previous scene (no empty frames).
+     Render: npx hyperframes render . --fps 30 --output renders/picture.mp4 -->
 <html><head><meta charset="utf-8">
 <script src="./gsap.min.js"></script>
 <style>
 @font-face{font-family:Poppins;src:url(./fonts/poppins-latin-500-normal.woff2) format('woff2');font-weight:500}
 @font-face{font-family:Poppins;src:url(./fonts/poppins-latin-600-normal.woff2) format('woff2');font-weight:600}
 @font-face{font-family:Poppins;src:url(./fonts/poppins-latin-800-normal.woff2) format('woff2');font-weight:800}
-:root{--navy:#002552;--sun:linear-gradient(135deg,#F6DA4C,#FCBA34 50%,#FE9636);--paper:#F4F7FB;--white:#fff;--mute-d:#B9C7DA;--mute-l:#46586F}
+:root{--navy:#002552;--navy2:#0B3A73;--sun:linear-gradient(135deg,#F6DA4C,#FCBA34 50%,#FE9636);--paper:#F4F7FB;--mute-d:#B9C7DA;--mute-l:#46586F}
 html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--navy)}
 #root{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:Poppins,sans-serif;color:var(--navy)}
-.L{position:absolute;inset:0;overflow:hidden;transform-origin:50% 40%}
+.L{position:absolute;inset:0;overflow:hidden;transform-origin:50% 45%}
 .A{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform,opacity}
 .h{font-weight:800;letter-spacing:-.03em;line-height:.98;margin:0;white-space:nowrap}
 .g{background:var(--sun);-webkit-background-clip:text;background-clip:text;color:transparent}
 .small{font-size:44px;font-weight:500;margin:0;white-space:nowrap}
-.card{position:absolute;border-radius:28px;overflow:hidden;box-shadow:0 30px 70px rgba(0,22,52,.35)}
-.card img{width:100%;height:100%;object-fit:cover;display:block;transform-origin:50% 50%}
-.chip{position:absolute;display:flex;align-items:center;gap:16px;background:#fff;border-radius:16px;padding:10px 22px;color:var(--navy);white-space:nowrap}
+.card{position:absolute;border-radius:30px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.45)}
+.card img,.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.chip{position:absolute;display:flex;align-items:center;gap:18px;background:#fff;border-radius:18px;padding:12px 26px;color:var(--navy);white-space:nowrap}
 .kw{font-weight:800;letter-spacing:-.02em}
 </style></head>
 <body><div id="root" data-composition-id="grosolar" data-width="1080" data-height="1920" data-duration="29.9">
 
-<!-- ============ S1-S3 OPENING (0-4.4): night layer, day layer revealed by the sunlight wipe ============ -->
+<!-- ===== OPENING 0-4.15: night layer; day layer revealed by the sunlight wipe ===== -->
 <div class="L" id="open">
-  <div class="L" id="night" style="background:var(--navy)"></div>
+  <div class="L" id="night"></div>
   <div class="L" id="day" style="background:var(--paper)"></div>
   <div class="A" id="beam" style="width:300px;height:2700px;background:linear-gradient(90deg,rgba(252,186,52,0),rgba(246,218,76,.95) 45%,rgba(254,150,54,.9) 55%,rgba(252,186,52,0));filter:blur(6px);transform-origin:50% 50%"></div>
 </div>
 
-<!-- ============ S4 PANELS (4.4-6.6) ============ -->
+<!-- ===== S4 3.85-6.2: GroSolar-branded inverter ===== -->
 <div class="L" id="s4" style="background:var(--paper)">
   <p class="h A" id="s4h1" style="font-size:104px">Solar, funded</p>
   <p class="h A" id="s4h2" style="font-size:104px">by GroSolar.</p>
-  <div class="card A" id="s4card" style="width:720px;height:960px"><img src="./img/inverter.jpg" id="s4img" style="object-position:50% 0%;transform-origin:20% 15%"></div>
+  <div class="card A" id="s4card" style="width:760px;height:1013px;box-shadow:0 30px 70px rgba(0,22,52,.3)"><img src="./img/inverter.jpg" id="s4img" style="transform-origin:0 0"></div>
   <div class="A" id="s4line" style="height:14px;border-radius:7px;background:var(--sun);box-shadow:0 0 30px rgba(252,186,52,.9)"></div>
 </div>
 
-<!-- ============ S5 HOME / BUSINESS / INDUSTRY (6.6-9.4) ============ -->
+<!-- ===== S5 5.95-8.6: home / business / industry ===== -->
 <div class="L" id="s5" style="background:var(--paper)">
-  <div class="A" id="rail" style="width:14px;border-radius:7px;background:var(--sun);box-shadow:0 0 30px rgba(252,186,52,.9)"></div>
-  <div id="bldgs"></div>
+  <div class="L" id="s5in">
+    <div class="A" id="rail" style="width:14px;border-radius:7px;background:var(--sun);box-shadow:0 0 30px rgba(252,186,52,.9)"></div>
+    <div id="bldgs"></div>
+  </div>
 </div>
 
-<!-- ============ S6 NOTHING UPFRONT (9.4-11.4) ============ -->
+<!-- ===== S6 8.35-10.4: nothing upfront ===== -->
 <div class="L" id="s6" style="background:var(--paper)">
-  <div class="A" id="s6beam" style="width:640px;height:2700px;background:linear-gradient(90deg,rgba(252,186,52,0),rgba(252,186,52,.42),rgba(254,150,54,0));transform-origin:50% 50%"></div>
-  <p class="h A" id="s6a" style="font-size:186px">NOTHING</p>
-  <p class="h A" id="s6b" style="font-size:186px">UPFRONT.</p>
-  <div class="A" id="s6u" style="height:26px;border-radius:13px;background:var(--sun);box-shadow:0 0 40px rgba(252,186,52,.7)"></div>
+  <div class="A" id="s6beam" style="width:640px;height:2700px;background:linear-gradient(90deg,rgba(252,186,52,0),rgba(252,186,52,.45),rgba(254,150,54,0));transform-origin:50% 50%"></div>
+  <div class="L" id="s6in">
+    <p class="h A" id="s6a" style="font-size:168px">NOTHING</p>
+    <p class="h A" id="s6b" style="font-size:168px">UPFRONT.</p>
+    <div class="A" id="s6u" style="height:26px;border-radius:13px;background:var(--sun);box-shadow:0 0 40px rgba(252,186,52,.7)"></div>
+  </div>
 </div>
 
-<!-- ============ S7 INSTALLED AND MAINTAINED (11.4-14.0) ============ -->
+<!-- ===== S7 10.2-12.6: installed and maintained ===== -->
 <div class="L" id="s7" style="background:var(--paper)">
+  <div class="A ph" id="s7ph" style="width:1080px;height:1290px;overflow:hidden"><img src="./img/hillside-tall.jpg" id="s7img" style="transform-origin:50% 70%">
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(244,247,251,1) 0%,rgba(244,247,251,0) 14%,rgba(0,37,82,0) 55%,rgba(0,37,82,.8) 100%)"></div></div>
   <p class="h A" id="s7a" style="font-size:100px">Installed and</p>
   <p class="h A" id="s7b" style="font-size:100px">maintained</p>
   <p class="h A g" id="s7c" style="font-size:100px">for you.</p>
-  <div class="card A" id="s7card" style="width:920px;height:690px"><img src="./img/hillside-43.jpg" id="s7img">
-    <div class="chip" id="s7chip" style="left:24px;bottom:24px;font-size:40px;font-weight:600">Maintenance continues after payoff</div>
-  </div>
-  <svg class="A" id="s7badge" width="150" height="150" viewBox="0 0 150 150">
+  <svg class="A" id="s7badge" width="160" height="160" viewBox="0 0 150 150" style="transform-origin:50% 50%">
     <defs><linearGradient id="bg7" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6DA4C"/><stop offset=".5" stop-color="#FCBA34"/><stop offset="1" stop-color="#FE9636"/></linearGradient></defs>
-    <circle cx="75" cy="75" r="72" fill="url(#bg7)" stroke="#fff" stroke-width="6"/>
+    <circle cx="75" cy="75" r="70" fill="url(#bg7)" stroke="#fff" stroke-width="7"/>
     <path id="s7check" d="M42 78 L66 101 L110 52" fill="none" stroke="#002552" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="110" stroke-dashoffset="110"/>
   </svg>
+  <div class="chip A" id="s7chip" style="font-size:44px;font-weight:600">Maintenance continues after payoff</div>
 </div>
 
-<!-- ============ S8 PAY IN INSTALMENTS -> OWNED (14.0-18.4) ============ -->
+<!-- ===== S8 12.4-16.9: pay in instalments -> OWNED, installers full screen ===== -->
 <div class="L" id="s8" style="background:var(--navy)">
-  <div class="A" id="s8photo" style="width:1080px;height:1920px;overflow:hidden">
-    <img src="./img/crew.jpg" id="s8img" style="width:100%;height:100%;object-fit:cover;transform-origin:23% 61%">
-    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,37,82,.55) 0%,rgba(0,37,82,.08) 16%,rgba(0,37,82,.05) 38%,rgba(0,37,82,.7) 52%,rgba(0,37,82,.9) 70%,rgba(0,37,82,.92) 100%)"></div>
-  </div>
-  <p class="h A" id="s8a" style="font-size:112px;color:#fff">Pay in</p>
-  <p class="h A" id="s8b" style="font-size:112px;color:#fff">instalments.</p>
-  <div class="A" id="s8track" style="width:860px;height:60px;border-radius:30px;background:rgba(255,255,255,.22);overflow:hidden"><div id="s8fill" style="height:100%;width:0;background:var(--sun)"></div></div>
+  <div class="A ph" style="width:1080px;height:1920px;overflow:hidden"><img src="./img/crew.jpg" id="s8img" style="transform-origin:54% 51%">
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,37,82,.75) 0%,rgba(0,37,82,.45) 18%,rgba(0,37,82,0) 32%,rgba(0,37,82,0) 50%,rgba(0,37,82,.55) 62%,rgba(0,37,82,.78) 80%,rgba(0,37,82,.85) 100%)"></div></div>
+  <p class="h A" id="s8a" style="font-size:108px;color:#fff">Pay in</p>
+  <p class="h A" id="s8b" style="font-size:108px;color:#fff">instalments.</p>
+  <div class="A" id="s8track" style="width:860px;height:60px;border-radius:30px;background:rgba(255,255,255,.25);overflow:hidden"><div id="s8fill" style="height:100%;width:0;background:var(--sun)"></div></div>
   <div class="A" id="s8ticks" style="width:860px;display:flex;justify-content:space-between;padding:0 6px;box-sizing:border-box"></div>
-  <div class="A" id="s8stamp" style="border-radius:24px;padding:10px 40px 20px;background:var(--navy);box-shadow:0 18px 40px rgba(0,0,0,.45),inset 0 0 0 8px rgba(252,186,52,.95);transform-origin:50% 50%"><p class="h" style="font-size:150px;color:#fff">OWNED.</p></div>
-  <p class="small A" id="s8c" style="font-weight:600;color:#fff">Then it's yours.</p>
+  <div class="A" id="s8stamp" style="border-radius:22px;padding:6px 32px 14px;background:var(--navy);box-shadow:0 18px 40px rgba(0,0,0,.45),inset 0 0 0 7px rgba(252,186,52,.95);transform-origin:50% 50%"><p class="h" style="font-size:112px;color:#fff">OWNED.</p></div>
+  <p class="h A g" id="s8c" style="font-size:72px">Then it's yours.</p>
 </div>
 
-<!-- ============ S9 REAL PROJECTS (18.4-23.0) ============ -->
+<!-- ===== S9 16.65-23.4: four real projects ===== -->
 <div class="L" id="s9" style="background:var(--navy)">
-  <p class="h A" id="s9a" style="font-size:104px;color:#fff">Real GroSolar</p>
-  <p class="h A" id="s9b" style="font-size:104px;color:#fff">projects.</p>
-  <div class="card A" id="pc0" style="width:720px;height:860px;transform-origin:50% 50%;box-shadow:0 30px 70px rgba(0,0,0,.45)"><img src="./img/p-adeola.jpg" id="pi0">
-    <div class="chip" style="left:26px;bottom:26px"><span class="kw g" style="font-size:66px">100 kW</span><span style="font-size:34px;font-weight:600;line-height:1.15">Office complex<br>Victoria Island</span></div></div>
-  <div class="card A" id="pc1" style="width:720px;height:860px;transform-origin:50% 50%;box-shadow:0 30px 70px rgba(0,0,0,.45)"><img src="./img/p-ifgreen.jpg" id="pi1">
-    <div class="chip" style="left:26px;bottom:26px"><span class="kw g" style="font-size:66px">100 kW</span><span style="font-size:34px;font-weight:600;line-height:1.15">Agro-processing<br>Epe</span></div></div>
-  <div class="card A" id="pc2" style="width:720px;height:860px;transform-origin:50% 50%;box-shadow:0 30px 70px rgba(0,0,0,.45)"><img src="./img/p-sinari.jpg" id="pi2">
-    <div class="chip" style="left:26px;bottom:26px"><span class="kw g" style="font-size:66px">100 kW</span><span style="font-size:34px;font-weight:600;line-height:1.15">Sinari</span></div></div>
-  <div class="card A" id="pc3" style="width:720px;height:860px;transform-origin:50% 50%;box-shadow:0 30px 70px rgba(0,0,0,.45)"><img src="./img/p-broadcaster.jpg" id="pi3">
-    <div class="chip" style="left:26px;bottom:26px"><span class="kw g" style="font-size:66px">150 kW</span><span style="font-size:34px;font-weight:600;line-height:1.15">National<br>broadcaster</span></div></div>
-  <div class="A" id="kwpill" style="display:flex;align-items:baseline;gap:12px;background:#0B3A73;border-radius:20px;padding:10px 24px;box-shadow:0 12px 30px rgba(0,0,0,.35)"><span class="kw g" id="kwnum" style="font-size:64px">0 kW</span><span id="kwsub" style="font-size:34px;font-weight:600;color:#fff">installed</span></div>
+  <p class="h A" id="s9a" style="font-size:88px;color:#fff">Real GroSolar</p>
+  <p class="h A" id="s9b" style="font-size:88px;color:#fff">projects.</p>
+  <div id="cards"></div>
+  <div class="A" id="kwpill" style="display:flex;align-items:baseline;gap:12px;background:var(--navy2);border-radius:20px;padding:10px 24px;box-shadow:0 12px 30px rgba(0,0,0,.4);transform-origin:100% 50%"><span class="kw g" id="kwnum" style="font-size:66px">100 kW</span><span id="kwsub" style="font-size:36px;font-weight:600;color:#fff">installed</span></div>
   <div class="A" id="s9glow" style="width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(246,218,76,.95),rgba(252,186,52,.5) 30%,rgba(252,186,52,0) 65%);transform-origin:50% 50%"></div>
 </div>
 
-<!-- ============ S10 END CARD (23.0-29.9) ============ -->
+<!-- ===== S10 23.3-29.9: end card ===== -->
 <div class="L" id="s10" style="background:var(--navy)">
-  <div class="A" id="e_glow2" style="width:1100px;height:1100px;border-radius:50%;background:radial-gradient(circle,rgba(252,186,52,.22),rgba(252,186,52,0) 62%);transform-origin:50% 50%"></div>
   <div class="A" id="e_glow" style="width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(246,218,76,.9),rgba(252,186,52,.45) 28%,rgba(252,186,52,0) 62%);transform-origin:50% 50%"></div>
-  <img class="A" id="e_logo" src="./brand/logo-lockup.png" style="width:860px;transform-origin:12% 50%">
-  <p class="h A" id="e1" style="font-size:92px;color:#fff">Check if you</p>
-  <p class="h A" id="e2" style="font-size:92px;color:#fff">qualify.</p>
-  <div class="A" id="e3" style="display:flex;align-items:center;gap:18px;color:#fff">
-    <svg width="64" height="64" viewBox="0 0 64 64"><defs><linearGradient id="ig" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6DA4C"/><stop offset="1" stop-color="#FE9636"/></linearGradient></defs><circle cx="32" cy="32" r="32" fill="url(#ig)"/><path d="M23 18c2-1 4 0 5 2l3 6c1 2 0 3-1 4l-2 2c2 4 5 7 9 9l2-2c1-1 3-2 4-1l6 3c2 1 3 3 2 5-1 4-5 6-9 5-12-3-20-11-23-23-1-4 1-8 4-10z" fill="#002552"/></svg>
-    <svg width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="url(#ig)"/><path d="M32 14c-10 0-18 8-18 17 0 3 1 6 3 9l-3 10 10-3c2 1 5 2 8 2 10 0 18-8 18-18S42 14 32 14zm0 6c6 0 12 5 12 11s-6 12-12 12c-2 0-4-1-6-2l-5 2 2-5c-2-2-3-4-3-7 0-6 6-11 12-11z" fill="#002552"/></svg>
-    <span style="font-size:44px;font-weight:600">Call or WhatsApp</span>
+  <div class="L" id="e_block" style="transform-origin:50% 40%">
+    <img class="A" id="e_logo" src="./brand/logo-lockup-alpha.png" style="width:860px;transform-origin:12% 50%">
+    <p class="h A" id="e1" style="font-size:92px;color:#fff">Check if you</p>
+    <p class="h A" id="e2" style="font-size:92px;color:#fff">qualify.</p>
+    <div class="A" id="e_pill" style="width:900px;height:250px;border-radius:32px;background:var(--navy2);box-shadow:inset 0 0 0 4px rgba(252,186,52,.85),0 20px 50px rgba(0,0,0,.35)"></div>
+    <div class="A" id="e3" style="display:flex;align-items:center;gap:18px;color:#fff">
+      <svg width="64" height="64" viewBox="0 0 64 64"><defs><linearGradient id="ig" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6DA4C"/><stop offset="1" stop-color="#FE9636"/></linearGradient></defs><circle cx="32" cy="32" r="32" fill="url(#ig)"/><path d="M23 18c2-1 4 0 5 2l3 6c1 2 0 3-1 4l-2 2c2 4 5 7 9 9l2-2c1-1 3-2 4-1l6 3c2 1 3 3 2 5-1 4-5 6-9 5-12-3-20-11-23-23-1-4 1-8 4-10z" fill="#002552"/></svg>
+      <svg width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="url(#ig)"/><path d="M32 14c-10 0-18 8-18 17 0 3 1 6 3 9l-3 10 10-3c2 1 5 2 8 2 10 0 18-8 18-18S42 14 32 14zm0 6c6 0 12 5 12 11s-6 12-12 12c-2 0-4-1-6-2l-5 2 2-5c-2-2-3-4-3-7 0-6 6-11 12-11z" fill="#002552"/></svg>
+      <span style="font-size:44px;font-weight:600">Call or WhatsApp</span>
+    </div>
+    <p class="h A g" id="e4" style="font-size:110px;letter-spacing:-.02em;transform-origin:0 50%">0705 370 0000</p>
+    <p class="A" id="e5" style="font-size:44px;font-weight:600;margin:0;color:#fff;white-space:nowrap">Lagos and across Nigeria</p>
+    <p class="A" id="e6" style="font-size:44px;font-weight:500;margin:0;color:#fff;white-space:nowrap">GroSolar NG app · Google Play</p>
+    <p class="small A" id="e7" style="color:var(--mute-d)">Subject to approval. Terms apply.</p>
   </div>
-  <p class="h A g" id="e4" style="font-size:110px;letter-spacing:-.02em;transform-origin:0 50%">0705 370 0000</p>
-  <p class="A" id="e5" style="font-size:44px;font-weight:600;margin:0;color:#fff;white-space:nowrap">Lagos and across Nigeria</p>
-  <p class="A" id="e6" style="font-size:44px;font-weight:500;margin:0;color:#fff;white-space:nowrap">GroSolar NG app · Google Play</p>
-  <p class="small A" id="e7" style="color:var(--mute-d)">Subject to approval. Terms apply.</p>
 </div>
 
-<!-- ============ PERSISTENT: logo bug (4.4-23.0), finance small print (10.0-18.4) ============ -->
+<!-- ===== PERSISTENT: logo bug, finance small print ===== -->
 <div class="A" id="bug" style="width:76px;height:71px;border-radius:17px;overflow:hidden"><img src="./brand/logo-icon.png" style="width:100%;height:100%;display:block"></div>
-<p class="small A" id="fine" style="color:var(--mute-l)">Subject to approval. Terms apply.</p>
+<p class="small A" id="fine">Subject to approval. Terms apply.</p>
 
 </div>
 <script>
@@ -136,10 +133,16 @@ function mv(el,t,x,y,{a=0,d=.4,dx=0,dy=60,b=99,d2=.35,ex=0,ey=-80,s=1,r=0}={}){
   const i=eo(P(t,a,a+d)),o=ei(P(t,b,b+d2));
   tf(el,x+dx*(1-i)+ex*o,y+dy*(1-i)+ey*o,s,r,i*(1-o));
 }
+// a scene wipes up over the previous one (bottom edge leads); the previous scene stays visible underneath until covered
+const wipeUp=(el,u,d=.32)=>{el.style.clipPath=`inset(${1920*(1-eo(P(u,0,d)))}px 0 0 0)`;};
+const wipeLeft=(el,u,d=.4)=>{el.style.clipPath=`inset(0 0 0 ${1080*(1-eo(P(u,0,d)))}px)`;};
 
-// ---------- opening scene SVG (night and day versions of the same composition) ----------
+// scene start times (global seconds)
+const T={s4:3.85,s5:5.95,s6:8.35,s7:10.2,s8:12.4,s9:16.65,s10:23.3};
+
+// ---------- opening: shop + generator, night and day versions of one composition ----------
 const shop=(day)=>`
- <g transform="translate(0,190)">
+ <g transform="translate(-40,210) scale(.86)">
   <ellipse cx="560" cy="1418" rx="440" ry="40" fill="#000" opacity="${day?.08:.25}"/>
   <polygon points="740,920 900,830 900,1300 740,1390" fill="${day?'#D5DEEA':'#08305F'}"/>
   <polygon points="200,920 360,830 900,830 740,920" fill="${day?'#E8EEF5':'#123F78'}"/>
@@ -156,230 +159,249 @@ const shop=(day)=>`
   ${day?'<rect x="252" y="1250" width="436" height="140" fill="url(#sgd)" opacity=".35"/>':''}
   <rect x="430" y="1232" width="80" height="14" rx="7" fill="${day?'#7D8FA8':'#5F7699'}"/>
  </g>`;
+// bulb: lit version (glow + sun fill) and off version, toggled per frame
 const bulb=(day)=>`
   <line x1="850" y1="0" x2="850" y2="330" stroke="${day?'#002552':'#B9C7DA'}" stroke-width="4"/>
   <rect x="834" y="330" width="32" height="34" rx="4" fill="${day?'#002552':'#B9C7DA'}"/>
-  ${day?'<circle cx="850" cy="430" r="150" fill="url(#glow)"/>':''}
-  <path d="M818 362 h64 v8 q22 30 22 62 a54 54 0 1 1 -108 0 q0 -32 22 -62z" fill="${day?'url(#sgd)':'#0B3A73'}" stroke="${day?'#002552':'#B9C7DA'}" stroke-width="5"/>`;
-const gen=(day)=>`
- <g id="gen_${day?'d':'n'}">
-  <g id="genbody_${day?'d':'n'}">
-   <rect x="830" y="1430" width="190" height="130" rx="12" fill="${day?'#E3EAF3':'#3C5F8E'}" stroke="${day?'#002552':'#0A2347'}" stroke-width="5"/>
-   <rect x="850" y="1450" width="90" height="60" rx="6" fill="${day?'#C9D5E4':'#2A4E7E'}"/>
-   <circle cx="985" cy="1480" r="18" fill="${day?'#C9D5E4':'#2A4E7E'}" stroke="${day?'#002552':'#0A2347'}" stroke-width="4"/>
-   <rect x="845" y="1560" width="20" height="14" fill="${day?'#002552':'#0A2347'}"/><rect x="985" y="1560" width="20" height="14" fill="${day?'#002552':'#0A2347'}"/>
-   <rect x="860" y="1405" width="18" height="30" fill="${day?'#7D8FA8':'#0A2347'}"/>
-   <g id="lever_${day?'d':'n'}" transform="rotate(-35 985 1530)"><rect x="980" y="1500" width="10" height="34" rx="5" fill="#FE9636"/></g>
+  <g class="lit"><circle cx="850" cy="430" r="190" fill="url(#glow)"/>
+  <path d="M818 362 h64 v8 q22 30 22 62 a54 54 0 1 1 -108 0 q0 -32 22 -62z" fill="url(#sg${day?'d':'n'})" stroke="${day?'#002552':'#FFE9A8'}" stroke-width="5"/></g>
+  <g class="off"><path d="M818 362 h64 v8 q22 30 22 62 a54 54 0 1 1 -108 0 q0 -32 22 -62z" fill="#0B3A73" stroke="#B9C7DA" stroke-width="5"/>
+  <path d="M836 432 q14 -22 28 0" fill="none" stroke="#5F7699" stroke-width="4"/></g>`;
+// a recognisable petrol generator (~430 px): tubular frame, fuel tank, engine, muffler, control panel, pull cord, switch
+const gen=(day)=>{
+  const ink=day?'#002552':'#061A38', frame=day?'#5C6F8C':'#2B4C7C', tank=day?'#FE9636':'#B5652A', body=day?'#E3EAF3':'#3C5F8E', dark=day?'#9FB0C8':'#1E3A63', id=day?'d':'n';
+  return `<g id="gen_${id}"><g id="genbody_${id}">
+   <ellipse cx="820" cy="1600" rx="230" ry="22" fill="#000" opacity="${day?.08:.3}"/>
+   <rect x="610" y="1310" width="420" height="280" rx="34" fill="none" stroke="${frame}" stroke-width="16"/>
+   <rect x="660" y="1250" width="250" height="90" rx="40" fill="${tank}" stroke="${ink}" stroke-width="6"/>
+   <rect x="700" y="1232" width="46" height="24" rx="6" fill="${ink}"/>
+   <rect x="650" y="1360" width="210" height="190" rx="18" fill="${body}" stroke="${ink}" stroke-width="6"/>
+   <circle cx="755" cy="1455" r="58" fill="${dark}" stroke="${ink}" stroke-width="6"/>
+   ${[0,1,2,3,4,5].map(k=>`<line x1="755" y1="1455" x2="${755+50*Math.cos(k*Math.PI/3)}" y2="${1455+50*Math.sin(k*Math.PI/3)}" stroke="${ink}" stroke-width="5"/>`).join('')}
+   <rect x="880" y="1370" width="130" height="170" rx="14" fill="${body}" stroke="${ink}" stroke-width="6"/>
+   <circle cx="915" cy="1410" r="14" fill="${ink}"/><circle cx="965" cy="1410" r="14" fill="${ink}"/>
+   <rect x="905" y="1450" width="80" height="34" rx="6" fill="${dark}" stroke="${ink}" stroke-width="4"/>
+   <g id="lever_${id}" transform="rotate(-40 945 1510)"><rect x="938" y="1490" width="14" height="44" rx="7" fill="#FE9636" stroke="${ink}" stroke-width="3"/></g>
+   <rect x="600" y="1400" width="30" height="80" rx="10" fill="${dark}" stroke="${ink}" stroke-width="5"/>
+   <rect x="590" y="1385" width="24" height="26" rx="6" fill="${ink}"/>
+   <path d="M650 1455 q-20 0 -26 30" fill="none" stroke="${ink}" stroke-width="5"/>
+   <rect x="616" y="1480" width="22" height="34" rx="8" fill="#FE9636" stroke="${ink}" stroke-width="3"/>
   </g>
-  <rect x="770" y="1500" width="50" height="70" rx="8" fill="${day?'#C7D2E0':'#7A3A33'}" stroke="${day?'#002552':'#0A2347'}" stroke-width="4"/>
-  <rect x="782" y="1488" width="18" height="16" fill="${day?'#002552':'#0A2347'}"/>
- </g>`;
+  <g transform="translate(-110,0)"><rect x="560" y="1470" width="70" height="110" rx="12" fill="${day?'#C7D2E0':'#8A3A30'}" stroke="${ink}" stroke-width="5"/><rect x="576" y="1450" width="26" height="24" fill="${ink}"/></g>
+  </g>`;};
 const defs=`<defs>
   <linearGradient id="sgn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6DA4C"/><stop offset=".5" stop-color="#FCBA34"/><stop offset="1" stop-color="#FE9636"/></linearGradient>
   <linearGradient id="sgd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6DA4C"/><stop offset=".5" stop-color="#FCBA34"/><stop offset="1" stop-color="#FE9636"/></linearGradient>
-  <radialGradient id="glow"><stop offset="0" stop-color="#F6DA4C" stop-opacity=".75"/><stop offset="1" stop-color="#FCBA34" stop-opacity="0"/></radialGradient></defs>`;
-const puffs=[0,1,2,3].map(i=>`<circle class="puff" cx="869" cy="1395" r="22" fill="#9FB0C8"/>`).join('');
+  <radialGradient id="glow"><stop offset="0" stop-color="#F6DA4C" stop-opacity=".8"/><stop offset="1" stop-color="#FCBA34" stop-opacity="0"/></radialGradient></defs>`;
+const puffs=[0,1,2,3,4].map(()=>`<circle class="puff" cx="602" cy="1385" r="22" fill="#9FB0C8"/>`).join('');
 const openText=(day)=>`
-  <div class="A ot1" style="left:0;top:0"><p class="h" style="font-size:176px;color:${day?'#002552':'#fff'}">NO</p></div>
+  <div class="A ot1"><p class="h" style="font-size:176px;color:${day?'#002552':'#fff'}">NO</p></div>
   <div class="A ot2"><p class="h" style="font-size:176px;color:${day?'#002552':'#fff'}">LIGHT.</p></div>
   <div class="A ot3"><p class="h g" style="font-size:176px">AGAIN?</p></div>
   <div class="A ot4"><p class="h" style="font-size:150px;color:${day?'#002552':'#fff'}">Less</p></div>
   <div class="A ot5"><p class="h" style="font-size:150px;color:${day?'#002552':'#fff'}">generator.</p></div>
   <div class="A ot6"><p class="h g" style="font-size:150px">More sun.</p></div>`;
 for(const day of [0,1]){
-  const host=$(day?'day':'night');
-  host.innerHTML=`<svg width="1080" height="1920" style="position:absolute;inset:0">${defs}<g class="bulbg">${bulb(day)}</g>${shop(day)}${gen(day)}${day?'':puffs}</svg>${openText(day)}`;
+  $(day?'day':'night').innerHTML=`<svg width="1080" height="1920" style="position:absolute;inset:0">${defs}<g class="bulbg">${bulb(day)}</g>${shop(day)}${gen(day)}${day?'':puffs}</svg>${openText(day)}`;
 }
 
 // ---------- S5 buildings (flat, Lagos-style) ----------
 const BL=[
- {k:'HOME',y:290,svg:`<rect x="62" y="112" width="216" height="178" fill="#fff" stroke="#002552" stroke-width="5"/>
+ {k:'HOME',y:330,left:62,svg:`<rect x="62" y="112" width="216" height="178" fill="#fff" stroke="#002552" stroke-width="5"/>
    <polygon points="278,112 312,96 312,274 278,290" fill="#C9D5E4" stroke="#002552" stroke-width="5"/>
    <rect x="50" y="92" width="240" height="24" fill="#DDE5EF" stroke="#002552" stroke-width="5"/>
    <g class="pv"><polygon points="84,90 104,58 252,58 232,90" fill="#002552"/><g stroke="#3D6AA8" stroke-width="3"><line x1="134" y1="90" x2="154" y2="58"/><line x1="184" y1="90" x2="204" y2="58"/><line x1="94" y1="74" x2="242" y2="74"/></g></g>
    ${[[86,140],[196,140],[86,212]].map(([x,y])=>`<rect class="w" x="${x}" y="${y}" width="58" height="48" fill="#002552"/>`).join('')}
    <rect x="196" y="212" width="50" height="78" fill="#002552"/>`},
- {k:'BUSINESS',y:690,svg:`<rect x="40" y="120" width="260" height="170" fill="#fff" stroke="#002552" stroke-width="5"/>
+ {k:'BUSINESS',y:700,left:40,svg:`<rect x="40" y="120" width="260" height="170" fill="#fff" stroke="#002552" stroke-width="5"/>
    <polygon points="300,120 330,104 330,274 300,290" fill="#C9D5E4" stroke="#002552" stroke-width="5"/>
    <g class="pv"><polygon points="52,118 80,84 318,84 290,118" fill="#002552"/><g stroke="#3D6AA8" stroke-width="3"><line x1="110" y1="118" x2="138" y2="84"/><line x1="170" y1="118" x2="198" y2="84"/><line x1="230" y1="118" x2="258" y2="84"/></g></g>
    <rect class="w" x="56" y="134" width="228" height="40" rx="4" fill="#002552"/>
    <rect x="74" y="188" width="192" height="102" fill="#C3CEDD"/>${[0,1,2,3].map(i=>`<line x1="74" y1="${202+i*18}" x2="266" y2="${202+i*18}" stroke="#A3B2C7" stroke-width="3"/>`).join('')}
    <rect class="w" x="74" y="262" width="192" height="28" fill="#002552"/>`},
- {k:'INDUSTRY',y:1090,svg:`<rect x="14" y="150" width="300" height="140" fill="#fff" stroke="#002552" stroke-width="5"/>
+ {k:'INDUSTRY',y:1070,left:14,svg:`<rect x="14" y="150" width="300" height="140" fill="#fff" stroke="#002552" stroke-width="5"/>
    <polygon points="6,152 164,80 322,152" fill="#E8EEF5" stroke="#002552" stroke-width="5"/>
    <g class="pv"><polygon points="170,84 314,148 250,148 170,112" fill="#002552"/><polygon points="160,84 18,148 82,148 160,112" fill="#002552"/></g>
    <rect x="120" y="196" width="88" height="94" fill="#C3CEDD" stroke="#002552" stroke-width="4"/>${[0,1,2,3].map(i=>`<line x1="120" y1="${212+i*18}" x2="208" y2="${212+i*18}" stroke="#A3B2C7" stroke-width="3"/>`).join('')}
    ${[[36,186],[236,186]].map(([x,y])=>`<rect class="w" x="${x}" y="${y}" width="58" height="36" fill="#002552"/>`).join('')}`},
 ];
+const BW=450, BSC=BW/340, RX=150, RTOP=360, RLEN=1140;
 $('bldgs').innerHTML=BL.map((b,i)=>`
   <div class="A" id="node${i}" style="width:34px;height:34px;border-radius:50%;background:#fff;border:8px solid #FCBA34;box-sizing:border-box"></div>
   <div class="A" id="arm${i}" style="height:10px;border-radius:5px;background:var(--sun)"></div>
-  <svg class="A" id="b${i}" width="450" height="397" viewBox="0 0 340 300" style="overflow:visible">
+  <svg class="A" id="b${i}" width="${BW}" height="${300*BSC}" viewBox="0 0 340 300" style="overflow:visible;transform-origin:30% 60%">
     <defs><linearGradient id="wg${i}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6DA4C"/><stop offset="1" stop-color="#FE9636"/></linearGradient></defs>
     ${b.svg}</svg>
-  <p class="h A" id="lab${i}" style="font-size:50px">${b.k}</p>`).join('');
-// lit-window overlays: clone each .w with the sun gradient
+  <p class="h A" id="lab${i}" style="font-size:52px">${b.k}</p>`).join('');
 BL.forEach((b,i)=>{const s=$('b'+i);s.querySelectorAll('.w').forEach(w=>{const c=w.cloneNode();c.setAttribute('fill',`url(#wg${i})`);c.classList.remove('w');c.classList.add('wl');s.appendChild(c);});});
-// payment ticks
-$('s8ticks').innerHTML=Array.from({length:9},()=>'<i style="width:4px;height:22px;background:#fff;opacity:.6;display:block"></i>').join('');
+// rail head y(u) = RTOP + RLEN*eo(P(u,.1,1.9)); time it reaches y (binary search, pure)
+function railU(y){let lo=.1,hi=1.9;for(let k=0;k<40;k++){const m=(lo+hi)/2;(RTOP+RLEN*eo(P(m,.1,1.9))<y)?lo=m:hi=m;}return lo;}
 
-// time at which the eased rail head (y = 250 + 1270*eio(P(t,6.62,8.7))) reaches y: binary search, pure
-function railT(y){let lo=6.62,hi=8.7;for(let k=0;k<40;k++){const m=(lo+hi)/2;(250+1270*eo(P(m,6.62,8.7))<y)?lo=m:hi=m;}return lo;}
-// ---------- the render function: everything is a function of t ----------
+// ---------- S8 ticks, S9 cards ----------
+$('s8ticks').innerHTML=Array.from({length:9},()=>'<i style="width:4px;height:22px;background:#fff;opacity:.7;display:block"></i>').join('');
+const CARDS=[['p-adeola.jpg','100 kW','Office complex<br>Victoria Island'],['p-ifgreen.jpg','100 kW','Agro-processing<br>Epe'],['p-sinari.jpg','100 kW','Commercial<br>Sinari'],['p-broadcaster.jpg','150 kW','National<br>broadcaster']];
+$('cards').innerHTML=CARDS.map(([f,kw,lab],i)=>`
+  <div class="card A" id="pc${i}" style="width:900px;height:900px;transform-origin:50% 50%"><img src="./img/${f}" id="pi${i}" style="transform-origin:50% 50%">
+    <div class="A" id="pd${i}" style="position:absolute;inset:0;background:#000;opacity:0"></div>
+    <div class="chip" style="left:30px;bottom:30px"><span class="kw g" style="font-size:76px">${kw}</span><span style="font-size:44px;font-weight:600;line-height:1.1">${lab}</span></div></div>`).join('');
+
+// ---------- render: everything is a function of t ----------
 function draw(t){
-  // ===== S1-S3 opening =====
-  const OPEN_END=4.6;
-  vis($('open'),t<OPEN_END);
-  if(t<OPEN_END){
-    // camera: slow push; fast exit upward 4.3-4.6
-    const ex=ei(P(t,4.3,4.6));
-    $('open').style.transform=`translateY(${-1400*ex}px) scale(${1+.04*P(t,0,4.4)})`;
+  // ===== OPENING 0-4.15 =====
+  vis($('open'),t<T.s4+.4);
+  if(t<T.s4+.4){
+    $('open').style.transform=`scale(${1+.04*P(t,0,4.2)})`;
+    const lit=t<.3||(t>=.34&&t<.38);          // bulb on at frame 0, flickers, clicks off at 0.38
+    $('night').style.background=lit?'#0B3A73':'#002552';
+    for(const day of [0,1]){
+      const host=$(day?'day':'night'), q=s=>host.querySelector(s), qa=s=>host.querySelectorAll(s);
+      const on=day?true:lit; qa('.lit').forEach(e=>e.style.opacity=on?1:0); qa('.off').forEach(e=>e.style.opacity=on?0:1);
+      q('.bulbg').setAttribute('transform',`rotate(${(t<.38?0:5*Math.sin((t-.38)*3.2)*Math.exp(-(t-.38)*.5))} 850 0)`);
+      // NO / LIGHT. slam in right after the click; AGAIN? from the right; all exit up 1.6-1.9
+      const slam=(el,a,y)=>{const k=P(t,a,a+.14);tf(el,80,y,L(1.25,1,eo(k)),0,k*(1-ei(P(t,1.6,1.9))));};
+      slam(q('.ot1'),.4,300); slam(q('.ot2'),.48,468);
+      mv(q('.ot3'),t,80,654,{a:.66,d:.28,dx:420,dy:0,b:1.62,d2:.3,ey:-220});
+      // Less / generator. / More sun. arrive only after the first lines have gone
+      mv(q('.ot4'),t,80,300,{a:1.95,d:.36,dy:140});
+      mv(q('.ot5'),t,80,450,{a:2.01,d:.36,dy:140});
+      mv(q('.ot6'),t,80,620,{a:2.1,d:.36,dy:140});
+      // generator rolls in 0.55-0.85, runs (shake + smoke) to 1.6, switch flips, dead still
+      const g=q('#gen_'+(day?'d':'n')), gb=q('#genbody_'+(day?'d':'n')), lv=q('#lever_'+(day?'d':'n'));
+      const gi=eo(P(t,.55,.85)); g.setAttribute('transform',`translate(${420*(1-gi)},0)`); g.style.opacity=gi;
+      const run=t>=.85&&t<1.6; gb.setAttribute('transform',`translate(${run?Math.sin(t*97)*4:0},${run?Math.cos(t*123)*3:0})`);
+      lv.setAttribute('transform',`rotate(${t<1.6?-40:L(-40,40,eo(P(t,1.6,1.7)))} 945 1510)`);
+    }
+    $('night').querySelectorAll('.puff').forEach((p,i)=>{
+      const run=t>=.85&&t<1.6; const k=cl(run?((t*1.5+i*.2)%1):((1.6*1.5+i*.2)%1)+(t-1.6)*.9);
+      p.setAttribute('cy',1385-260*k); p.setAttribute('cx',602-40*k+18*Math.sin(k*6+i)); p.setAttribute('r',16+46*k);
+      p.style.opacity=t<.85?0:(1-k)*.85*(1-P(t,1.6,1.9));
+    });
     // sunlight wipe 2.25-3.15: day region is x + .55y < c
     const w=eio(P(t,2.25,3.15)), c=L(-420,2560,w);
     $('day').style.clipPath=`polygon(0 0, ${c}px 0, ${c-1056}px 1920px, 0 1920px)`;
-    const bc=c-528; tf($('beam'),bc-150,960-1350,1,28.8,P(t,2.2,2.35)*(1-P(t,3.05,3.25)));
-    for(const day of [0,1]){
-      const host=$(day?'day':'night'), q=s=>host.querySelector(s);
-      // text 1: NO / LIGHT. (frame 0 complete), AGAIN? punches in from right at 0.3; all exit up 1.65-1.95
-      mv(q('.ot1'),t,80,300,{a:-1,d:.01,b:1.65,d2:.3,ey:-220});
-      mv(q('.ot2'),t,80,468,{a:-1,d:.01,b:1.68,d2:.3,ey:-220});
-      mv(q('.ot3'),t,80,654,{a:.28,d:.3,dx:420,dy:0,b:1.71,d2:.3,ey:-220});
-      // text 2: Less / generator. / More sun.
-      mv(q('.ot4'),t,80,300,{a:1.97,d:.38,dy:140,b:4.25,d2:.3,ey:-160});
-      mv(q('.ot5'),t,80,450,{a:2.03,d:.38,dy:140,b:4.27,d2:.3,ey:-160});
-      mv(q('.ot6'),t,80,620,{a:2.12,d:.38,dx:-380,dy:0,b:4.29,d2:.3,ey:-160});
-      // generator: slides in 0.75-1.0, shakes until 1.6, dead still after
-      q('.bulbg').setAttribute('transform',`rotate(${6*Math.cos(t*2.6)*Math.exp(-t*.25)} 850 0)`);
-      const g=q('#gen_'+(day?'d':'n')), gb=q('#genbody_'+(day?'d':'n')), lv=q('#lever_'+(day?'d':'n'));
-      const gi=eo(P(t,.72,1.0)); g.setAttribute('transform',`translate(${300*(1-gi)},0)`); g.style.opacity=gi;
-      const shaking=t>=.8&&t<1.6; const sx=shaking?Math.sin(t*95)*5:0, sy=shaking?Math.cos(t*120)*3:0;
-      gb.setAttribute('transform',`translate(${sx},${sy})`);
-      lv.setAttribute('transform',`rotate(${t<1.6?-35:L(-35,35,eo(P(t,1.6,1.72)))} 985 1530)`);
-    }
-    // bulb flicker (night): frame 0 off, two brief flickers 0.05-0.25 are skipped to keep frame 0 clean
-    // haze puffs (night only): rise while running, clear after 1.6
-    $('night').querySelectorAll('.puff').forEach((p,i)=>{
-      const ph=((t*1.6+i*.25)%1); const run=t>=.85&&t<1.6; const fade=1-P(t,1.6,1.95);
-      const k=cl(run?ph:((1.6*1.6+i*.25)%1)+(t-1.6)*.8);
-      p.setAttribute('cy',1395-200*k); p.setAttribute('cx',869+30*Math.sin(k*5+i)); p.setAttribute('r',18+40*k);
-      p.style.opacity=(t<.85?0:(1-k)*.8*fade);
-    });
+    tf($('beam'),c-528-150,960-1350,1,28.8,P(t,2.2,2.35)*(1-P(t,3.05,3.25)));
   }
 
-  // ===== logo bug =====
-  vis($('bug'),t>=4.4&&t<23.2); tf($('bug'),80,258,1,0,eo(P(t,4.4,4.7))*(1-P(t,22.8,23.1)));
+  // ===== logo bug (S4 -> S9) =====
+  vis($('bug'),t>=T.s4&&t<T.s10+.2); tf($('bug'),80,258,1,0,eo(P(t,T.s4+.15,T.s4+.45))*(1-P(t,T.s10-.25,T.s10)));
 
-  // ===== S4 panels (4.3-6.9) =====
-  vis($('s4'),t>=4.3&&t<6.95);
-  if(t>=4.3&&t<6.95){
-    $('s4').style.transform=`translateY(${-1500*ei(P(t,6.6,6.95))}px)`;
-    mv($('s4h1'),t,80,370,{a:4.4,d:.4,dy:120});
-    mv($('s4h2'),t,80,482,{a:4.48,d:.4,dy:120});
-    const ci=eo(P(t,4.3,4.75)); tf($('s4card'),180,L(1700,650,ci),1,0,1);
-    $('s4img').style.transform=`scale(${1.05+1.75*eio(P(t,4.85,6.6))})`;
-    // the sunlight line draws across the card top, then turns down the right edge
-    const lw=eo(P(t,4.75,5.35)); tf($('s4line'),180,628,1,0,P(t,4.75,4.8)); $('s4line').style.width=(720*lw)+'px';
-  }
+  // ===== S4 inverter: push in until the GroSolar sticker owns the card =====
+  {const u=t-T.s4; vis($('s4'),u>=0&&t<T.s5+.4);
+   if(u>=0&&t<T.s5+.4){
+    wipeUp($('s4'),u);
+    mv($('s4h1'),u,80,330,{a:.06,d:.4,dy:120});
+    mv($('s4h2'),u,80,442,{a:.12,d:.4,dy:120});
+    tf($('s4card'),160,L(900,620,eo(P(u,0,.5))),1,0,1);
+    // origin 0 0 + scale 2.2 puts the sticker (22%,16% of the photo) at about (48%,35%) of the card
+    $('s4img').style.transform=`scale(${1+1.2*eio(P(u,.7,2.25))})`;
+    const lw=eo(P(u,.45,1.0)); tf($('s4line'),160,598,1,0,P(u,.45,.5)); $('s4line').style.width=(760*lw)+'px';
+  }}
 
-  // ===== S5 home / business / industry (6.6-9.6) =====
-  vis($('s5'),t>=6.6&&t<9.65);
-  if(t>=6.6&&t<9.65){
-    const ex=ei(P(t,9.3,9.65));
-    $('s5').style.transform=`translateX(${-1100*ex}px) scale(${1+.03*P(t,6.6,9.4)})`;
-    const rh=eo(P(t,6.62,8.7)); tf($('rail'),143,250,1,0,1); $('rail').style.height=(1270*rh)+'px';
+  // ===== S5 home / business / industry =====
+  {const u=t-T.s5; vis($('s5'),u>=0&&t<T.s6+.4);
+   if(u>=0&&t<T.s6+.4){
+    wipeUp($('s5'),u);
+    $('s5in').style.transform=`scale(${1+.06*P(u,0,2.8)})`;
+    tf($('rail'),RX,RTOP,1,0,1); $('rail').style.height=(RLEN*eo(P(u,.1,1.9)))+'px';
     BL.forEach((b,i)=>{
-      const at=railT(b.y+167); // exact time the rail head reaches this building's node
-      const li=eo(P(t,at,at+.35));
-      tf($('node'+i),133,b.y+150,L(.3,1,back(P(t,at-.05,at+.25))),0,P(t,at-.05,at+.05));
-      tf($('arm'+i),165,b.y+162,1,0,li); $('arm'+i).style.width=(40*li)+'px';
-      const bs=$('b'+i), rin=eo(P(t,6.6+i*.12,7.05+i*.12)); tf(bs,190,b.y-40+90*(1-rin),L(.94,1,li),0,L(.32,1,li)*rin); bs.style.filter=`grayscale(${1-li})`;
-      bs.querySelectorAll('.wl').forEach(w=>w.style.opacity=li); bs.querySelectorAll('.pv').forEach(p=>p.style.opacity=L(.25,1,li));
-      mv($('lab'+i),t,650,b.y+150,{a:at+.08,d:.35,dx:120,dy:0});
+      const ny=b.y+150, at=railU(ny+17), li=eo(P(u,at,at+.3));
+      tf($('node'+i),RX-10,ny,L(.3,1,back(P(u,at-.05,at+.25))),0,P(u,at-.05,at+.05));
+      const left=190+b.left*BSC, armLen=left-(RX+24);
+      tf($('arm'+i),RX+24,ny+12,1,0,li); $('arm'+i).style.width=(armLen*li)+'px';
+      const bs=$('b'+i), rin=eo(P(u,i*.06,.3+i*.06));
+      tf(bs,190,b.y-40+60*(1-rin),L(.95,1,li),0,L(.55,1,li)*rin); bs.style.filter=`grayscale(${1-li})`;
+      const shimmer=.85+.15*Math.sin(u*5+i);
+      bs.querySelectorAll('.wl').forEach(w=>w.style.opacity=li*shimmer); bs.querySelectorAll('.pv').forEach(p=>p.style.opacity=L(.35,1,li));
+      mv($('lab'+i),u,650,ny-8,{a:at+.06,d:.32,dx:110,dy:0});
     });
-  }
+  }}
 
-  // ===== S6 nothing upfront (9.35-11.7) =====
-  vis($('s6'),t>=9.35&&t<11.7);
-  if(t>=9.35&&t<11.7){
-    $('s6').style.transform=`translateY(${-1500*ei(P(t,11.25,11.6))}px) scale(${1+.03*P(t,9.4,11.4)})`;
-    tf($('s6beam'),L(-420,-120,P(t,9.35,11.7)),-400,1,28,1);
-    mv($('s6a'),t,80,760,{a:9.42,d:.36,dx:-700,dy:0});
-    mv($('s6b'),t,80,948,{a:9.58,d:.36,dx:700,dy:0});
-    const u=eo(P(t,9.85,10.35)); tf($('s6u'),80,1170,1,0,P(t,9.85,9.9)); $('s6u').style.width=(880*u)+'px';
-  }
+  // ===== S6 nothing upfront =====
+  {const u=t-T.s6; vis($('s6'),u>=0&&t<T.s7+.4);
+   if(u>=0&&t<T.s7+.4){
+    wipeUp($('s6'),u);
+    $('s6in').style.transform=`scale(${1+.035*P(u,0,2.2)})`;
+    tf($('s6beam'),L(-420,-80,P(u,0,2.3)),-400,1,28,1);
+    mv($('s6a'),u,80,640,{a:.04,d:.36,dy:160});
+    mv($('s6b'),u,80,812,{a:.12,d:.36,dy:160});
+    const uw=eo(P(u,.4,.9)); tf($('s6u'),80,1010,1,0,P(u,.4,.45)); $('s6u').style.width=(860*uw)+'px';
+  }}
 
-  // ===== finance small print (10.0-18.4, same place throughout) =====
-  vis($('fine'),t>=10&&t<18.6); $('fine').style.color=t>=14.1?'#E6EDF6':'#46586F'; $('fine').style.textShadow=t>=14.1?'0 2px 10px rgba(0,0,0,.6)':'none'; tf($('fine'),80,1440,1,0,P(t,10.0,10.3)*(1-P(t,18.2,18.38)));
+  // ===== finance small print: on from the offer to the projects; hidden while S7's photo moves in =====
+  {const on=P(t,T.s6+.55,T.s6+.8)*(1-P(t,T.s7-.05,T.s7+.1))+P(t,T.s7+.7,T.s7+.9)*(1-P(t,T.s9-.15,T.s9));
+   vis($('fine'),on>0); const light=t>=T.s7;
+   $('fine').style.color=light?'#EEF3F9':'#46586F'; $('fine').style.textShadow=light?'0 2px 10px rgba(0,0,0,.65)':'none';
+   tf($('fine'),80,1440,1,0,on);}
 
-  // ===== S7 installed and maintained (11.4-14.3) =====
-  vis($('s7'),t>=11.4&&t<14.3);
-  if(t>=11.4&&t<14.3){
-    $('s7').style.transform=`translateX(${-1100*ei(P(t,13.95,14.3))}px)`;
-    const ci=eo(P(t,11.4,11.85)); tf($('s7card'),80,L(1700,730,ci),1,0,1);
-    $('s7img').style.transform=`scale(${1.03+.07*P(t,11.4,14.3)})`;
-    mv($('s7a'),t,80,370,{a:11.4,d:.38,dy:110});
-    mv($('s7b'),t,80,470,{a:11.46,d:.38,dy:110});
-    mv($('s7c'),t,80,570,{a:11.52,d:.38,dy:110});
-    tf($('s7badge'),830,660,back(P(t,12.1,12.45)),0,P(t,12.1,12.2));
-    $('s7check').setAttribute('stroke-dashoffset',110*(1-eo(P(t,12.35,12.7))));
-    $('s7chip').style.opacity=eo(P(t,12.5,12.8)); $('s7chip').style.transform=`translateY(${30*(1-eo(P(t,12.5,12.8)))}px)`;
-  }
+  // ===== S7 installed and maintained: hillside array, big =====
+  {const u=t-T.s7; vis($('s7'),u>=0&&t<T.s8+.45);
+   if(u>=0&&t<T.s8+.45){
+    wipeUp($('s7'),u);
+    tf($('s7ph'),0,L(900,660,eo(P(u,0,.55))),1,0,1);
+    $('s7img').style.transform=`scale(${1.06+.08*P(u,0,2.6)})`;
+    mv($('s7a'),u,80,350,{a:.05,d:.36,dy:110});
+    mv($('s7b'),u,80,450,{a:.11,d:.36,dy:110});
+    mv($('s7c'),u,80,550,{a:.17,d:.36,dy:110});
+    tf($('s7badge'),840,600,back(P(u,.6,.95)),0,P(u,.6,.7));
+    $('s7check').setAttribute('stroke-dashoffset',110*(1-eo(P(u,.85,1.2))));
+    mv($('s7chip'),u,80,1330,{a:.95,d:.35,dy:40});
+  }}
 
-  // ===== S8 pay in instalments -> OWNED (14.0-18.7) =====
-  vis($('s8'),t>=14.0&&t<18.75);
-  if(t>=14.0&&t<18.75){
-    $('s8').style.transform=`scale(${1+.03*P(t,14,18.4)})`;
-    tf($('s8photo'),L(1080,0,eo(P(t,13.95,14.45))),0,1,0,1);
-    $('s8img').style.transform=`scale(${1.75-.15*P(t,14,18.7)})`;
-    mv($('s8a'),t,80,880,{a:14.05,d:.38,dx:900,dy:0,b:18.4,d2:.3,ey:-200});
-    mv($('s8b'),t,80,997,{a:14.13,d:.38,dx:900,dy:0,b:18.42,d2:.3,ey:-200});
-    tf($('s8track'),80,1170,1,0,eo(P(t,14.3,14.6))*(1-P(t,18.4,18.6)));
-    tf($('s8ticks'),80,1246,1,0,eo(P(t,14.4,14.7))*(1-P(t,18.4,18.6)));
-    // fill in nine eased steps 14.6-16.35, then OWNED slams at 16.45
-    let f=0; for(let k=0;k<9;k++) f+=eo(P(t,14.6+k*.195,14.6+k*.195+.17))/9;
+  // ===== S8 installers full screen: pay in instalments -> OWNED =====
+  {const u=t-T.s8; vis($('s8'),u>=0&&t<T.s9+.45);
+   if(u>=0&&t<T.s9+.45){
+    wipeLeft($('s8'),u);
+    $('s8img').style.transform=`scale(${1.75-.15*P(u,0,4.6)})`;
+    mv($('s8a'),u,80,360,{a:.1,d:.38,dx:700,dy:0});
+    mv($('s8b'),u,80,468,{a:.18,d:.38,dx:700,dy:0});
+    tf($('s8track'),80,1160,1,0,eo(P(u,.45,.75)));
+    tf($('s8ticks'),80,1236,1,0,eo(P(u,.55,.85)));
+    let f=0; for(let k=0;k<9;k++) f+=eo(P(u,.7+k*.19,.7+k*.19+.16))/9;
     $('s8fill').style.width=(100*f)+'%';
-    const sp=P(t,16.45,16.65); tf($('s8stamp'),300,1160,L(1.7,1,eo(sp))+(sp>=1?.018*Math.sin((t-16.65)*40)*Math.exp(-(t-16.65)*9):0),-7,P(t,16.45,16.52)*(1-P(t,18.4,18.6)));
-    mv($('s8c'),t,80,1345,{a:16.85,d:.35,dy:40,b:18.4,d2:.25,ey:-60});
-  }
+    // OWNED. lands above the bar's right end, inside x 80-940
+    const sp=P(u,2.5,2.68), wob=sp>=1?.018*Math.sin((u-2.68)*40)*Math.exp(-(u-2.68)*9):0;
+    tf($('s8stamp'),448,1000,L(1.6,1,eo(sp))+wob,-6,P(u,2.5,2.56));
+    mv($('s8c'),u,80,1300,{a:2.85,d:.38,dy:50});
+  }}
 
-  // ===== S9 real projects (18.4-23.2) =====
-  vis($('s9'),t>=18.4&&t<23.25);
-  if(t>=18.4&&t<23.25){
-    const wipe=eo(P(t,18.4,18.8)); $('s9').style.clipPath=`inset(${1920*(1-wipe)}px 0 0 0)`;
-    mv($('s9a'),t,80,370,{a:18.7,d:.4,dy:100,b:22.6,d2:.3,ey:-120});
-    mv($('s9b'),t,80,470,{a:18.78,d:.4,dy:100,b:22.62,d2:.3,ey:-120});
-    // four cards deal in one by one (alternating sides), earlier ones step back; then all collapse into the logo's sun
-    const col=eio(P(t,22.55,23.1)), cx=188, cy=410, LAND=[18.85,19.75,20.65,21.55], ROT=[-2.5,2,-1.5,2.5], KW=[100,200,300,450];
+  // ===== S9 four real projects, snapping kW counter =====
+  {const u=t-T.s9; vis($('s9'),u>=0&&t<T.s10+.35);
+   if(u>=0&&t<T.s10+.35){
+    wipeUp($('s9'),u,.4);
+    mv($('s9a'),u,80,355,{a:.12,d:.38,dy:90,b:6.1,d2:.3,ey:-120});
+    mv($('s9b'),u,80,442,{a:.18,d:.38,dy:90,b:6.12,d2:.3,ey:-120});
+    const LAND=[.55,1.85,3.15,4.45], ROT=[-1.5,1.5,-1.2,1.2], KW=[100,200,300,450];
+    const col=eio(P(u,6.15,6.65)), cx=190, cy=410;
     LAND.forEach((ld,i)=>{
-      const ii=eo(P(t,ld-.45,ld)), side=i%2?-1:1;
-      const later=LAND.filter(x=>t>=x&&x>ld).length; // cards landed on top of this one
-      const bx=180+side*1200*(1-ii), by=620-26*later, sc=1-.035*later;
-      const x=L(bx,cx-360,col), y=L(by,cy-430,col);
-      tf($('pc'+i),x,y,L(sc,.05,col),L(ROT[i]+side*14*(1-ii),0,col),P(t,ld-.45,ld-.35)*(1-P(t,22.85,23.1)));
-      $('pi'+i).style.transform=`scale(${1.08-.06*P(t,ld-.45,ld+2.5)})`;
+      const ii=eo(P(u,ld-.45,ld)), later=LAND.filter(x=>u>=x&&x>ld).length;
+      const bx=90+1150*(1-ii), by=575-20*later, sc=Math.pow(.96,later);
+      tf($('pc'+i),L(bx,cx-450,col),L(by,cy-450,col),L(sc,.04,col),L(ROT[i]+10*(1-ii),0,col),P(u,ld-.45,ld-.3)*(1-P(u,6.45,6.65)));
+      $('pd'+i).style.opacity=later>0?.35*cl((u-LAND[i+1])/.3):0; // earlier cards dim as the next lands
+      $('pi'+i).style.transform=`scale(${1.1-.08*P(u,ld-.45,ld+2.6)})`;
     });
-    // kW counter: counts up as each card lands
-    let kw=0; LAND.forEach((ld,i)=>{const prev=i?KW[i-1]:0; if(t>=ld) kw=L(prev,KW[i],eo(P(t,ld,ld+.35)));});
-    $('kwnum').textContent=Math.round(kw)+' kW'; $('kwsub').textContent=t>=21.9?'across 4 sites':'installed';
-    $('kwpill').style.transformOrigin='100% 50%'; tf($('kwpill'),940-$('kwpill').offsetWidth,574,back(P(t,18.85,19.15)),0,P(t,18.85,18.95)*(1-P(t,22.5,22.7)));
-    tf($('s9glow'),cx-300,cy-300,L(.1,1.3,eo(P(t,22.7,23.2))),0,P(t,22.7,22.9));
-  }
+    // counter snaps to the running total the moment each card lands (no in-between values)
+    let n=-1; LAND.forEach((ld,i)=>{if(u>=ld) n=i;});
+    $('kwnum').textContent=(n<0?100:KW[n])+' kW'; $('kwsub').textContent=u>=5.0?'across 4 sites':'installed';
+    const lastLand=n<0?LAND[0]:LAND[n], pop=1+.12*Math.exp(-(u-lastLand)*10)*(u>=lastLand?1:0);
+    tf($('kwpill'),940-$('kwpill').offsetWidth,528,pop*back(P(u,.55,.8)),0,P(u,.55,.62)*(1-P(u,6.05,6.25)));
+    tf($('s9glow'),cx-300,cy-300,L(.1,1.3,eo(P(u,6.3,6.75))),0,P(u,6.3,6.45));
+  }}
 
-  // ===== S10 end card (23.0-29.9) =====
-  vis($('s10'),t>=23.0);
-  if(t>=23.0){
-    const dr=-14*P(t,25,29.9);
-    tf($('e_glow'),188-350,410-350,L(1.3,.55,eo(P(t,23.0,23.8)))*(1+.04*Math.sin((t-23)*2.2)),0,1-.6*P(t,23.4,24.2));
-    tf($('e_glow2'),380,1180+dr*2,1+.05*Math.sin((t-23)*1.4),0,P(t,23.6,24.4));
-    const li=eo(P(t,23.1,23.6)); tf($('e_logo'),80,300+dr,L(.6,1,li),0,li);
-    mv($('e1'),t,80,640+dr,{a:23.55,d:.38,dy:70});
-    mv($('e2'),t,80,730+dr,{a:23.63,d:.38,dy:70});
-    mv($('e3'),t,80,890+dr,{a:24.05,d:.35,dy:50});
-    const ni=eo(P(t,24.2,24.6)); tf($('e4'),80,980+dr,L(.92,1,ni),0,ni);
-    mv($('e5'),t,80,1160+dr,{a:24.55,d:.35,dy:40});
-    mv($('e6'),t,80,1230+dr,{a:24.7,d:.35,dy:40});
-    mv($('e7'),t,80,1320+dr,{a:24.85,d:.35,dy:40});
-  }
+  // ===== S10 end card =====
+  {const u=t-T.s10; vis($('s10'),u>=0);
+   if(u>=0){
+    tf($('e_glow'),190-350,410-350,L(1.3,.5,eo(P(u,0,.8)))*(1+.05*Math.sin(u*2.4)),0,L(1,.4,P(u,.4,1.2)));
+    $('e_block').style.transform=`scale(${1+.03*P(u,.8,6.6)})`;
+    const li=eo(P(u,.05,.5)); tf($('e_logo'),80,300,L(.6,1,li),0,li);
+    mv($('e1'),u,80,590,{a:.3,d:.38,dy:70});
+    mv($('e2'),u,80,680,{a:.38,d:.38,dy:70});
+    const pi=eo(P(u,.6,.95)); tf($('e_pill'),70,830,L(.94,1,pi),0,pi);
+    mv($('e3'),u,110,862,{a:.75,d:.35,dy:30});
+    const ni=eo(P(u,.9,1.25)); tf($('e4'),104,952,L(.92,1,ni),0,ni);
+    mv($('e5'),u,80,1150,{a:1.15,d:.35,dy:40});
+    mv($('e6'),u,80,1222,{a:1.28,d:.35,dy:40});
+    mv($('e7'),u,80,1310,{a:1.4,d:.35,dy:40});
+  }}
 }
 
 // ---------- timeline: GSAP only drives t ----------
