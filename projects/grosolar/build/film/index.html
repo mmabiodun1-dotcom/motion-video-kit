@@ -94,7 +94,7 @@ html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--n
 </div>
 
 <!-- ===== S10 23.3-29.9: end card ===== -->
-<div class="L" id="s10" style="background:var(--navy)">
+<div class="L" id="s10">
   <div class="A" id="e_glow" style="width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(246,218,76,.9),rgba(252,186,52,.45) 28%,rgba(252,186,52,0) 62%);transform-origin:50% 50%"></div>
   <div class="L" id="e_block" style="transform-origin:50% 40%">
     <img class="A" id="e_logo" src="./brand/logo-lockup-alpha.png" style="width:860px;transform-origin:12% 50%">
@@ -138,7 +138,7 @@ const wipeUp=(el,u,d=.32)=>{el.style.clipPath=`inset(${1920*(1-eo(P(u,0,d)))}px 
 const wipeLeft=(el,u,d=.4)=>{el.style.clipPath=`inset(0 0 0 ${1080*(1-eo(P(u,0,d)))}px)`;};
 
 // scene start times (global seconds)
-const T={s4:3.85,s5:5.95,s6:8.35,s7:10.2,s8:12.4,s9:16.65,s10:23.3};
+const T={s4:3.85,s5:5.95,s6:8.35,s7:10.2,s8:12.4,s9:16.65,s10:23.15};
 
 // ---------- opening: shop + generator, night and day versions of one composition ----------
 const shop=(day)=>`
@@ -225,14 +225,14 @@ const BL=[
    <rect x="120" y="196" width="88" height="94" fill="#C3CEDD" stroke="#002552" stroke-width="4"/>${[0,1,2,3].map(i=>`<line x1="120" y1="${212+i*18}" x2="208" y2="${212+i*18}" stroke="#A3B2C7" stroke-width="3"/>`).join('')}
    ${[[36,186],[236,186]].map(([x,y])=>`<rect class="w" x="${x}" y="${y}" width="58" height="36" fill="#002552"/>`).join('')}`},
 ];
-const BW=450, BSC=BW/340, RX=150, RTOP=360, RLEN=1140;
+const BW=520, BSC=BW/340, RX=150, RTOP=360, RLEN=1140;
 $('bldgs').innerHTML=BL.map((b,i)=>`
   <div class="A" id="node${i}" style="width:34px;height:34px;border-radius:50%;background:#fff;border:8px solid #FCBA34;box-sizing:border-box"></div>
   <div class="A" id="arm${i}" style="height:10px;border-radius:5px;background:var(--sun)"></div>
   <svg class="A" id="b${i}" width="${BW}" height="${300*BSC}" viewBox="0 0 340 300" style="overflow:visible;transform-origin:30% 60%">
     <defs><linearGradient id="wg${i}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6DA4C"/><stop offset="1" stop-color="#FE9636"/></linearGradient></defs>
     ${b.svg}</svg>
-  <p class="h A" id="lab${i}" style="font-size:52px">${b.k}</p>`).join('');
+  <p class="h A" id="lab${i}" style="font-size:48px">${b.k}</p>`).join('');
 BL.forEach((b,i)=>{const s=$('b'+i);s.querySelectorAll('.w').forEach(w=>{const c=w.cloneNode();c.setAttribute('fill',`url(#wg${i})`);c.classList.remove('w');c.classList.add('wl');s.appendChild(c);});});
 // rail head y(u) = RTOP + RLEN*eo(P(u,.1,1.9)); time it reaches y (binary search, pure)
 function railU(y){let lo=.1,hi=1.9;for(let k=0;k<40;k++){const m=(lo+hi)/2;(RTOP+RLEN*eo(P(m,.1,1.9))<y)?lo=m:hi=m;}return lo;}
@@ -258,17 +258,17 @@ function draw(t){
       const on=day?true:lit; qa('.lit').forEach(e=>e.style.opacity=on?1:0); qa('.off').forEach(e=>e.style.opacity=on?0:1);
       q('.bulbg').setAttribute('transform',`rotate(${(t<.38?0:5*Math.sin((t-.38)*3.2)*Math.exp(-(t-.38)*.5))} 850 0)`);
       // NO / LIGHT. slam in right after the click; AGAIN? from the right; all exit up 1.6-1.9
-      const slam=(el,a,y)=>{const k=P(t,a,a+.14);tf(el,80,y,L(1.25,1,eo(k)),0,k*(1-ei(P(t,1.6,1.9))));};
+      const slam=(el,a,y)=>{const k=P(t,a,a+.14),o=eo(P(t,1.58,1.78));tf(el,80,y-40*o,L(1.25,1,eo(k)),0,k*(1-o));};
       slam(q('.ot1'),.4,300); slam(q('.ot2'),.48,468);
-      mv(q('.ot3'),t,80,654,{a:.66,d:.28,dx:420,dy:0,b:1.62,d2:.3,ey:-220});
+      mv(q('.ot3'),t,80,654,{a:.66,d:.28,dx:420,dy:0,b:1.58,d2:.2,ey:-40});
       // Less / generator. / More sun. arrive only after the first lines have gone
-      mv(q('.ot4'),t,80,300,{a:1.95,d:.36,dy:140});
-      mv(q('.ot5'),t,80,450,{a:2.01,d:.36,dy:140});
-      mv(q('.ot6'),t,80,620,{a:2.1,d:.36,dy:140});
+      mv(q('.ot4'),t,80,300,{a:1.76,d:.36,dy:140,b:T.s4-.15,d2:.15,ey:-40});
+      mv(q('.ot5'),t,80,450,{a:1.82,d:.36,dy:140,b:T.s4-.13,d2:.13,ey:-40});
+      mv(q('.ot6'),t,80,620,{a:1.9,d:.36,dy:140,b:T.s4-.11,d2:.11,ey:-40});
       // generator rolls in 0.55-0.85, runs (shake + smoke) to 1.6, switch flips, dead still
       const g=q('#gen_'+(day?'d':'n')), gb=q('#genbody_'+(day?'d':'n')), lv=q('#lever_'+(day?'d':'n'));
       const gi=eo(P(t,.55,.85)); g.setAttribute('transform',`translate(${420*(1-gi)},0)`); g.style.opacity=gi;
-      const run=t>=.85&&t<1.6; gb.setAttribute('transform',`translate(${run?Math.sin(t*97)*4:0},${run?Math.cos(t*123)*3:0})`);
+      const run=t>=.85&&t<1.6; gb.setAttribute('transform',`translate(${run?6*Math.sin(t*2*Math.PI*7.5):0},${run?3*Math.sin(t*2*Math.PI*10+1):0})`);
       lv.setAttribute('transform',`rotate(${t<1.6?-40:L(-40,40,eo(P(t,1.6,1.7)))} 945 1510)`);
     }
     $('night').querySelectorAll('.puff').forEach((p,i)=>{
@@ -289,8 +289,8 @@ function draw(t){
   {const u=t-T.s4; vis($('s4'),u>=0&&t<T.s5+.4);
    if(u>=0&&t<T.s5+.4){
     wipeUp($('s4'),u);
-    mv($('s4h1'),u,80,330,{a:.06,d:.4,dy:120});
-    mv($('s4h2'),u,80,442,{a:.12,d:.4,dy:120});
+    mv($('s4h1'),u,80,330,{a:.15,d:.4,dy:120,b:T.s5-T.s4-.15,d2:.15,ey:-40});
+    mv($('s4h2'),u,80,442,{a:.21,d:.4,dy:120,b:T.s5-T.s4-.13,d2:.13,ey:-40});
     tf($('s4card'),160,L(900,620,eo(P(u,0,.5))),1,0,1);
     // origin 0 0 + scale 2.2 puts the sticker (22%,16% of the photo) at about (48%,35%) of the card
     $('s4img').style.transform=`scale(${1+1.2*eio(P(u,.7,2.25))})`;
@@ -306,13 +306,13 @@ function draw(t){
     BL.forEach((b,i)=>{
       const ny=b.y+150, at=railU(ny+17), li=eo(P(u,at,at+.3));
       tf($('node'+i),RX-10,ny,L(.3,1,back(P(u,at-.05,at+.25))),0,P(u,at-.05,at+.05));
-      const left=190+b.left*BSC, armLen=left-(RX+24);
+      const left=175+b.left*BSC, armLen=left-(RX+24);
       tf($('arm'+i),RX+24,ny+12,1,0,li); $('arm'+i).style.width=(armLen*li)+'px';
       const bs=$('b'+i), rin=eo(P(u,i*.06,.3+i*.06));
-      tf(bs,190,b.y-40+60*(1-rin),L(.95,1,li),0,L(.55,1,li)*rin); bs.style.filter=`grayscale(${1-li})`;
+      tf(bs,175,b.y-109+60*(1-rin),L(.95,1,li),0,L(.55,1,li)*rin); bs.style.filter=`grayscale(${1-li})`;
       const shimmer=.85+.15*Math.sin(u*5+i);
       bs.querySelectorAll('.wl').forEach(w=>w.style.opacity=li*shimmer); bs.querySelectorAll('.pv').forEach(p=>p.style.opacity=L(.35,1,li));
-      mv($('lab'+i),u,650,ny-8,{a:at+.06,d:.32,dx:110,dy:0});
+      mv($('lab'+i),u,700,ny-6,{a:at+.06,d:.32,dx:110,dy:0,b:T.s6-T.s5-.15,d2:.15,ey:-40});
     });
   }}
 
@@ -322,13 +322,13 @@ function draw(t){
     wipeUp($('s6'),u);
     $('s6in').style.transform=`scale(${1+.035*P(u,0,2.2)})`;
     tf($('s6beam'),L(-420,-80,P(u,0,2.3)),-400,1,28,1);
-    mv($('s6a'),u,80,640,{a:.04,d:.36,dy:160});
-    mv($('s6b'),u,80,812,{a:.12,d:.36,dy:160});
-    const uw=eo(P(u,.4,.9)); tf($('s6u'),80,1010,1,0,P(u,.4,.45)); $('s6u').style.width=(860*uw)+'px';
+    mv($('s6a'),u,80,640,{a:.15,d:.36,dy:160,b:T.s7-T.s6-.15,d2:.15,ey:-40});
+    mv($('s6b'),u,80,812,{a:.21,d:.36,dy:160,b:T.s7-T.s6-.13,d2:.13,ey:-40});
+    const uw=eo(P(u,.6,1.1)); tf($('s6u'),80,1010,1,0,P(u,.6,.65)*(1-P(u,T.s7-T.s6-.25,T.s7-T.s6-.05))); $('s6u').style.width=(860*uw)+'px';
   }}
 
   // ===== finance small print: on from the offer to the projects; hidden while S7's photo moves in =====
-  {const on=P(t,T.s6+.55,T.s6+.8)*(1-P(t,T.s7-.05,T.s7+.1))+P(t,T.s7+.7,T.s7+.9)*(1-P(t,T.s9-.15,T.s9));
+  {const on=P(t,T.s6+.7,T.s6+.9)*(1-P(t,T.s7-.25,T.s7-.05))+P(t,T.s7+.75,T.s7+.95)*(1-P(t,T.s9-.3,T.s9-.1));
    vis($('fine'),on>0); const light=t>=T.s7;
    $('fine').style.color=light?'#EEF3F9':'#46586F'; $('fine').style.textShadow=light?'0 2px 10px rgba(0,0,0,.65)':'none';
    tf($('fine'),80,1440,1,0,on);}
@@ -339,12 +339,12 @@ function draw(t){
     wipeUp($('s7'),u);
     tf($('s7ph'),0,L(900,660,eo(P(u,0,.55))),1,0,1);
     $('s7img').style.transform=`scale(${1.06+.08*P(u,0,2.6)})`;
-    mv($('s7a'),u,80,350,{a:.05,d:.36,dy:110});
-    mv($('s7b'),u,80,450,{a:.11,d:.36,dy:110});
-    mv($('s7c'),u,80,550,{a:.17,d:.36,dy:110});
-    tf($('s7badge'),840,600,back(P(u,.6,.95)),0,P(u,.6,.7));
+    mv($('s7a'),u,80,350,{b:T.s8-T.s7-.15,d2:.15,ey:-40,a:.15,d:.36,dy:110});
+    mv($('s7b'),u,80,450,{b:T.s8-T.s7-.13,d2:.13,ey:-40,a:.21,d:.36,dy:110});
+    mv($('s7c'),u,80,550,{b:T.s8-T.s7-.11,d2:.11,ey:-40,a:.27,d:.36,dy:110});
+    tf($('s7badge'),840,600,back(P(u,.6,.95)),0,P(u,.6,.7)*(1-P(u,T.s8-T.s7-.25,T.s8-T.s7-.05)));
     $('s7check').setAttribute('stroke-dashoffset',110*(1-eo(P(u,.85,1.2))));
-    mv($('s7chip'),u,80,1330,{a:.95,d:.35,dy:40});
+    mv($('s7chip'),u,80,1330,{a:.95,d:.35,dy:40,b:T.s8-T.s7-.15,d2:.15,ey:-20});
   }}
 
   // ===== S8 installers full screen: pay in instalments -> OWNED =====
@@ -352,30 +352,30 @@ function draw(t){
    if(u>=0&&t<T.s9+.45){
     wipeLeft($('s8'),u);
     $('s8img').style.transform=`scale(${1.75-.15*P(u,0,4.6)})`;
-    mv($('s8a'),u,80,360,{a:.1,d:.38,dx:700,dy:0});
-    mv($('s8b'),u,80,468,{a:.18,d:.38,dx:700,dy:0});
+    mv($('s8a'),u,80,360,{a:.1,d:.38,dx:700,dy:0,b:T.s9-T.s8-.15,d2:.15,ey:-40});
+    mv($('s8b'),u,80,468,{a:.18,d:.38,dx:700,dy:0,b:T.s9-T.s8-.13,d2:.13,ey:-40});
     tf($('s8track'),80,1160,1,0,eo(P(u,.45,.75)));
     tf($('s8ticks'),80,1236,1,0,eo(P(u,.55,.85)));
     let f=0; for(let k=0;k<9;k++) f+=eo(P(u,.7+k*.19,.7+k*.19+.16))/9;
     $('s8fill').style.width=(100*f)+'%';
     // OWNED. lands above the bar's right end, inside x 80-940
     const sp=P(u,2.5,2.68), wob=sp>=1?.018*Math.sin((u-2.68)*40)*Math.exp(-(u-2.68)*9):0;
-    tf($('s8stamp'),448,1000,L(1.6,1,eo(sp))+wob,-6,P(u,2.5,2.56));
-    mv($('s8c'),u,80,1300,{a:2.85,d:.38,dy:50});
+    tf($('s8stamp'),405,1000,L(1.6,1,eo(sp))+wob,-6,P(u,2.5,2.56));
+    mv($('s8c'),u,80,1300,{a:2.85,d:.38,dy:50,b:T.s9-T.s8-.15,d2:.15,ey:-40});
   }}
 
   // ===== S9 four real projects, snapping kW counter =====
   {const u=t-T.s9; vis($('s9'),u>=0&&t<T.s10+.35);
    if(u>=0&&t<T.s10+.35){
-    wipeUp($('s9'),u,.4);
-    mv($('s9a'),u,80,355,{a:.12,d:.38,dy:90,b:6.1,d2:.3,ey:-120});
-    mv($('s9b'),u,80,442,{a:.18,d:.38,dy:90,b:6.12,d2:.3,ey:-120});
+    wipeLeft($('s9'),u,.4);
+    mv($('s9a'),u,80,355,{a:.4,d:.38,dy:90,b:6.0,d2:.25,ey:0});
+    mv($('s9b'),u,80,442,{a:.46,d:.38,dy:90,b:6.02,d2:.25,ey:0});
     const LAND=[.55,1.85,3.15,4.45], ROT=[-1.5,1.5,-1.2,1.2], KW=[100,200,300,450];
     const col=eio(P(u,6.15,6.65)), cx=190, cy=410;
     LAND.forEach((ld,i)=>{
       const ii=eo(P(u,ld-.45,ld)), later=LAND.filter(x=>u>=x&&x>ld).length;
       const bx=90+1150*(1-ii), by=575-20*later, sc=Math.pow(.96,later);
-      tf($('pc'+i),L(bx,cx-450,col),L(by,cy-450,col),L(sc,.04,col),L(ROT[i]+10*(1-ii),0,col),P(u,ld-.45,ld-.3)*(1-P(u,6.45,6.65)));
+      tf($('pc'+i),L(bx,cx-450,col),L(by,cy-450,col),L(sc,.04,col),L(ROT[i]+10*(1-ii),0,col),(u>=ld-.45?1:0)*(1-P(u,6.45,6.65)));
       $('pd'+i).style.opacity=later>0?.35*cl((u-LAND[i+1])/.3):0; // earlier cards dim as the next lands
       $('pi'+i).style.transform=`scale(${1.1-.08*P(u,ld-.45,ld+2.6)})`;
     });
@@ -384,7 +384,7 @@ function draw(t){
     $('kwnum').textContent=(n<0?100:KW[n])+' kW'; $('kwsub').textContent=u>=5.0?'across 4 sites':'installed';
     const lastLand=n<0?LAND[0]:LAND[n], pop=1+.12*Math.exp(-(u-lastLand)*10)*(u>=lastLand?1:0);
     tf($('kwpill'),940-$('kwpill').offsetWidth,528,pop*back(P(u,.55,.8)),0,P(u,.55,.62)*(1-P(u,6.05,6.25)));
-    tf($('s9glow'),cx-300,cy-300,L(.1,1.3,eo(P(u,6.3,6.75))),0,P(u,6.3,6.45));
+    tf($('s9glow'),cx-300,cy-300,L(.1,1.3,eo(P(u,6.3,6.75))),0,P(u,6.3,6.45)*(1-P(u,6.6,6.85)));
   }}
 
   // ===== S10 end card =====
@@ -392,15 +392,15 @@ function draw(t){
    if(u>=0){
     tf($('e_glow'),190-350,410-350,L(1.3,.5,eo(P(u,0,.8)))*(1+.05*Math.sin(u*2.4)),0,L(1,.4,P(u,.4,1.2)));
     $('e_block').style.transform=`scale(${1+.03*P(u,.8,6.6)})`;
-    const li=eo(P(u,.05,.5)); tf($('e_logo'),80,300,L(.6,1,li),0,li);
+    const li=eo(P(u,0,.4)); tf($('e_logo'),80,300,L(.6,1,li),0,li);
     mv($('e1'),u,80,590,{a:.3,d:.38,dy:70});
     mv($('e2'),u,80,680,{a:.38,d:.38,dy:70});
     const pi=eo(P(u,.6,.95)); tf($('e_pill'),70,830,L(.94,1,pi),0,pi);
     mv($('e3'),u,110,862,{a:.75,d:.35,dy:30});
     const ni=eo(P(u,.9,1.25)); tf($('e4'),104,952,L(.92,1,ni),0,ni);
-    mv($('e5'),u,80,1150,{a:1.15,d:.35,dy:40});
-    mv($('e6'),u,80,1222,{a:1.28,d:.35,dy:40});
-    mv($('e7'),u,80,1310,{a:1.4,d:.35,dy:40});
+    mv($('e5'),u,80,1185,{a:1.15,d:.35,dy:40});
+    mv($('e6'),u,80,1270,{a:1.28,d:.35,dy:40});
+    mv($('e7'),u,80,1395,{a:1.4,d:.35,dy:40});
   }}
 }
 
