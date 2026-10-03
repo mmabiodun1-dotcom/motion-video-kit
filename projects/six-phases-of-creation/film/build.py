@@ -25,7 +25,7 @@ SHOTS = [
     dict(id="cmb", kind="img", src="PIA18916", start=7.4, end=13.5, phase=1, kb=[(1.18, 0, 2), (1.32, -3, 0)],
          line="380,000 years later, the first light broke free. We still see it today.",
          tag="DATA", subject="Planck map of the oldest light", credit="ESA/Planck Collaboration"),
-    dict(id="focus", kind="img", src="PIA16874", start=13.0, end=18.0, phase=1, contain=True, kb=[(0.68, 0, -4), (0.72, 0, -4)],
+    dict(id="focus", kind="img", src="PIA16874", start=13.0, end=18.0, phase=1, contain=True, kb=[(0.64, 0, -4), (0.76, 0, -5)],
          line="Each telescope saw that light more sharply.",
          tag="DATA", subject="COBE, WMAP, Planck (spacecraft illustrated)", credit="NASA/JPL-Caltech/ESA"),
     dict(id="deep", kind="img", src="webb-deep-field-full", start=17.4, end=24.0, phase=2, title=True, kb=[(1.05, 0, 0), (1.4, 2, -3)],
