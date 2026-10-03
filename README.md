@@ -49,6 +49,9 @@ business-motion-film/
     case-study-duo.md           a Three.js product film, round by round
   scripts/                      frozen-time, loudness, contact-sheet, soften-sfx, sfx-candidates, solve-sfx-gains, offline-mix
   templates/                    component-lab.html, projected-overlays.js
+projects/
+  six-phases-of-creation/       research pack for a Big Bang-to-early-Earth science film:
+                                science dossier, NASA/ESA image sources, code to borrow, asset fetcher
 ```
 
 ## Notes
