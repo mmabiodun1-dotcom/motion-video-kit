@@ -99,13 +99,21 @@ def cmd_nasa(args):
                     "description": " ".join(meta.get("description", "").split())[:400],
                 }
                 if not args.dry_run:
-                    href = best_rendition(nasa_id)
-                    if href:
-                        ext = os.path.splitext(urllib.parse.urlparse(href).path)[1].lower() or ".jpg"
-                        path = os.path.join(out_dir, f"{nasa_id}{ext}")
-                        if not os.path.exists(path):
-                            download(quote_url(href), path)
-                        row["file"] = os.path.relpath(path, HERE)
+                    path = None
+                    try:
+                        href = best_rendition(nasa_id)
+                        if href:
+                            ext = os.path.splitext(urllib.parse.urlparse(href).path)[1].lower() or ".jpg"
+                            path = os.path.join(out_dir, f"{nasa_id}{ext}")
+                            if not os.path.exists(path):
+                                download(quote_url(href), path)
+                            row["file"] = os.path.relpath(path, HERE)
+                    except OSError as e:
+                        # Skip one bad item rather than abort the whole run.
+                        if path and os.path.exists(path):
+                            os.remove(path)
+                        print(f"  {nasa_id}  SKIPPED: {e}")
+                        continue
                 print(f"  {nasa_id}  {row['title'][:70]}")
                 rows.append(row)
     if args.dry_run or not rows:
