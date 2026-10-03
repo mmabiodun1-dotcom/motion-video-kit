@@ -2,7 +2,7 @@
 
 Each entry gives the **type** (OBS = real observation or photo, DATA = a map built from measurements, SIM = simulation, ILL = artist's illustration), the **credit line to show on screen**, and the **source page**. Download the full-resolution file from the source page, or run `fetch_nasa_images.py` for the NASA Image Library.
 
-> Status: the source pages below come from web search results. The build container this was researched in **could not open NASA, ESA or ESO sites** (network policy), so the files have not been downloaded or visually checked yet. Confirm each credit line on its page when you download it.
+> Status: the source pages below come from web search results. The NASA Image Library search (68 images) has since been downloaded and checked by eye: see [`review/REVIEW.md`](review/REVIEW.md) for the picks, and [`review/credits.csv`](review/credits.csv) for every image's type, verdict and credit. The ESA, ESO and other non-NASA sources in this file are not downloaded yet. Confirm each credit line on its page when you download it.
 
 ## Licences in one table
 
