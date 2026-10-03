@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920, height=1080">
+<title>Six Phases of Creation</title>
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/d3-array.min.js"></script>
+<script src="vendor/d3-geo.min.js"></script>
+<script src="data/coast.js"></script>
+<style>
+@font-face { font-family: "Archivo"; font-weight: 600; src: url("fonts/archivo-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Archivo"; font-weight: 800; src: url("fonts/archivo-latin-800-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans"; font-weight: 400; src: url("fonts/ibm-plex-sans-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans"; font-weight: 500; src: url("fonts/ibm-plex-sans-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 400; src: url("fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 500; src: url("fonts/ibm-plex-mono-latin-500-normal.woff2") format("woff2"); }
+:root {
+  --bg: #05070b; --fg: #eef0f5; --muted: #a3abbd; --hot: #f2a65a; --cold: #6fb6ff;
+  --obs: #8fd896; --data: #7cc0ff; --ill: #f5b06a;
+  --display: "Archivo", Arial, sans-serif; --body: "IBM Plex Sans", Arial, sans-serif; --mono: "IBM Plex Mono", monospace;
+}
+html, body { margin: 0; background: var(--bg); color: var(--fg); }
+#root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--bg); font-family: var(--body); }
+.shot { position: absolute; inset: 0; overflow: hidden; background: var(--bg); }
+.media { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.media img.contain { object-fit: contain; }
+.scrim { position: absolute; inset: 0; background:
+  linear-gradient(to top, rgba(5,7,11,.92) 0%, rgba(5,7,11,.55) 26%, rgba(5,7,11,0) 52%),
+  linear-gradient(to bottom, rgba(5,7,11,.55) 0%, rgba(5,7,11,0) 18%); }
+.caption { position: absolute; left: 96px; bottom: 104px; width: 1180px; display: flex; flex-direction: column; gap: 22px; }
+.line { margin: 0; font: 600 54px/1.14 var(--display); letter-spacing: -.005em; text-wrap: balance; text-shadow: 0 2px 24px rgba(0,0,0,.55); }
+.credit { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; font: 400 19px/1.35 var(--mono); color: var(--muted); }
+.subject { color: var(--fg); }
+.chip { font: 500 15px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; padding: 6px 9px; border: 1.5px solid currentColor; border-radius: 4px; }
+.t-obs { color: var(--obs); } .t-data { color: var(--data); } .t-ill { color: var(--ill); }
+.ptitle { position: absolute; left: 96px; top: 330px; width: 1500px; display: flex; flex-direction: column; gap: 14px; }
+.ptitle-no { margin: 0; font: 500 28px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--hot); }
+.ptitle-sm .ptitle-name { font-size: 86px; }
+.ptitle-name { margin: 0; font: 800 124px/1.0 var(--display); letter-spacing: -.015em; text-shadow: 0 4px 40px rgba(0,0,0,.6); }
+
+/* HUD */
+#hud { position: absolute; inset: 0; z-index: 50; pointer-events: none; }
+#hud-in { position: absolute; inset: 0; }
+#eyebrow { text-shadow: 0 1px 12px rgba(0,0,0,.7); position: absolute; left: 96px; top: 64px; margin: 0; font: 500 22px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--fg); }
+#clock { text-shadow: 0 1px 14px rgba(0,0,0,.75); position: absolute; right: 96px; top: 52px; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+#clock-num { font: 800 46px/1 var(--display); font-variant-numeric: tabular-nums; color: var(--fg); }
+#clock-label { font: 400 18px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+#scale { position: absolute; left: 96px; right: 96px; bottom: 44px; height: 30px; }
+#scale-track { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(238,240,245,.18); }
+#scale-fill { position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; background: linear-gradient(90deg, var(--cold), var(--hot)); transform-origin: 0 50%; }
+#scale-dot { position: absolute; bottom: -5px; width: 13px; height: 13px; margin-left: -6px; border-radius: 50%; background: var(--hot); box-shadow: 0 0 14px var(--hot); }
+#scale-l, #scale-r { position: absolute; bottom: 12px; font: 400 15px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+#scale-l { left: 0; } #scale-r { right: 0; }
+
+/* End card */
+.endcard { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; gap: 26px; padding: 0 160px; background: radial-gradient(ellipse at 70% 40%, #101a2c 0%, var(--bg) 60%); }
+.end-kicker { margin: 0; font: 500 26px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--hot); }
+.end-title { margin: 0; font: 800 136px/1 var(--display); letter-spacing: -.02em; }
+.end-credits { margin: 0; max-width: 1400px; font: 400 24px/1.5 var(--body); color: var(--muted); }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-width="1920" data-height="1080" data-duration="100.0">
+<div class="clip shot" id="bang" data-start="0.0" data-duration="8.0" data-track-index="1" style="z-index:1"><canvas id="bang-canvas" class="media" width="1920" height="1080"></canvas><div class="scrim"></div><div class="ptitle" id="bang-ptitle"><p class="ptitle-no">Phase 1</p><h2 class="ptitle-name">The Big Bang</h2></div><div class="caption" id="bang-cap"><p class="line" id="bang-line">In the first three minutes, space filled with hydrogen and helium.</p>
+  <p class="credit"><span class="chip t-ill">Illustration</span><span class="subject">Code-built animation</span><span class="by">Six Phases of Creation</span></p></div></div>
+<div class="clip shot" id="cmb" data-start="7.4" data-duration="6.1" data-track-index="2" style="z-index:2"><div class="media" id="cmb-media"><img id="cmb-img" src="assets/PIA18916.jpg" alt=""></div><div class="scrim"></div><div class="caption" id="cmb-cap"><p class="line" id="cmb-line">380,000 years later, the first light broke free. We still see it today.</p>
+  <p class="credit"><span class="chip t-data">Data</span><span class="subject">Planck map of the oldest light</span><span class="by">ESA/Planck Collaboration</span></p></div></div>
+<div class="clip shot" id="focus" data-start="13.0" data-duration="5.0" data-track-index="3" style="z-index:3"><div class="media" id="focus-media"><img id="focus-img" class="contain" src="assets/PIA16874.jpg" alt=""></div><div class="scrim"></div><div class="caption" id="focus-cap"><p class="line" id="focus-line">Each telescope saw that light more sharply.</p>
+  <p class="credit"><span class="chip t-data">Data</span><span class="subject">COBE, WMAP, Planck (spacecraft illustrated)</span><span class="by">NASA/JPL-Caltech/ESA</span></p></div></div>
+<div class="clip shot" id="deep" data-start="17.4" data-duration="6.6" data-track-index="4" style="z-index:4"><div class="media" id="deep-media"><img id="deep-img" src="assets/webb-deep-field-full.jpg" alt=""></div><div class="scrim"></div><div class="ptitle" id="deep-ptitle"><p class="ptitle-no">Phase 2</p><h2 class="ptitle-name">The first stars</h2></div><div class="caption" id="deep-cap"><p class="line" id="deep-line">After 100 million years of darkness, the first stars lit up.</p>
+  <p class="credit"><span class="chip t-obs">Photo</span><span class="subject">Webb&#x27;s First Deep Field</span><span class="by">NASA, ESA, CSA, STScI</span></p></div></div>
+<div class="clip shot" id="casa" data-start="23.4" data-duration="6.1" data-track-index="5" style="z-index:5"><div class="media" id="casa-media"><img id="casa-img" src="assets/webb-cas-a.jpg" alt=""></div><div class="scrim"></div><div class="caption" id="casa-cap"><p class="line" id="casa-line">Giant stars lived a few million years, then exploded, forging carbon, oxygen and iron.</p>
+  <p class="credit"><span class="chip t-obs">Photo</span><span class="subject">Cassiopeia A, Webb 2023</span><span class="by">NASA, ESA, CSA, D. Milisavljevic (Purdue Univ.), T. Temim (Princeton Univ.), I. De Looze (UGent), J. DePasquale (STScI)</span></p></div></div>
+<div class="clip shot" id="crab" data-start="29.0" data-duration="5.0" data-track-index="6" style="z-index:6"><div class="media" id="crab-media"><img id="crab-img" src="assets/webb-crab.jpg" alt=""></div><div class="scrim"></div><div class="caption" id="crab-cap"><p class="line" id="crab-line">Every heavy atom on Earth was made in stars like these.</p>
+  <p class="credit"><span class="chip t-obs">Photo</span><span class="subject">Crab Nebula, Webb 2023</span><span class="by">NASA, ESA, CSA, STScI, T. Temim (Princeton Univ.)</span></p></div></div>
+<div class="clip shot" id="milky" data-start="33.4" data-duration="7.6" data-track-index="7" style="z-index:7"><div class="media" id="milky-media"><img id="milky-img" src="assets/milky-way-ill.jpg" alt=""></div><div class="scrim"></div><div class="ptitle" id="milky-ptitle"><p class="ptitle-no">Phase 3</p><h2 class="ptitle-name">Galaxies spin into disks</h2></div><div class="caption" id="milky-cap"><p class="line" id="milky-line">Spinning gas flattened into disks. Ours began within a billion years of the Big Bang.</p>
+  <p class="credit"><span class="chip t-ill">Illustration</span><span class="subject">Our galaxy, the Milky Way</span><span class="by">NASA/JPL-Caltech</span></p></div></div>
+<div class="clip shot" id="phantom" data-start="40.4" data-duration="5.6" data-track-index="8" style="z-index:8"><div class="media" id="phantom-media"><img id="phantom-img" src="assets/phantom-galaxy.jpg" alt=""></div><div class="scrim"></div><div class="caption" id="phantom-cap"><p class="line" id="phantom-line">Our galaxy&#x27;s disk now holds 100 to 400 billion stars.</p>
+  <p class="credit"><span class="chip t-obs">Photo</span><span class="subject">Phantom Galaxy M74, Webb</span><span class="by">ESA/Webb, NASA &amp; CSA, J. Lee and the PHANGS-JWST Team</span></p></div></div>
+<div class="clip shot" id="disk" data-start="45.4" data-duration="6.6" data-track-index="9" style="z-index:9"><div class="media" id="disk-media"><img id="disk-img" src="assets/PIA20645.jpg" alt=""></div><div class="scrim"></div><div class="ptitle" id="disk-ptitle"><p class="ptitle-no">Phase 4</p><h2 class="ptitle-name">The Sun and its planets</h2></div><div class="caption" id="disk-cap"><p class="line" id="disk-line">4.567 billion years ago, a cloud collapsed. The Sun lit up inside a disk of dust.</p>
+  <p class="credit"><span class="chip t-ill">Illustration</span><span class="subject">A young star in its disk</span><span class="by">NASA/JPL-Caltech</span></p></div></div>
+<div class="clip shot" id="moon" data-start="51.4" data-duration="5.6" data-track-index="10" style="z-index:10"><div class="media" id="moon-media"><img id="moon-img" src="assets/art002e012273.jpg" alt=""></div><div class="scrim"></div><div class="caption" id="moon-cap"><p class="line" id="moon-line">A Mars-sized world struck the young Earth. The debris became our Moon.</p>
+  <p class="credit"><span class="chip t-obs">Photo</span><span class="subject">The Moon, photographed by Artemis II (2026)</span><span class="by">NASA</span></p></div></div>
+<div class="clip shot" id="hadean" data-start="56.4" data-duration="6.6" data-track-index="11" style="z-index:11"><div class="media" id="hadean-media"><img id="hadean-img" src="assets/GSFC_20171208_Archive_e000888.jpg" alt=""></div><div class="scrim"></div><div class="ptitle" id="hadean-ptitle"><p class="ptitle-no">Phase 5</p><h2 class="ptitle-name">A sky in layers</h2></div><div class="caption" id="hadean-cap"><p class="line" id="hadean-line">Young Earth: lava, steam and impacts. The air had no oxygen.</p>
+  <p class="credit"><span class="chip t-ill">Illustration</span><span class="subject">The young Earth</span><span class="by">NASA Goddard Conceptual Image Lab</span></p></div></div>
+<div class="clip shot" id="strom" data-start="62.4" data-duration="5.6" data-track-index="12" style="z-index:12"><div class="media" id="strom-media"><img id="strom-img" src="assets/PIA24240.jpg" alt=""></div><div class="scrim"></div><div class="caption" id="strom-cap"><p class="line" id="strom-line">Microbes learned to use sunlight. About 2.4 billion years ago they filled the air with oxygen.</p>
+  <p class="credit"><span class="chip t-obs">Photo</span><span class="subject">2.7-billion-year-old stromatolite, Western Australia</span><span class="by">NASA/JPL-Caltech</span></p></div></div>
+<div class="clip shot" id="limb" data-start="67.4" data-duration="6.6" data-track-index="13" style="z-index:13"><div class="media" id="limb-media"><img id="limb-img" src="assets/STS052-23-022.jpg" alt=""></div><div class="scrim"></div><div class="caption" id="limb-cap"><p class="line" id="limb-line">Oxygen built the ozone layer, and the sky gained its layers.</p>
+  <p class="credit"><span class="chip t-obs">Photo</span><span class="subject">Earth&#x27;s limb from the Space Shuttle, 1992</span><span class="by">NASA</span></p></div></div>
+<div class="clip shot" id="globe" data-start="73.4" data-duration="9.6" data-track-index="14" style="z-index:14"><canvas id="globe-canvas" class="media" width="1920" height="1080"></canvas><div class="scrim"></div><div class="ptitle ptitle-sm" id="globe-ptitle"><p class="ptitle-no">Phase 6</p><h2 class="ptitle-name">A restless planet</h2></div><div class="caption" id="globe-cap"><p class="line" id="globe-line">Continents gathered and broke apart.</p>
+  <p class="credit"><span class="chip t-data">Data</span><span class="subject">Plate model CAO2024, 1,800 to 100 million years ago</span><span class="by">Cao et al. 2024 · EarthByte / GPlates</span></p></div></div>
+<div class="clip shot" id="chix" data-start="82.4" data-duration="5.6" data-track-index="15" style="z-index:15"><div class="media" id="chix-media"><img id="chix-img" src="assets/PIA03379.jpg" alt=""></div><div class="scrim"></div><div class="caption" id="chix-cap"><p class="line" id="chix-line">66 million years ago, an asteroid struck here. Its buried crater still shows in the land.</p>
+  <p class="credit"><span class="chip t-data">Data</span><span class="subject">Chicxulub crater, Yucatán (radar topography)</span><span class="by">NASA/JPL</span></p></div></div>
+<div class="clip shot" id="today" data-start="87.4" data-duration="5.6" data-track-index="16" style="z-index:16"><canvas id="today-canvas" class="media" width="1920" height="1080"></canvas><div class="scrim"></div><div class="caption" id="today-cap"><p class="line" id="today-line">300,000 years ago, the first people. This story ends where ours begins.</p>
+  <p class="credit"><span class="chip t-data">Data</span><span class="subject">Plate model CAO2024, today&#x27;s coastlines</span><span class="by">Cao et al. 2024 · EarthByte / GPlates</span></p></div></div>
+<div class="clip shot" id="end" data-start="92.4" data-duration="7.6" data-track-index="17" style="z-index:17"><div class="endcard" id="end-card">
+  <p class="end-kicker">13.8 billion years in six phases</p>
+  <h1 class="end-title">Six Phases of Creation</h1>
+  <p class="end-credits">Images: NASA · ESA · CSA · STScI · ESA/Webb · ESA/Planck Collaboration · NASA/JPL-Caltech · NASA Goddard Conceptual Image Lab · PHANGS-JWST Team. Plate model: Cao et al. 2024, EarthByte / GPlates.</p>
+  <p class="end-credits">Illustrations and code-built sequences are labelled on screen. Not produced or endorsed by NASA or ESA.</p>
+</div></div>
+<div class="clip" id="hud" data-start="0" data-duration="93" data-track-index="40">
+  <div id="hud-in">
+    <p id="eyebrow">Phase 1 · The Big Bang</p>
+    <div id="clock"><span id="clock-num">13.8 billion</span><span id="clock-label">years ago</span></div>
+    <div id="scale"><span id="scale-l">Big Bang</span><span id="scale-r">Today · to scale</span><div id="scale-track"></div><div id="scale-fill"></div><div id="scale-dot"></div></div>
+  </div>
+</div>
+</div>
+<script>
+(function () {
+  const CFG = {"total": 100.0, "shots": [{"id": "bang", "kind": "bang", "start": 0.0, "end": 8.0, "phase": 1, "title": true, "line": "In the first three minutes, space filled with hydrogen and helium.", "line_at": 3.0, "tag": "ILL", "subject": "Code-built animation", "credit": "Six Phases of Creation"}, {"id": "cmb", "kind": "img", "src": "PIA18916", "start": 7.4, "end": 13.5, "phase": 1, "kb": [[1.18, 0, 2], [1.32, -3, 0]], "line": "380,000 years later, the first light broke free. We still see it today.", "tag": "DATA", "subject": "Planck map of the oldest light", "credit": "ESA/Planck Collaboration"}, {"id": "focus", "kind": "img", "src": "PIA16874", "start": 13.0, "end": 18.0, "phase": 1, "contain": true, "kb": [[0.68, 0, -4], [0.72, 0, -4]], "line": "Each telescope saw that light more sharply.", "tag": "DATA", "subject": "COBE, WMAP, Planck (spacecraft illustrated)", "credit": "NASA/JPL-Caltech/ESA"}, {"id": "deep", "kind": "img", "src": "webb-deep-field-full", "start": 17.4, "end": 24.0, "phase": 2, "title": true, "kb": [[1.05, 0, 0], [1.4, 2, -3]], "line": "After 100 million years of darkness, the first stars lit up.", "line_at": 2.6, "tag": "OBS", "subject": "Webb's First Deep Field", "credit": "NASA, ESA, CSA, STScI"}, {"id": "casa", "kind": "img", "src": "webb-cas-a", "start": 23.4, "end": 29.5, "phase": 2, "kb": [[1.42, 0, 0], [1.58, -2, 1]], "line": "Giant stars lived a few million years, then exploded, forging carbon, oxygen and iron.", "tag": "OBS", "subject": "Cassiopeia A, Webb 2023", "credit": "NASA, ESA, CSA, D. Milisavljevic (Purdue Univ.), T. Temim (Princeton Univ.), I. De Looze (UGent), J. DePasquale (STScI)"}, {"id": "crab", "kind": "img", "src": "webb-crab", "start": 29.0, "end": 34.0, "phase": 2, "kb": [[1.25, 0, 0], [1.12, 2, -2]], "line": "Every heavy atom on Earth was made in stars like these.", "tag": "OBS", "subject": "Crab Nebula, Webb 2023", "credit": "NASA, ESA, CSA, STScI, T. Temim (Princeton Univ.)"}, {"id": "milky", "kind": "img", "src": "milky-way-ill", "start": 33.4, "end": 41.0, "phase": 3, "title": true, "rotate": true, "kb": [[1.25, 0, 0], [1.45, 0, 0]], "line": "Spinning gas flattened into disks. Ours began within a billion years of the Big Bang.", "line_at": 2.6, "tag": "ILL", "subject": "Our galaxy, the Milky Way", "credit": "NASA/JPL-Caltech"}, {"id": "phantom", "kind": "img", "src": "phantom-galaxy", "start": 40.4, "end": 46.0, "phase": 3, "kb": [[1.04, 0, 0], [1.18, -2, 1]], "line": "Our galaxy's disk now holds 100 to 400 billion stars.", "tag": "OBS", "subject": "Phantom Galaxy M74, Webb", "credit": "ESA/Webb, NASA & CSA, J. Lee and the PHANGS-JWST Team"}, {"id": "disk", "kind": "img", "src": "PIA20645", "start": 45.4, "end": 52.0, "phase": 4, "title": true, "kb": [[1.0, 0, 0], [1.16, 0, 2]], "line": "4.567 billion years ago, a cloud collapsed. The Sun lit up inside a disk of dust.", "line_at": 2.6, "tag": "ILL", "subject": "A young star in its disk", "credit": "NASA/JPL-Caltech"}, {"id": "moon", "kind": "img", "src": "art002e012273", "start": 51.4, "end": 57.0, "phase": 4, "kb": [[1.08, 2, 0], [1.2, -2, -2]], "line": "A Mars-sized world struck the young Earth. The debris became our Moon.", "tag": "OBS", "subject": "The Moon, photographed by Artemis II (2026)", "credit": "NASA"}, {"id": "hadean", "kind": "img", "src": "GSFC_20171208_Archive_e000888", "start": 56.4, "end": 63.0, "phase": 5, "title": true, "kb": [[1.15, 7, 0], [1.15, -7, 0]], "line": "Young Earth: lava, steam and impacts. The air had no oxygen.", "line_at": 2.6, "tag": "ILL", "subject": "The young Earth", "credit": "NASA Goddard Conceptual Image Lab"}, {"id": "strom", "kind": "img", "src": "PIA24240", "start": 62.4, "end": 68.0, "phase": 5, "kb": [[1.12, -3, 0], [1.28, 0, -2]], "line": "Microbes learned to use sunlight. About 2.4 billion years ago they filled the air with oxygen.", "tag": "OBS", "subject": "2.7-billion-year-old stromatolite, Western Australia", "credit": "NASA/JPL-Caltech"}, {"id": "limb", "kind": "img", "src": "STS052-23-022", "start": 67.4, "end": 74.0, "phase": 5, "kb": [[1.06, 0, 2], [1.2, 0, -1]], "line": "Oxygen built the ozone layer, and the sky gained its layers.", "tag": "OBS", "subject": "Earth's limb from the Space Shuttle, 1992", "credit": "NASA"}, {"id": "globe", "kind": "globe", "start": 73.4, "end": 83.0, "phase": 6, "title": true, "small_title": true, "line": "Continents gathered and broke apart.", "line_at": 2.6, "tag": "DATA", "subject": "Plate model CAO2024, 1,800 to 100 million years ago", "credit": "Cao et al. 2024 \u00b7 EarthByte / GPlates"}, {"id": "chix", "kind": "img", "src": "PIA03379", "start": 82.4, "end": 88.0, "phase": 6, "kb": [[1.05, 0, 0], [1.35, 6, 6]], "line": "66 million years ago, an asteroid struck here. Its buried crater still shows in the land.", "tag": "DATA", "subject": "Chicxulub crater, Yucat\u00e1n (radar topography)", "credit": "NASA/JPL"}, {"id": "today", "kind": "globe", "start": 87.4, "end": 93.0, "phase": 6, "age": 0, "line": "300,000 years ago, the first people. This story ends where ours begins.", "tag": "DATA", "subject": "Plate model CAO2024, today's coastlines", "credit": "Cao et al. 2024 \u00b7 EarthByte / GPlates"}, {"id": "end", "kind": "end", "start": 92.4, "end": 100.0, "phase": 6}], "clock": [[0, 13800000000.0], [17.4, 13800000000.0], [19.0, 13700000000.0], [24.0, 13400000000.0], [34.0, 13000000000.0], [41.0, 10000000000.0], [45.6, 7000000000.0], [47.0, 4567000000.0], [52.0, 4567000000.0], [53.0, 4500000000.0], [57.0, 4400000000.0], [63.0, 3500000000.0], [65.0, 2400000000.0], [69.0, 2400000000.0], [74.0, 1800000000.0], [82.4, 100000000.0], [83.4, 66000000.0], [88.0, 66000000.0], [89.0, 300000.0], [100.0, 300000.0]], "phases": {"1": "The Big Bang", "2": "The first stars", "3": "Galaxies spin into disks", "4": "The Sun and its planets", "5": "A sky in layers", "6": "A restless planet"}, "globeShot": [74.0, 82.4]};
+  const TOTAL = CFG.total;
+  const tl = gsap.timeline({ paused: true });
+
+  // ---------- clock: film time -> years ago (log interpolation, eased) ----------
+  const K = CFG.clock;
+  function yearsAt(t) {
+    if (t <= K[0][0]) return K[0][1];
+    for (let i = 1; i < K.length; i++) {
+      const [t1, y1] = K[i], [t0, y0] = K[i - 1];
+      if (t <= t1) {
+        if (y0 === y1) return y0;
+        const u = (t - t0) / (t1 - t0), s = 0.5 - 0.5 * Math.cos(Math.PI * u);
+        return Math.exp(Math.log(y0) + (Math.log(y1) - Math.log(y0)) * s);
+      }
+    }
+    return K[K.length - 1][1];
+  }
+  function fmt(y) {
+    if (y >= 1e9) {
+      if (Math.abs(y - 4.567e9) < 2e6) return "4.567 billion";
+      return (y / 1e9).toPrecision(3).replace(/\.0+$/, "").replace(/(\.\d*?)0+$/, "$1") + " billion";
+    }
+    if (y >= 1e6) return Math.round(y / 1e6).toLocaleString("en-US") + " million";
+    return (Math.round(y / 1e4) * 1e4).toLocaleString("en-US");
+  }
+  const clockNum = document.getElementById("clock-num");
+  const fill = document.getElementById("scale-fill");
+  const dot = document.getElementById("scale-dot");
+  const eyebrow = document.getElementById("eyebrow");
+  const scaleW = 1920 - 192;
+  const mainShots = CFG.shots.filter(s => s.kind !== "end");
+  function hud(t) {
+    const y = yearsAt(t);
+    clockNum.textContent = fmt(y);
+    const f = Math.max(0, Math.min(1, (13.8e9 - y) / 13.8e9));
+    fill.style.transform = "scaleX(" + f.toFixed(5) + ")";
+    dot.style.left = (f * scaleW).toFixed(1) + "px";
+    let ph = 1;
+    for (const s of mainShots) if (t >= s.start) ph = s.phase;
+    const label = "Phase " + ph + " · " + CFG.phases[ph];
+    if (eyebrow.textContent !== label) eyebrow.textContent = label;
+  }
+  const master = { t: 0 };
+  tl.fromTo(master, { t: 0 }, { t: TOTAL, duration: TOTAL, ease: "none", onUpdate: () => hud(master.t) }, 0);
+  tl.fromTo("#hud-in", { opacity: 1 }, { opacity: 0, duration: 0.6, ease: "power1.in" }, 92.3);
+
+  // ---------- seeded PRNG ----------
+  function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+  // ---------- Big Bang particles ----------
+  const bang = document.getElementById("bang-canvas").getContext("2d");
+  const rnd = mulberry32(13800);
+  const P = [];
+  for (let i = 0; i < 4200; i++) {
+    const a = rnd() * Math.PI * 2, s = Math.pow(rnd(), 0.55), warm = rnd() < 0.55;
+    P.push({ a, s, size: 1.2 + rnd() * 2.4, warm, wob: rnd() * Math.PI * 2, b: 0.6 + rnd() * 0.4 });
+  }
+  function mix(c1, c2, u) { return [0, 1, 2].map(i => Math.round(c1[i] + (c2[i] - c1[i]) * u)); }
+  const WHITE = [255, 250, 240], HOT = [242, 166, 90], COLD = [111, 182, 255];
+  function drawBang(t) {
+    const g = bang, cx = 960, cy = 540;
+    g.globalCompositeOperation = "source-over";
+    g.fillStyle = "#05070b"; g.fillRect(0, 0, 1920, 1080);
+    // the first point of light, then a flash that decays
+    const flash = t < 0.35 ? t / 0.35 : Math.exp(-(t - 0.35) / 0.55);
+    const fr = 20 + 900 * (1 - Math.exp(-t / 0.6));
+    const grd = g.createRadialGradient(cx, cy, 0, cx, cy, fr);
+    grd.addColorStop(0, "rgba(255,250,240," + (0.95 * flash).toFixed(3) + ")");
+    grd.addColorStop(0.25, "rgba(242,166,90," + (0.45 * flash).toFixed(3) + ")");
+    grd.addColorStop(1, "rgba(5,7,11,0)");
+    g.fillStyle = grd; g.fillRect(0, 0, 1920, 1080);
+    if (t < 0.25) return;
+    const R = 860 * (1 - Math.exp(-(t - 0.25) / 1.6)) + 18 * t;
+    const cool = Math.min(1, Math.max(0, (t - 0.6) / 3.0));
+    const fade = t > 6.6 ? Math.max(0, 1 - (t - 6.6) / 1.4) : 1;
+    g.globalCompositeOperation = "lighter";
+    for (const p of P) {
+      const r = R * p.s + 10 * Math.sin(p.wob + t * 0.8) * p.s;
+      const x = cx + Math.cos(p.a) * r * 1.25, y = cy + Math.sin(p.a) * r * 0.82;
+      if (x < -10 || x > 1930 || y < -10 || y > 1090) continue;
+      const c = mix(WHITE, p.warm ? HOT : COLD, cool);
+      const al = Math.min(1, (t - 0.25) / 0.4) * p.b * fade * (0.5 + 0.5 * (1 - cool * 0.4));
+      g.fillStyle = "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + al.toFixed(3) + ")";
+      g.fillRect(x, y, p.size, p.size);
+    }
+    g.globalCompositeOperation = "source-over";
+  }
+
+  // ---------- globe ----------
+  const AGES = Object.keys(window.COAST).map(Number).sort((a, b) => a - b);
+  const LAND = {};
+  for (const age of AGES) {
+    const polys = window.COAST[age].r.map(ring => {
+      let poly = { type: "Polygon", coordinates: [ring] };
+      if (d3.geoArea(poly) > 2 * Math.PI) poly = { type: "Polygon", coordinates: [ring.slice().reverse()] };
+      return poly.coordinates;
+    });
+    LAND[age] = { type: "MultiPolygon", coordinates: polys };
+  }
+  const SPHERE = { type: "Sphere" }, GRAT = d3.geoGraticule10();
+  const srnd = mulberry32(4567);
+  const STARS = Array.from({ length: 420 }, () => [srnd() * 1920, srnd() * 1080, 0.15 + srnd() * 0.55, 0.6 + srnd() * 1.2]);
+  const NAMES = [["Nuna", 1800, 1550], ["Rodinia", 1050, 760], ["Gondwana", 560, 360], ["Pangaea", 320, 175]];
+  function smooth(e0, e1, x) { const u = Math.max(0, Math.min(1, (x - e0) / (e1 - e0))); return u * u * (3 - 2 * u); }
+  function drawGlobe(ctx, ma, lambda, phi) {
+    ctx.fillStyle = "#05070b"; ctx.fillRect(0, 0, 1920, 1080);
+    for (const s of STARS) { ctx.fillStyle = "rgba(220,230,255," + s[2] + ")"; ctx.fillRect(s[0], s[1], s[3], s[3]); }
+    const proj = d3.geoOrthographic().scale(430).translate([1240, 520]).rotate([lambda, phi]).clipAngle(90).precision(0.4);
+    const path = d3.geoPath(proj, ctx);
+    // atmosphere glow
+    const glow = ctx.createRadialGradient(1240, 520, 420, 1240, 520, 520);
+    glow.addColorStop(0, "rgba(111,182,255,0.35)"); glow.addColorStop(1, "rgba(111,182,255,0)");
+    ctx.fillStyle = glow; ctx.beginPath(); ctx.arc(1240, 520, 520, 0, Math.PI * 2); ctx.fill();
+    const ocean = ctx.createRadialGradient(1100, 380, 40, 1240, 520, 440);
+    ocean.addColorStop(0, "#1d4f80"); ocean.addColorStop(1, "#071a30");
+    ctx.beginPath(); path(SPHERE); ctx.fillStyle = ocean; ctx.fill();
+    ctx.beginPath(); path(GRAT); ctx.strokeStyle = "rgba(255,255,255,0.07)"; ctx.lineWidth = 1; ctx.stroke();
+    const a0 = Math.min(1800, Math.ceil(ma / 100) * 100), a1 = Math.max(0, a0 - 100);
+    const f = a0 === a1 ? 0 : smooth(0.3, 0.7, (a0 - ma) / 100);
+    for (const [age, al] of [[a0, 1 - f], [a1, f]]) {
+      if (al < 0.01 || !LAND[age]) continue;
+      ctx.globalAlpha = al;
+      ctx.beginPath(); path(LAND[age]);
+      ctx.fillStyle = "#dcc79a"; ctx.fill();
+      ctx.strokeStyle = "rgba(90,70,35,0.7)"; ctx.lineWidth = 0.8; ctx.stroke();
+      ctx.globalAlpha = 1;
+    }
+    // terminator shading for depth
+    const shade = ctx.createRadialGradient(1080, 360, 120, 1240, 520, 440);
+    shade.addColorStop(0, "rgba(0,0,0,0)"); shade.addColorStop(1, "rgba(0,0,0,0.45)");
+    ctx.beginPath(); path(SPHERE); ctx.fillStyle = shade; ctx.fill();
+    ctx.beginPath(); path(SPHERE); ctx.strokeStyle = "rgba(111,182,255,0.55)"; ctx.lineWidth = 2; ctx.stroke();
+    // supercontinent names
+    for (const [name, hi, lo] of NAMES) {
+      const al = Math.min(smooth(hi + 40, hi - 40, ma), smooth(lo - 30, lo + 30, ma));
+      if (al <= 0.01) continue;
+      ctx.globalAlpha = al; ctx.fillStyle = "#f2a65a"; ctx.font = "500 34px 'IBM Plex Mono'"; ctx.textAlign = "center";
+      ctx.shadowColor = "rgba(0,0,0,0.8)"; ctx.shadowBlur = 12;
+      ctx.fillText(name.toUpperCase().split("").join(" "), 1240, 988); ctx.shadowBlur = 0; ctx.globalAlpha = 1;
+    }
+  }
+  const CV = AGES.map(a => { const [lo, la] = window.COAST[a].c, r = Math.PI / 180; return [a, Math.cos(la * r) * Math.cos(lo * r), Math.cos(la * r) * Math.sin(lo * r), Math.sin(la * r)]; });
+  function centerAt(ma) {
+    let x = 0, y = 0, z = 0;
+    for (const [a, vx, vy, vz] of CV) { const w = Math.exp(-0.5 * Math.pow((ma - a) / 200, 2)); x += w * vx; y += w * vy; z += w * vz; }
+    const n = Math.hypot(x, y, z), lon = Math.atan2(y, x) * 180 / Math.PI, lat = Math.asin(z / n) * 180 / Math.PI;
+    return [lon, Math.max(-30, Math.min(30, lat))];
+  }
+  const G = CFG.globeShot;
+  for (const s of CFG.shots.filter(s => s.kind === "globe")) {
+    const ctx = document.getElementById(s.id + "-canvas").getContext("2d");
+    const p = { t: 0 }, d = s.end - s.start;
+    const draw = () => {
+      const ft = s.start + p.t;
+      const ma = s.age === 0 ? 0 : Math.max(100, Math.min(1800, yearsAt(Math.max(G[0], Math.min(G[1], ft))) / 1e6));
+      let lambda, phi;
+      if (s.age === 0) { lambda = -10 - 14 * (p.t / d); phi = -18; }
+      else { const c = centerAt(ma); lambda = -c[0]; phi = -c[1]; }
+      drawGlobe(ctx, ma, lambda, phi);
+    };
+    tl.fromTo(p, { t: 0 }, { t: d, duration: d, ease: "none", onUpdate: draw }, s.start);
+    draw();
+  }
+
+  // ---------- per-shot motion ----------
+  const bp = { t: 0 };
+  tl.fromTo(bp, { t: 0 }, { t: 8, duration: 8, ease: "none", onUpdate: () => drawBang(bp.t) }, 0);
+  drawBang(0);
+  CFG.shots.forEach((s, i) => {
+    const d = s.end - s.start, id = s.id;
+    if (i > 0) {
+      const target = s.kind === "end" ? "#end-card" : "#" + id + "-" + (s.kind === "img" ? "media" : "canvas");
+      tl.fromTo(target, { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.inOut" }, s.start);
+    }
+    if (s.kind === "img") {
+      const [a, b] = s.kb;
+      const from = { scale: a[0], xPercent: a[1], yPercent: a[2] }, to = { scale: b[0], xPercent: b[1], yPercent: b[2], duration: d, ease: "none" };
+      if (s.rotate) { from.rotation = 0; to.rotation = -14; }
+      tl.fromTo("#" + id + "-img", from, to, s.start);
+    }
+    if (s.kind === "end") {
+      tl.fromTo(".end-kicker", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, s.start + 0.5);
+      tl.fromTo(".end-title", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }, s.start + 0.7);
+      tl.fromTo(".end-credits", { opacity: 0 }, { opacity: 1, duration: 0.8, stagger: 0.4, ease: "power1.out" }, s.start + 1.6);
+      return;
+    }
+    if (s.title) {
+      tl.fromTo("#" + id + "-ptitle", { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, s.start + 0.3);
+      tl.to("#" + id + "-ptitle", { opacity: 0, y: -30, duration: 0.55, ease: "power2.in" }, s.start + 2.2);
+    }
+    const at = s.start + (s.line_at != null ? s.line_at : 0.6);
+    tl.fromTo("#" + id + "-cap", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, at);
+    tl.to("#" + id + "-cap", { opacity: 0, y: -10, duration: 0.4, ease: "power2.in" }, s.end - 0.95);
+  });
+
+  hud(0);
+  window.__timelines["main"] = tl;
+})();
+</script>
+</body>
+</html>
