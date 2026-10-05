@@ -3,3 +3,7 @@ renders/
 snapshots/
 __pycache__/
 .hyperframes/
+audio/*.wav
+audio/lines/
+audio/plan.txt
+audio/__pycache__/
