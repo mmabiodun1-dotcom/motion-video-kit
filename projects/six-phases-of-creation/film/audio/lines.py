@@ -1,0 +1,23 @@
+# Narration lines in order, with the window each must sit in (film seconds): (text, start, latest_end)
+LINES = [
+ ("Thirteen point eight billion years ago, space began to expand, and filled with hydrogen and helium.", 0.8, 7.6),
+ ("Three hundred and eighty thousand years later, the first light broke free.", 7.9, 12.9),
+ ("We still see that light today, more sharply with every telescope.", 13.3, 17.3),
+ ("After a hundred million years of darkness, the first stars began to shine.", 17.8, 23.3),
+ ("They were giants. They lived fast and exploded, forging carbon, oxygen and iron.", 23.8, 28.9),
+ ("Every heavy atom on Earth was made this way.", 29.3, 33.3),
+ ("Over billions of years, spinning gas settled into disks. Ours, the Milky Way, began very early.", 33.8, 40.3),
+ ("Today it holds a hundred to four hundred billion stars.", 40.8, 45.3),
+ ("Four and a half billion years ago, a cloud collapsed, and the Sun lit up.", 45.8, 51.3),
+ ("A Mars-sized world struck the young Earth. The debris became our Moon.", 51.8, 56.3),
+ ("The young Earth was lava, steam and impacts, with no oxygen in the air.", 56.8, 62.3),
+ ("Then microbes learned to use sunlight, and filled the air with oxygen.", 62.8, 67.3),
+ ("Oxygen built the ozone layer, and the sky gained its layers.", 67.8, 73.3),
+ ("Continents gathered and broke apart, again and again.", 72.9, 76.1),
+ ("Rodinia.", 76.35, 77.5),
+ ("Gondwana.", 77.7, 78.95),
+ ("Pangaea.", 78.85, 80.2),
+ ("Sixty-six million years ago, an asteroid ended the age of the dinosaurs.", 82.8, 87.3),
+ ("And three hundred thousand years ago, the first people arrived.", 87.8, 92.3),
+ ("Six phases. Thirteen point eight billion years.", 93.4, 99.0),
+]
