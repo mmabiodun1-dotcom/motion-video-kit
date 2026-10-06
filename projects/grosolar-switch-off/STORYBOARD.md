@@ -1,7 +1,7 @@
 # GroSolar — "Switch Off" · Storyboard and script (60 s, 9:16 master)
 
 **VO** = narrator (warm, Nigerian English, slips into Pidgin). **Line** = a character speaks. **Super** = on-screen text. Every spoken line is also captioned.
-Items marked **[TBC]** depend on GroSolar confirming a fact or supplying an app screen. Wording in supers comes from `WEBSITE_PACK.md`.
+Items marked **[TBC]** depend on GroSolar confirming a fact or supplying an app screen. Wording in supers comes from `WEBSITE_PACK.md`. Cast, look and render rules: `LOOK_BIBLE.md`. Gemini prompts for every photographic shot: `PROMPTS.md`.
 
 ## The persistent actor
 A **round on/off switch**. It starts on the generator, becomes the **Get started** button on grosolar.co, and ends as the sun in the end card. It is the one object that survives the whole film.
@@ -30,12 +30,12 @@ A **round on/off switch**. It starts on the generator, becomes the **Get started
 
 | # | Time | What the viewer sees | Words | Business job | Transition out |
 |---|---|---|---|---|---|
-| 9 | 19.0–21.5 | Clean typographic frame. The word **SOLAR** appears, then a price tag stamps over it. | Line (anyone): **"Solar? E too cost."** | Name the real objection | The tag tears off |
+| 9 | 19.0–21.5 | DAD at a Lagos electrical market stall holds up a solar panel's blank price tag and recoils. A code-built price-tag stamp and the line land over the photo. | Line (anyone): **"Solar? E too cost."** | Name the real objection | The tag tears off |
 | 10 | 21.5–24.0 | The torn tag reveals sunlight. The GroSolar logo rises. The round switch returns and glows like a small sun. | VO: **"Not with GroSolar. No large upfront cost. You pay monthly."** Super: **No Large Upfront Costs. Predictable Monthly Cost.** | The offer, stated once and clearly | The glowing switch flies toward the camera and becomes the Get started button |
 
 ## Act 3 · Get started (24–44 s)
 
-A phone held in a hand against a soft, bright Lagos street. Steps 11–16 rebuild GroSolar's **real web pre-qualification form** in code, in the brand style; step 18 needs real GroSolar NG app screens **[TBC]**. The phone fills 70–80% of the frame. Real partner names and logos stay off screen unless the partners agree.
+A phone held in a hand against a soft, bright Lagos street (photo plates #11a/#11b; screens built in code). Steps 11–16 rebuild GroSolar's **real web pre-qualification form** in code, in the brand style; step 18 needs real GroSolar NG app screens **[TBC]**. The phone fills 70–80% of the frame. Real partner names and logos stay off screen unless the partners agree.
 
 | # | Time | What the viewer sees | Words | Business job | Transition out |
 |---|---|---|---|---|---|
@@ -45,8 +45,8 @@ A phone held in a hand against a soft, bright Lagos street. Steps 11–16 rebuil
 | 14 | 30.5–33.0 | The crumpled fuel receipt from #8 folds into the **Monthly diesel/fuel spend** field (amount left blank or blurred). Step 3: energy-load icons tap on in a quick stagger: bulbs, fan, TV, fridge, freezer, pump, AC. | Super: **Tell us what you power** | Shows the form understands your real needs | The icons slide up into a provider list |
 | 15 | 33.0–35.5 | Choose a preferred partner provider (cards with generic marks), then **Site visit requested ✓**. | Line (narrator): **"Dem go come check your place first."** | The real first step: provider + site visit | The check becomes a document |
 | 16 | 35.5–38.5 | The proposal materialises section by section: system, financing, then the **Predictable Monthly Cost** line lands where the fuel receipt used to sit. No figures unless GroSolar supplies real ones **[TBC]**. | VO: **"Pay small small, every month."** Super: **No Large Upfront Costs · Predictable Monthly Cost** | Proposal and financing, the core offer | The proposal card flips to show the roof |
-| 17 | 38.5–41.5 | Partner installers lifting panels onto a roof at golden hour. Small label: *Dramatisation*. | Super: **Installed by GroSolar's partner solar providers** | Who does the work, truthfully | Cut to the phone |
-| 18 | 41.5–44.0 | Activation: the provider hands over the phone with the **GroSolar NG** app set up **[TBC: real app screens]**. Fallback if no screens: the installed system with the super **Hardware Replacement at No Additional Cost**. | VO: **"Your plan, inside the GroSolar app."** | Membership has a home | The app's sun icon expands into daylight |
+| 17 | 38.5–41.5 | Two partner installers lift panels onto the family's bungalow roof at golden hour while DAD watches; the generator is covered. Small label: *Dramatisation*. | Super: **Installed by GroSolar's partner solar providers** | Who does the work, truthfully | Cut to the phone |
+| 18 | 41.5–44.0 | Activation: an installer hands MUM her phone at the front door, with the **GroSolar NG** app set up (screen built in code) **[TBC: real app screens]**. Fallback if no screens: the installed system with the super **Hardware Replacement at No Additional Cost**. | VO: **"Your plan, inside the GroSolar app."** | Membership has a home | The app's sun icon expands into daylight |
 
 ## Act 4 · Gen don rest (44–55 s)
 
