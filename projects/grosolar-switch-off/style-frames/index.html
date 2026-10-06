@@ -1,0 +1,507 @@
+<title>GroSolar Switch Off Style Frames</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: a production board. Brand strip on top, then frames grouped by act, each 9:16 frame with its beat sheet notes underneath. */
+:root {
+  /* GroSolar brand (fixed inside frames, never themed) */
+  --navy: #002554;
+  --orange: #FF9733;
+  --yellow: #FCD733;
+  --grey: #8A8D8F;
+  --slate: #7489A5;
+  --light: #F5F9FF;
+  --grad: linear-gradient(135deg, #FCD733 0%, #FF9633 100%);
+
+  /* Board chrome (themed) */
+  --bg: #F5F9FF;
+  --surface: #FFFFFF;
+  --ink: #0B1F3D;
+  --muted: #5A6E8C;
+  --line: #D9E3F0;
+  --tag-bg: #FFF3D6;
+  --tag-ink: #7A4A00;
+  --tbc-bg: #FFE3E0;
+  --tbc-ink: #8C2416;
+  --ok-bg: #E0F3E8;
+  --ok-ink: #1C5B36;
+
+  --display: "Outfit", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body: "Outfit", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #06152B; --surface: #0C2140; --ink: #EAF1FB; --muted: #9DB0CC; --line: #1D3559;
+    --tag-bg: #3A2A05; --tag-ink: #FFD98A; --tbc-bg: #3D1712; --tbc-ink: #FFB4A8; --ok-bg: #0F3321; --ok-ink: #9EE3B9;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #06152B; --surface: #0C2140; --ink: #EAF1FB; --muted: #9DB0CC; --line: #1D3559;
+  --tag-bg: #3A2A05; --tag-ink: #FFD98A; --tbc-bg: #3D1712; --tbc-ink: #FFB4A8; --ok-bg: #0F3321; --ok-ink: #9EE3B9;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.5; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-inline: 20px; padding-block: 32px 64px; display: grid; gap: 40px; }
+
+header { display: grid; gap: 12px; }
+.eyebrow { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+h1 { font-family: var(--display); font-weight: 800; font-size: clamp(30px, 5vw, 48px); line-height: 1.05; margin: 0; text-wrap: balance; }
+h1 .sw { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.lede { max-width: 66ch; color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-size: 12.5px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); }
+.chip.tbc { background: var(--tbc-bg); color: var(--tbc-ink); border-color: transparent; }
+.chip.ok { background: var(--ok-bg); color: var(--ok-ink); border-color: transparent; }
+
+.brand { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: grid; gap: 12px; min-width: 0; }
+.panel h2 { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; margin: 0; color: var(--muted); font-weight: 700; }
+.swatches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.swatch { display: grid; gap: 4px; font-size: 12px; }
+.swatch i { display: block; height: 40px; border-radius: 8px; border: 1px solid var(--line); }
+.swatch code { font-family: var(--mono); font-size: 11.5px; color: var(--muted); }
+.specimen { display: grid; gap: 4px; }
+.specimen .big { font-family: var(--display); font-weight: 800; font-size: 34px; line-height: 1; }
+.specimen .mid { font-weight: 600; font-size: 18px; }
+.specimen small { color: var(--muted); }
+.toggle { display: flex; align-items: center; gap: 10px; font-weight: 600; cursor: pointer; }
+.toggle input { width: 18px; height: 18px; accent-color: var(--orange); }
+.note { font-size: 13px; color: var(--muted); margin: 0; }
+
+section.act { display: grid; gap: 16px; }
+.act-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+.act-head h2 { font-family: var(--display); font-size: 24px; font-weight: 800; margin: 0; }
+.act-head span { color: var(--muted); font-size: 14px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 28px 20px; }
+figure.card { margin: 0; display: grid; gap: 10px; align-content: start; min-width: 0; }
+figcaption { display: grid; gap: 4px; font-size: 13.5px; }
+.beat { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; font-weight: 700; font-variant-numeric: tabular-nums; }
+.beat b { white-space: nowrap; font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--muted); }
+.tag { font-size: 11px; font-weight: 700; letter-spacing: .04em; padding: 2px 7px; border-radius: 6px; background: var(--tag-bg); color: var(--tag-ink); }
+.tag.tbc { background: var(--tbc-bg); color: var(--tbc-ink); }
+figcaption p { margin: 0; color: var(--muted); }
+
+/* ---------- The 9:16 frame. All internal sizes in cqw so 1cqw = 10.8px at 1080 wide. ---------- */
+.frame {
+  container-type: inline-size; position: relative; width: 100%; max-width: 100%; aspect-ratio: 9 / 16;
+  border-radius: 12px; overflow: hidden; background: #0A1424; isolation: isolate;
+  box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 10px 30px -12px rgba(0, 37, 84, .35);
+  font-family: var(--display);
+}
+.frame .shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; image-rendering: auto; filter: saturate(1.05); }
+.frame .lowres { position: absolute; top: 3cqw; left: 3cqw; z-index: 6; font: 600 2.6cqw/1 var(--body); color: #fff; background: rgba(0,0,0,.45); padding: 1.2cqw 2cqw; border-radius: 99px; letter-spacing: .02em; }
+.shade-top { position: absolute; inset: 0 0 auto 0; height: 55%; background: linear-gradient(to bottom, rgba(4,10,22,.78), rgba(4,10,22,0)); z-index: 1; }
+.shade-bot { position: absolute; inset: auto 0 0 0; height: 55%; background: linear-gradient(to top, rgba(4,10,22,.72), rgba(4,10,22,0)); z-index: 1; }
+.warm-top { position: absolute; inset: 0 0 auto 0; height: 45%; background: linear-gradient(to bottom, rgba(0,37,84,.55), rgba(0,37,84,0)); z-index: 1; }
+
+.super { position: absolute; z-index: 3; left: 7cqw; right: 16cqw; top: 15cqw; color: #fff; font-weight: 800; font-size: 8.4cqw; line-height: 1.02; letter-spacing: -.01em; text-wrap: balance; margin: 0; }
+.super.navy { color: var(--navy); }
+.super em { font-style: normal; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* Caption: speaker tag + line, sits above the bottom 20% UI zone */
+.cap { position: absolute; z-index: 3; left: 7cqw; right: 16cqw; bottom: 38cqw; display: grid; gap: 1.6cqw; justify-items: start; }
+.cap .who { font: 700 2.8cqw/1 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--navy); background: var(--yellow); padding: 1.2cqw 2cqw; border-radius: 1.2cqw; }
+.cap .line { font: 800 7cqw/1.05 var(--display); color: #fff; text-shadow: 0 .4cqw 2cqw rgba(0,0,0,.45); }
+.cap .gloss { font: 500 3.4cqw/1.2 var(--body); color: rgba(255,255,255,.85); }
+
+.dram { position: absolute; z-index: 5; left: 7cqw; bottom: 23cqw; font: 500 2.5cqw/1 var(--body); color: rgba(255,255,255,.75); letter-spacing: .03em; }
+.dram.dark { color: rgba(0,37,84,.6); }
+
+/* Safe-zone overlay */
+.safe { position: absolute; inset: 0; z-index: 8; pointer-events: none; display: none; }
+.show-safe .safe { display: block; }
+.safe::before, .safe::after { content: ""; position: absolute; background: repeating-linear-gradient(45deg, rgba(255,60,60,.38) 0 1.2cqw, rgba(255,60,60,.12) 1.2cqw 2.4cqw); }
+.safe::before { left: 0; right: 0; bottom: 0; height: 20%; }
+.safe::after { right: 0; top: 0; bottom: 20%; width: 12%; }
+
+/* The switch, the film's persistent actor */
+.switch { position: absolute; z-index: 3; width: 30cqw; aspect-ratio: 1; left: 35cqw; border-radius: 50%; display: grid; place-items: center; }
+.switch svg { width: 46%; height: 46%; }
+.switch.sun { background: var(--grad); box-shadow: 0 0 0 3cqw rgba(252,215,51,.18), 0 0 18cqw 6cqw rgba(255,151,51,.55); }
+
+/* Logo placeholder (real SVG pending) */
+.logo-ph { display: inline-flex; align-items: center; gap: 2.4cqw; border: .45cqw dashed currentColor; border-radius: 2.4cqw; padding: 1.8cqw 2.6cqw; }
+.logo-ph .mark { width: 9cqw; height: 9cqw; border-radius: 2.4cqw; background: var(--grad); }
+.logo-ph .wm { display: grid; line-height: 1; gap: .8cqw; }
+.logo-ph .wm b { font-weight: 800; font-size: 6.4cqw; letter-spacing: -.01em; }
+.logo-ph .wm small { font: 600 2cqw/1 var(--body); letter-spacing: .12em; text-transform: uppercase; opacity: .75; }
+
+/* Light brand scenes */
+.lightbg { position: absolute; inset: 0; background:
+  radial-gradient(70cqw 70cqw at 50% 30%, rgba(252,215,51,.55), rgba(252,215,51,0) 70%),
+  radial-gradient(90cqw 60cqw at 80% 100%, rgba(255,151,51,.25), rgba(255,151,51,0) 70%),
+  var(--light); }
+.streetbg { position: absolute; inset: 0; background:
+  linear-gradient(180deg, #CFE3F7 0%, #F6E7C8 55%, #F2C98F 100%); }
+.streetbg::after { content: ""; position: absolute; inset: 0; background:
+  radial-gradient(30cqw 20cqw at 15% 60%, rgba(255,255,255,.7), transparent 70%),
+  radial-gradient(40cqw 25cqw at 85% 45%, rgba(255,255,255,.55), transparent 70%),
+  radial-gradient(25cqw 40cqw at 70% 85%, rgba(0,37,84,.18), transparent 70%); filter: blur(2cqw); }
+
+/* Phone mock with a mobile web form */
+.phone { position: absolute; z-index: 3; left: 12cqw; width: 76cqw; top: 13cqw; height: 128cqw; border-radius: 9cqw; background: #0B0F17; padding: 2.2cqw; box-shadow: 0 6cqw 12cqw -4cqw rgba(0,37,84,.55); }
+.screen { position: relative; width: 100%; height: 100%; border-radius: 7cqw; overflow: hidden; background: #fff; display: flex; flex-direction: column; color: var(--navy); font-family: var(--body); }
+.urlbar { margin: 4.5cqw 4cqw 0; background: #EEF3FA; border-radius: 99px; font: 500 2.6cqw/1 var(--body); color: var(--slate); padding: 1.8cqw 3cqw; text-align: center; }
+.scr { padding: 4cqw 5cqw; display: grid; gap: 2.6cqw; align-content: start; }
+.step { display: flex; justify-content: space-between; align-items: center; font: 600 2.5cqw/1 var(--body); color: var(--slate); letter-spacing: .04em; text-transform: uppercase; }
+.bar { height: 1cqw; border-radius: 99px; background: #E4ECF6; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--grad); border-radius: inherit; }
+.scr h3 { margin: 0; font: 800 5.4cqw/1.08 var(--display); color: var(--navy); text-wrap: balance; }
+.scr p { margin: 0; font-size: 2.9cqw; line-height: 1.35; color: var(--slate); }
+.choice { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4cqw; }
+.opt { border: .4cqw solid #DCE6F2; border-radius: 3.6cqw; padding: 3cqw; display: grid; gap: 1.6cqw; align-content: start; }
+.opt.on { border-color: var(--orange); box-shadow: 0 0 0 1cqw rgba(255,151,51,.18); }
+.opt .ico { width: 8.4cqw; height: 8.4cqw; border-radius: 2.4cqw; background: #F5F9FF; display: grid; place-items: center; }
+.opt .ico svg { width: 5cqw; height: 5cqw; }
+.opt b { font: 700 3.4cqw/1.1 var(--display); }
+.opt small { font-size: 2.3cqw; color: var(--slate); line-height: 1.3; }
+.tiles { display: flex; gap: 1.2cqw; }
+.tiles span { width: 7cqw; height: 7cqw; border-radius: 1.6cqw; background-size: cover; background-position: center; border: .3cqw solid #fff; box-shadow: 0 .6cqw 1.6cqw rgba(0,37,84,.2); }
+.pills { display: flex; flex-wrap: wrap; gap: 1.4cqw; }
+.pill { font: 600 2.6cqw/1 var(--body); padding: 1.8cqw 2.6cqw; border-radius: 99px; border: .35cqw solid #DCE6F2; color: var(--navy); }
+.pill.on { background: var(--navy); color: #fff; border-color: var(--navy); }
+.field { display: grid; gap: 1.2cqw; }
+.field label { font: 600 2.5cqw/1 var(--body); color: var(--slate); }
+.field .in { border: .4cqw solid #DCE6F2; border-radius: 2.4cqw; padding: 2.4cqw 3cqw; font: 600 3cqw/1 var(--body); color: var(--navy); display: flex; justify-content: space-between; align-items: center; }
+.field .in.hot { border-color: var(--orange); background: #FFF8EC; }
+.blur { filter: blur(.7cqw); }
+.loads { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.8cqw; }
+.load { display: grid; justify-items: center; gap: 1cqw; padding: 2cqw 0; border-radius: 2.6cqw; border: .35cqw solid #DCE6F2; font: 600 2.1cqw/1 var(--body); color: var(--slate); }
+.load svg { width: 5.4cqw; height: 5.4cqw; }
+.load.on { border-color: transparent; background: var(--navy); color: #fff; }
+.btn { margin-top: auto; align-self: stretch; text-align: center; background: var(--grad); color: #fff; font: 700 3.4cqw/1 var(--display); padding: 3.6cqw; border-radius: 99px; box-shadow: 0 1.4cqw 3cqw -1cqw rgba(255,151,51,.6); }
+.scr-foot { margin-top: auto; padding: 0 5cqw 6cqw; }
+
+.prop { border: .4cqw solid #DCE6F2; border-radius: 3.6cqw; overflow: hidden; }
+.prop-row { display: flex; justify-content: space-between; gap: 2cqw; padding: 2.8cqw 3.4cqw; border-top: .3cqw solid #EDF2F8; font-size: 2.7cqw; }
+.prop-row:first-child { border-top: 0; }
+.prop-row span { color: var(--slate); }
+.prop-row b { font-weight: 700; color: var(--navy); text-align: right; }
+.prop-row.key { background: #FFF8EC; }
+.prop-row.key b { font-size: 3.2cqw; }
+
+/* Receipt ghost for the fuel -> field transformation */
+.receipt { position: absolute; z-index: 4; width: 30cqw; right: 3cqw; top: 58cqw; transform: rotate(-9deg); background: #FFFDF7; border-radius: 1cqw; padding: 3cqw 2.6cqw; box-shadow: 0 3cqw 6cqw -2cqw rgba(0,0,0,.35); display: grid; gap: 1.2cqw; font: 600 2cqw/1.2 var(--mono); color: #555; }
+.receipt i { display: block; height: .8cqw; background: #D9D3C3; border-radius: 1cqw; }
+.receipt .t { font-weight: 800; color: #222; letter-spacing: .08em; }
+.receipt::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2cqw; height: 2.2cqw; background: radial-gradient(circle at 1.1cqw 0, transparent 1.1cqw, #FFFDF7 1.2cqw) repeat-x; background-size: 2.2cqw 2.2cqw; }
+.arrow { position: absolute; z-index: 4; right: 26cqw; top: 76cqw; width: 14cqw; height: 10cqw; }
+
+/* Not-yet-generated scenes */
+.pending { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 10cqw; color: #CFE0F5; font: 500 3.4cqw/1.35 var(--body);
+  background: repeating-linear-gradient(135deg, #0D203D 0 3cqw, #0A1A33 3cqw 6cqw); }
+.pending b { display: block; font: 800 6cqw/1.05 var(--display); color: #fff; margin-bottom: 2cqw; }
+
+/* End card */
+.endbg { position: absolute; inset: 0; background:
+  radial-gradient(80cqw 60cqw at 50% 30%, rgba(255,151,51,.35), rgba(255,151,51,0) 70%), var(--navy); }
+.end { position: absolute; z-index: 3; inset: 0; display: grid; align-content: start; justify-items: center; text-align: center; padding: 64cqw 8cqw 0; gap: 4cqw; color: #fff; }
+.end h3 { margin: 0; font: 800 8.2cqw/1.02 var(--display); text-wrap: balance; }
+.end h3 em { font-style: normal; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.end .sub { font: 600 3.6cqw/1.3 var(--body); color: #CFE0F5; }
+.end .cta { display: grid; gap: 1.6cqw; justify-items: center; margin-top: 1cqw; }
+.end .cta .btn { margin: 0; padding: 3.4cqw 7cqw; font-size: 3.8cqw; }
+.end .cta small { font: 600 3.1cqw/1.2 var(--body); color: #fff; font-variant-numeric: tabular-nums; }
+.end .logo-ph { color: #fff; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .switch.sun { animation: glow 3.2s ease-in-out infinite; }
+  @keyframes glow { 50% { box-shadow: 0 0 0 4cqw rgba(252,215,51,.22), 0 0 22cqw 8cqw rgba(255,151,51,.62); } }
+}
+:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+</style>
+
+<div class="wrap" id="board">
+  <header>
+    <div class="eyebrow">GroSolar · "Switch Off" · 60 s · 9:16 · Draft style frames</div>
+    <h1>Switch off the gen. <span class="sw">Switch on GroSolar.</span></h1>
+    <p class="lede">How the key moments of the film should look: the warm, hazy generator world in Act 1, the bright brand world from the turn onwards, the real grosolar.co sign-up flow on a phone, and the end card. Photos are AI drafts for look only. Brand type, colour and copy come from the GroSolar website pack.</p>
+    <div class="chips">
+      <span class="chip ok">Brand colours and wording from grosolar.co</span>
+      <span class="chip tbc">Logo: placeholder until SVG arrives</span>
+      <span class="chip tbc">Photos: low-res previews; full size in Canva</span>
+      <span class="chip tbc">Farm and factory: not generated yet</span>
+    </div>
+  </header>
+
+  <div class="brand">
+    <div class="panel">
+      <h2>Palette</h2>
+      <div class="swatches">
+        <div class="swatch"><i style="background:#002554"></i>Navy<code>#002554</code></div>
+        <div class="swatch"><i style="background:#FCD733"></i>Yellow<code>#FCD733</code></div>
+        <div class="swatch"><i style="background:#FF9733"></i>Orange<code>#FF9733</code></div>
+        <div class="swatch"><i style="background:#7489A5"></i>Slate<code>#7489A5</code></div>
+        <div class="swatch"><i style="background:#8A8D8F"></i>Grey<code>#8A8D8F</code></div>
+        <div class="swatch"><i style="background:#F5F9FF"></i>Light<code>#F5F9FF</code></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h2>Type</h2>
+      <div class="specimen">
+        <span class="big">Gen don rest.</span>
+        <span class="mid">No Large Upfront Costs. Predictable Monthly Cost.</span>
+        <small>Outfit ExtraBold 800 for supers and lines, Outfit 500–700 for UI and captions.</small>
+      </div>
+    </div>
+    <div class="panel">
+      <h2>Platform safe zones</h2>
+      <label class="toggle" for="safeToggle"><input type="checkbox" id="safeToggle"> Show TikTok / Reels UI zones</label>
+      <p class="note">Hatched areas (bottom 20%, right 12%) get covered by captions, buttons and the username. Text and the phone UI stay out of them.</p>
+    </div>
+  </div>
+
+  <!-- ================= ACT 1 ================= -->
+  <section class="act">
+    <div class="act-head"><h2>Act 1 · The gen</h2><span>0–19 s · warm, hazy, sodium light · humour</span></div>
+    <div class="grid">
+
+      <figure class="card">
+        <div class="frame">
+          <img class="shot" src="previews/01-generator.jpg" alt="Macro of a generator control panel with a glowing round switch">
+          <span class="lowres">Low-res preview</span>
+          <div class="shade-top"></div>
+          <p class="super">What if you never had to switch it <em>on</em> again?</p>
+          <div class="safe"></div>
+        </div>
+        <figcaption>
+          <div class="beat"><b>#1–2 · 0:00–0:04</b> Hook <span class="tag">AI draft</span></div>
+          <p>Roar, the hand flips the switch, dead silence, the line lands. The round switch is the object we carry through the film.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="card">
+        <div class="frame">
+          <img class="shot" src="previews/03-home-outage.jpg" alt="Mother holds a phone torch over her daughter's homework during a power cut">
+          <span class="lowres">Low-res preview</span>
+          <div class="shade-bot"></div>
+          <div class="cap"><span class="who">Mum</span><span class="line">"Dem don take light again!"</span></div>
+          <span class="dram">Dramatisation</span>
+          <div class="safe"></div>
+        </div>
+        <figcaption>
+          <div class="beat"><b>#3 · 0:04–0:06</b> Home <span class="tag">AI draft</span></div>
+          <p>Phone torch as the only light. Pidgin lines appear as big captions with a yellow speaker tag, so the joke lands on mute.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="card">
+        <div class="frame">
+          <img class="shot" src="previews/05-barbershop.jpg" alt="Barber holds dead clippers while the customer stares at a half-finished cut">
+          <span class="lowres">Low-res preview</span>
+          <div class="shade-bot"></div>
+          <div class="cap"><span class="who">Barber</span><span class="line">"Abeg, on the gen!"</span></div>
+          <span class="dram">Dramatisation</span>
+          <div class="safe"></div>
+        </div>
+        <figcaption>
+          <div class="beat"><b>#5 · 0:09–0:11</b> Barbershop <span class="tag">AI draft</span></div>
+          <p>Needs a regenerate: the customer's cut should read as half-done, and the light should look more "off".</p>
+        </figcaption>
+      </figure>
+
+      <figure class="card">
+        <div class="frame">
+          <div class="pending"><div><b>Farm</b>Not generated yet. Canva and ElevenLabs credits ran out. Prompt is ready.</div></div>
+          <div class="safe"></div>
+        </div>
+        <figcaption>
+          <div class="beat"><b>#6 · 0:11–0:14</b> Farm <span class="tag tbc">TBC: farms served?</span></div>
+          <p>Jerrycans lined up in the sun. Fallback if GroSolar doesn't serve farms: a pharmacy keeping its medicine fridge on a gen.</p>
+        </figcaption>
+      </figure>
+
+    </div>
+  </section>
+
+  <!-- ================= ACT 3 ================= -->
+  <section class="act">
+    <div class="act-head"><h2>Acts 2–3 · The turn, then get started</h2><span>19–44 s · the haze clears into the brand gradient, then the real grosolar.co form, rebuilt in motion</span></div>
+    <div class="grid">
+
+      <figure class="card">
+        <div class="frame">
+          <div class="lightbg"></div>
+          <div class="switch sun" style="top: 36cqw"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"><path d="M12 3v8"/><path d="M6.3 6.8a8 8 0 1 0 11.4 0"/></svg></div>
+          <div style="position:absolute; z-index:3; left:7cqw; right:7cqw; top:82cqw; display:grid; gap:3cqw; justify-items:center; text-align:center; color:var(--navy)">
+            <div class="logo-ph"><span class="mark"></span><span class="wm"><b>GroSolar</b><small>Logo placeholder</small></span></div>
+            <p class="super navy" style="position:static; font-size:7.6cqw">No Large Upfront Costs.<br><em>Predictable Monthly Cost.</em></p>
+          </div>
+          <div class="safe"></div>
+        </div>
+        <figcaption>
+          <div class="beat"><b>#10 · 0:21–0:24</b> The offer <span class="tag">Code-built</span></div>
+          <p>The switch comes back glowing like a small sun. VO: "Not with GroSolar. No large upfront cost. You pay monthly." Wording is the site's own.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="card">
+        <div class="frame">
+          <div class="streetbg"></div>
+          <div class="phone"><div class="screen">
+            <div class="urlbar">grosolar.co</div>
+            <div class="scr">
+              <div class="step"><span>Step 2 of 4</span><span>Property</span></div>
+              <div class="bar"><i style="width:50%"></i></div>
+              <h3>Is this for your home or your business?</h3>
+              <div class="choice">
+                <div class="opt">
+                  <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#002554" stroke-width="2" stroke-linejoin="round"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/></svg></span>
+                  <b>Home Owner</b><small>Studio · 2/3/4 Bed · Duplex</small>
+                  <div class="tiles"><span style="background-image:url(previews/03-home-outage.jpg)"></span></div>
+                </div>
+                <div class="opt on">
+                  <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#FF9733" stroke-width="2" stroke-linejoin="round"><path d="M3 20V9l6 3V9l6 3V5h6v15z"/></svg></span>
+                  <b>Business</b><small>Shops, offices and more</small>
+                  <div class="tiles"><span style="background-image:url(previews/05-barbershop.jpg)"></span><span style="background:#2E6B3A"></span><span style="background:#6B7C93"></span></div>
+                </div>
+              </div>
+              <div class="pills"><span class="pill">Studio</span><span class="pill on">2 Bedroom</span><span class="pill">3 Bedroom</span><span class="pill">4 Bedroom</span><span class="pill">Duplex</span></div>
+            </div>
+            <div class="scr-foot"><div class="btn">Continue</div></div>
+          </div></div>
+          <div class="safe"></div>
+        </div>
+        <figcaption>
+          <div class="beat"><b>#13 · 0:28–0:30</b> Home or business <span class="tag">Code-built</span></div>
+          <p>The Act 1 scenes drop in as tiles: home into Home Owner, shop, farm and factory into Business. Categories and property types are the form's real ones.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="card">
+        <div class="frame">
+          <div class="streetbg"></div>
+          <div class="phone"><div class="screen">
+            <div class="urlbar">grosolar.co</div>
+            <div class="scr">
+              <div class="step"><span>Step 3 of 4</span><span>Energy</span></div>
+              <div class="bar"><i style="width:75%"></i></div>
+              <h3>Tell us what you power</h3>
+              <div class="field"><label for="fuel">Monthly diesel / fuel spend</label><div class="in hot" id="fuel"><span class="blur">₦ 000,000</span><span style="font-size:2.4cqw;color:var(--orange)">from your receipt</span></div></div>
+              <div class="loads">
+                <span class="load on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg>Bulbs</span>
+                <span class="load on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="2"/><path d="M12 10c0-4 2-6 4-6s2 3-2 6M14 12c4 0 6 2 6 4s-3 2-6-2M12 14c0 4-2 6-4 6s-2-3 2-6M10 12c-4 0-6-2-6-4s3-2 6 2"/></svg>Fan</span>
+                <span class="load on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8"/></svg>TV</span>
+                <span class="load on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M6 10h12M9 5v2M9 13v3"/></svg>Fridge</span>
+                <span class="load"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 11h18M7 8.5h3"/></svg>Freezer</span>
+                <span class="load on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 14h10v6H4zM14 16h4a2 2 0 0 0 2-2V8M17 8h6M9 14V9a3 3 0 0 1 6 0"/></svg>Pump</span>
+                <span class="load"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="5" width="20" height="8" rx="2"/><path d="M7 17v3M12 17v4M17 17v3"/></svg>AC</span>
+                <span class="load"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="13" r="5"/><path d="M7 6h2"/></svg>Washer</span>
+              </div>
+            </div>
+            <div class="scr-foot"><div class="btn">Continue</div></div>
+          </div></div>
+          <div class="receipt"><span class="t">FUEL</span><i></i><i style="width:70%"></i><i></i><i style="width:55%"></i><span class="t">TOTAL</span><i style="width:80%"></i></div>
+          <svg class="arrow" viewBox="0 0 60 40" fill="none" stroke="#FF9733" stroke-width="3" stroke-linecap="round"><path d="M56 8C40 4 22 10 10 26"/><path d="M8 14l2 13 12-3"/></svg>
+          <div class="safe"></div>
+        </div>
+        <figcaption>
+          <div class="beat"><b>#14 · 0:30–0:33</b> The receipt becomes the field <span class="tag">Code-built</span></div>
+          <p>The crumpled fuel receipt from Act 1 folds into the real "monthly diesel/fuel spend" field. The amount stays blurred: no invented numbers. Loads tap on in a quick stagger.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="card">
+        <div class="frame">
+          <div class="streetbg"></div>
+          <div class="phone"><div class="screen">
+            <div class="urlbar">grosolar.co</div>
+            <div class="scr">
+              <div class="step"><span>Your proposal</span><span style="color:var(--orange)">After site visit</span></div>
+              <h3>Your solar, your monthly plan</h3>
+              <p>Prepared by your partner solar provider after the site visit.</p>
+              <div class="prop">
+                <div class="prop-row"><span>System</span><b>Sized to your loads</b></div>
+                <div class="prop-row"><span>Upfront cost</span><b>No large upfront cost</b></div>
+                <div class="prop-row"><span>Hardware replacement</span><b>No additional cost</b></div>
+                <div class="prop-row key"><span>Monthly</span><b>Predictable monthly cost</b></div>
+              </div>
+            </div>
+            <div class="scr-foot"><div class="btn">Accept proposal</div></div>
+          </div></div>
+          <div class="safe"></div>
+        </div>
+        <figcaption>
+          <div class="beat"><b>#16 · 0:35–0:38</b> Proposal <span class="tag tbc">TBC: real proposal format</span></div>
+          <p>VO: "Pay small small, every month." Every row is the site's own benefit wording. If GroSolar shares a real sample proposal, numbers can go in; until then, none.</p>
+        </figcaption>
+      </figure>
+
+    </div>
+  </section>
+
+  <!-- ================= ACT 4 ================= -->
+  <section class="act">
+    <div class="act-head"><h2>Act 4 · Gen don rest</h2><span>44–55 s · same framing as Act 1, now warm and steady</span></div>
+    <div class="grid">
+
+      <figure class="card">
+        <div class="frame">
+          <img class="shot" src="previews/19-home-lit.jpg" alt="Same mother and daughter at home in warm steady light, the generator covered">
+          <span class="lowres">Low-res preview</span>
+          <div class="shade-bot"></div>
+          <div class="cap"><span class="who">Mum</span><span class="line">"Light dey!"</span></div>
+          <span class="dram">Dramatisation</span>
+          <div class="safe"></div>
+        </div>
+        <figcaption>
+          <div class="beat"><b>#19 · 0:44–0:46</b> Home, payoff <span class="tag">AI draft</span></div>
+          <p>Mirrors #3. In the final version the same family and room must match across both shots (one character reference for both).</p>
+        </figcaption>
+      </figure>
+
+      <figure class="card">
+        <div class="frame">
+          <div class="pending"><div><b>Factory roof</b>Not generated yet. Credits ran out. Prompt is ready.</div></div>
+          <div class="safe"></div>
+        </div>
+        <figcaption>
+          <div class="beat"><b>#22 · 0:51–0:53</b> Factory <span class="tag tbc">TBC: C&amp;I served?</span></div>
+          <p>Aerial of a roof array over a working site at golden hour. Fallback: an office or bakery roof.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="card">
+        <div class="frame">
+          <div class="endbg"></div>
+          <div class="switch sun" style="top: 26cqw"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"><path d="M12 3v8"/><path d="M6.3 6.8a8 8 0 1 0 11.4 0"/></svg></div>
+          <div class="end">
+            <div class="logo-ph"><span class="mark"></span><span class="wm"><b>GroSolar</b><small>Logo placeholder · inverted SVG</small></span></div>
+            <h3>Switch off the gen.<br><em>Switch on GroSolar.</em></h3>
+            <div class="sub">No Large Upfront Costs.<br>Predictable Monthly Cost.</div>
+            <div class="cta">
+              <div class="btn">Get started at grosolar.co</div>
+              <small>WhatsApp +234 705 370 0000</small>
+            </div>
+          </div>
+          <span class="dram" style="color:rgba(255,255,255,.55); bottom: 23cqw">Dramatisation · AI-generated imagery</span>
+          <div class="safe"></div>
+        </div>
+        <figcaption>
+          <div class="beat"><b>#24 · 0:55–1:00</b> End card <span class="tag tbc">TBC: WhatsApp number</span></div>
+          <p>The sun becomes the switch, now on, in the brand gradient. CTAs sit above the bottom UI zone. Swap in the inverted logo SVG when it arrives.</p>
+        </figcaption>
+      </figure>
+
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>What's still needed for final frames</h2>
+    <p class="note">Logo SVG files from GroSolar · confirmation on farms and commercial &amp; industrial · the WhatsApp number · GroSolar NG app screens for #18 · image credits to regenerate the photo scenes at full size (barbershop redo, farm, factory, installers, and a matched family across #3 and #19).</p>
+  </section>
+</div>
+
+<script>
+  const t = document.getElementById('safeToggle');
+  const b = document.getElementById('board');
+  try { t.checked = localStorage.getItem('gs-safe') === '1'; } catch (e) {}
+  const apply = () => { b.classList.toggle('show-safe', t.checked); try { localStorage.setItem('gs-safe', t.checked ? '1' : '0'); } catch (e) {} };
+  t.addEventListener('change', apply); apply();
+</script>

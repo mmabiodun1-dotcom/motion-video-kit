@@ -1,0 +1,28 @@
+# Generation ledger — style frames (draft)
+
+Date: 2026-10-06. All images are look drafts, labelled "Dramatisation" in frames. Local copies in `previews/` are 112×199 thumbnails only (Canva download hosts are blocked from the build sandbox); full size lives in Canva.
+
+| Beat | Tool / model | Canva media id | Status |
+|---|---|---|---|
+| #1–2 generator macro | Canva generate-image, 9:16 | MAHXOJ17wRU | Accepted for look |
+| #3 home, power cut | Canva generate-image, 9:16 | MAHXOPnWee8 | Accepted for look |
+| #5 barbershop | Canva generate-image, 9:16 | MAHXONsmxtY | Redo: half-cut not visible, lights don't read as off |
+| #19 home, lit | Canva generate-image, 9:16 | MAHXOAEB3gM | Accepted for look; must match #3's family in final |
+| #6/#21 farm | — | — | Not generated: Canva credit quota exceeded |
+| #22 factory roof | — | — | Not generated: Canva credit quota exceeded |
+
+ElevenLabs (bytedance-seedream-5-pro) was tried first for all six; every call was refused (free-tier daily image limit / credit quota). Nothing was charged.
+
+## Prompts
+
+**#1–2 generator:** Extreme macro close-up of a worn petrol generator's control panel at night in a Lagos compound: a chunky round rocker switch in the ON position glowing with a small amber indicator light, scuffed red-and-black painted metal, oil smudges, faint exhaust haze drifting across the frame. Shallow depth of field, 100mm macro lens, warm sodium streetlight from the left plus the amber glow, subtle cool blue fill. Moody but readable, shadows lifted, nothing crushed to black. The switch sits dead centre. Upper third calm and dark for a headline. Photoreal, cinematic commercial still, fine film grain. No people, no text, no logos, no brand names, no watermark.
+
+**#3 home, power cut:** Inside a modest, tidy Lagos family living room at night just after the power has gone out. A Nigerian girl of about ten sits at a small table with an exercise book and pencil, lit only by the white beam of a smartphone torch held by her mother, who stands beside her, frustrated, one hand on her hip. Ceiling bulb off, a standing fan stopped. Warm dim ambience from a window, cool phone-torch light on the faces, natural skin tones. 35mm lens, eye level, the girl and mother fill the lower two thirds; upper third is a calm dark wall. Readable shadows, nothing crushed to black. Photoreal, cinematic commercial still, authentic Nigerian home details, fine film grain. No text, no logos, no watermark.
+
+**#5 barbershop:** A small, colourful Lagos neighbourhood barbershop in the late afternoon. A young Nigerian barber holds electric clippers that have just died, looking at them in disbelief; the seated customer, half his head cut and half not, stares at himself in the mirror with a comic, deadpan expression. Hand-painted hairstyle posters on the wall with no readable text, the doorway shows a busy street. Warm daylight from the door, slightly dim interior because the lights are off. 35mm lens, mid shot, both men fill the lower two thirds, upper third calm wall. Light, humorous mood. Photoreal, cinematic commercial still, natural skin tones, fine film grain. No readable text, no logos, no watermark.
+
+**#19 home, lit:** Inside a modest, tidy Lagos family living room at night with warm, steady light: a ceiling bulb glowing, a standing fan turning. A Nigerian girl of about ten writes in her exercise book at a small table, focused and calm; her mother sits beside her smiling, relaxed. In the background by the window, a small petrol generator sits under a fitted cloth cover, clearly unused. Golden warm interior light, soft and even, natural skin tones. 35mm lens, eye level, the pair fill the lower two thirds; upper third is a calm warm wall. Bright, airy, nothing crushed to black. Photoreal, cinematic commercial still, authentic Nigerian home details, fine film grain. No text, no logos, no watermark.
+
+**#21 farm (ready, not run):** A small commercial farm on the outskirts of Lagos in bright mid-morning sun: a neat row of ground-mounted solar panels beside green vegetable beds, a water pump running and clear water flowing from a pipe into an irrigation channel. A Nigerian farmer in a work shirt and cap stands near the panels, checking the water flow, content. Clean blue sky with a few soft clouds, warm sunlight, lush greens. 24mm lens, slightly low angle, panels and farmer fill the lower two thirds, upper third open sky. Bright, airy, optimistic. Photoreal, cinematic commercial still, fine film grain. No text, no logos, no brand names on panels, no watermark.
+
+**#22 factory roof (ready, not run):** High aerial drone view looking down at a medium-sized factory and warehouse in an industrial area of Lagos: the large corrugated metal roof covered in neat rows of solar panels catching the late-afternoon sun, trucks and workers small in the yard below, a few palm trees, red-earth roads. Warm golden light, long soft shadows, hazy sky at the top. Panels form strong graphic lines through the lower two thirds; upper third soft hazy sky. Bright, airy, confident. Photoreal, cinematic commercial still, fine film grain. No text, no logos, no brand names, no watermark.
