@@ -74,12 +74,20 @@ h1 .sw { background: var(--grad); -webkit-background-clip: text; background-clip
 .note { font-size: 13px; color: var(--muted); margin: 0; }
 
 section.act { display: grid; gap: 16px; }
+.anim-row { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 20px; align-items: start; }
+.anim-row video { width: 100%; max-width: 100%; aspect-ratio: 9 / 16; border-radius: 12px; background: #0A1424; }
+.anim-notes { display: grid; gap: 10px; font-size: 14px; color: var(--muted); max-width: 62ch; min-width: 0; }
+.anim-notes p { margin: 0; }
+.anim-notes b { color: var(--ink); }
+@media (max-width: 640px) { .anim-row { grid-template-columns: 1fr; } .anim-row video { max-width: 320px; } }
 .stages { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; counter-reset: st; }
 .stages li { counter-increment: st; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 4px; align-content: start; min-width: 0; }
 .stages li::before { content: "Stage " counter(st); font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .stages li b { font-family: var(--display); font-size: 17px; font-weight: 800; }
 .stages li span { font-size: 13px; color: var(--muted); }
 .stages li.now { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(255,151,51,.18); }
+.stages li.done { opacity: .72; }
+.stages li.done::after { content: "Done"; justify-self: start; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; background: var(--ok-bg); color: var(--ok-ink); }
 .stages li.now::after { content: "Now"; justify-self: start; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; background: var(--tag-bg); color: var(--tag-ink); }
 .act-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
 .act-head h2 { font-family: var(--display); font-size: 24px; font-weight: 800; margin: 0; }
@@ -233,9 +241,10 @@ figcaption p { margin: 0; color: var(--muted); }
     <div class="chips">
       <span class="chip ok">Brand colours and wording from grosolar.co</span>
       <span class="chip tbc">Logo: placeholder until SVG arrives</span>
-      <span class="chip">Photos: Canva drafts (low-res) and Gemini drafts (572×1024)</span>
+      <span class="chip ok">Stage 3 · Animatic v1</span>
+      <span class="chip tbc">Files to resend: #1, #2, #4, #17, #18, #6, #20, #21</span>
       <span class="chip tbc">Farm and factory: not yet confirmed as GroSolar customers</span>
-      <span class="chip ok">Stage 1 · Look locked</span>
+
     </div>
   </header>
 
@@ -269,12 +278,24 @@ figcaption p { margin: 0; color: var(--muted); }
   <section class="panel">
     <h2>Production order</h2>
     <ol class="stages">
-      <li class="now"><b>Lock</b><span>Look bible and Gemini prompt library (LOOK_BIBLE.md, PROMPTS.md).</span></li>
-      <li><b>Keyframes</b><span>Every still rendered in Gemini and downloaded full size.</span></li>
-      <li><b>Animatic</b><span>60 s vertical cut from the stills with supers, temp VO timing and end card. GroSolar signs off, and confirms or kills farm and factory.</span></li>
+      <li class="done"><b>Lock</b><span>Look bible and Gemini prompt library (LOOK_BIBLE.md, PROMPTS.md).</span></li>
+      <li class="done"><b>Keyframes</b><span>Every still rendered in Gemini at animatic quality (572×1024). Full-size downloads at sign-off.</span></li>
+      <li class="now"><b>Animatic</b><span>60 s vertical cut from the stills with supers, temp VO timing and end card. GroSolar signs off, and confirms or kills farm and factory.</span></li>
       <li><b>Motion</b><span>After sign-off only. Veo image-to-video with before/after pairs as start/end frames: hook, then the 4 befores, then the 4 afters. No exploratory renders.</span></li>
       <li><b>Finish</b><span>English/Pidgin VO, music, 30 s and 15 s cut-downs.</span></li>
     </ol>
+  </section>
+
+  <section class="panel anim">
+    <h2>Animatic v1 · 60 s · 1080×1920 · 30 fps</h2>
+    <div class="anim-row">
+      <video controls playsinline preload="metadata" poster="animatic_v1_poster.jpg" src="animatic_v1.mp4" aria-label="GroSolar Switch Off animatic v1"></video>
+      <div class="anim-notes">
+        <p><b>For GroSolar sign-off.</b> Gemini stills with slow Ken Burns moves, code-built screens and supers, and the VO and dialogue as on-screen captions (no voice yet). Before/after pairs share framing and moves, so the payoffs match-cut.</p>
+        <p><b>Still placeholders:</b> #1, #2, #4, #17, #18 (approved, files not received). <b>Old versions in use:</b> #6, #20, #21 (fixes approved, files not received).</p>
+        <p><b>Open for GroSolar:</b> farm and factory scenes, the WhatsApp number (marked TO CONFIRM on the end card), the logo SVG, and real app screens for #18.</p>
+      </div>
+    </div>
   </section>
 
   <!-- ================= ACT 1 ================= -->
@@ -298,16 +319,16 @@ figcaption p { margin: 0; color: var(--muted); }
 
       <figure class="card">
         <div class="frame">
-          <img class="shot" src="previews/03-home-outage.jpg" alt="Mother holds a phone torch over her daughter's homework during a power cut">
-          <span class="lowres">Low-res preview</span>
+          <img class="shot" src="previews/gemini-03-home-before.jpg" alt="Mum holds a phone torch over her daughter's homework during a power cut, dead bulb above, oil lamp on the table">
+          <span class="lowres">Gemini · locked cast</span>
           <div class="shade-bot"></div>
           <div class="cap"><span class="who">Mum</span><span class="line">"Dem don take light again!"</span></div>
           <span class="dram">Dramatisation</span>
           <div class="safe"></div>
         </div>
         <figcaption>
-          <div class="beat"><b>#3 · 0:04–0:06</b> Home <span class="tag">AI draft</span></div>
-          <p>Phone torch as the only light. Pidgin lines appear as big captions with a yellow speaker tag, so the joke lands on mute.</p>
+          <div class="beat"><b>#3 · 0:04–0:06</b> Home <span class="tag gem">Gemini</span></div>
+          <p>Locked HOME FAMILY: phone torch as the only light, dead bulb, oil lamp. Matches #19 shot for shot, so the payoff is a clean match cut.</p>
         </figcaption>
       </figure>
 
@@ -364,6 +385,21 @@ figcaption p { margin: 0; color: var(--muted); }
 
       <figure class="card">
         <div class="frame">
+          <img class="shot" src="previews/gemini-09-too-cost-market.jpg" alt="Dad recoils from a blank price tag on a solar panel at a Lagos electrical market stall">
+          <span class="lowres">Gemini</span>
+          <div class="shade-bot"></div>
+          <div class="cap"><span class="who">Dad</span><span class="line">"Solar? E too cost."</span></div>
+          <span class="dram">Dramatisation</span>
+          <div class="safe"></div>
+        </div>
+        <figcaption>
+          <div class="beat"><b>#9 · 0:19–0:21</b> "E too cost" <span class="tag gem">Gemini</span></div>
+          <p>Brand names stripped from the stock. The tag stays blank; a code-built "₦ ???,???" stamp slams onto it, then tears off into the light of #10.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="card">
+        <div class="frame">
           <div class="lightbg"></div>
           <div class="switch sun" style="top: 36cqw"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"><path d="M12 3v8"/><path d="M6.3 6.8a8 8 0 1 0 11.4 0"/></svg></div>
           <div style="position:absolute; z-index:3; left:7cqw; right:7cqw; top:82cqw; display:grid; gap:3cqw; justify-items:center; text-align:center; color:var(--navy)">
@@ -391,7 +427,7 @@ figcaption p { margin: 0; color: var(--muted); }
                 <div class="opt">
                   <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#002554" stroke-width="2" stroke-linejoin="round"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/></svg></span>
                   <b>Home Owner</b><small>Studio · 2/3/4 Bed · Duplex</small>
-                  <div class="tiles"><span style="background-image:url(previews/03-home-outage.jpg)"></span></div>
+                  <div class="tiles"><span style="background-image:url(previews/gemini-03-home-before.jpg)"></span></div>
                 </div>
                 <div class="opt on">
                   <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#FF9733" stroke-width="2" stroke-linejoin="round"><path d="M3 20V9l6 3V9l6 3V5h6v15z"/></svg></span>
@@ -480,16 +516,16 @@ figcaption p { margin: 0; color: var(--muted); }
 
       <figure class="card">
         <div class="frame">
-          <img class="shot" src="previews/19-home-lit.jpg" alt="Same mother and daughter at home in warm steady light, the generator covered">
-          <span class="lowres">Low-res preview</span>
+          <img class="shot" src="previews/gemini-19-home-after.jpg" alt="Same room and angle as #3: bulb on, Mum smiling beside her daughter, solar panels through the window">
+          <span class="lowres">Gemini · edit of #3</span>
           <div class="shade-bot"></div>
           <div class="cap"><span class="who">Mum</span><span class="line">"Light dey!"</span></div>
           <span class="dram">Dramatisation</span>
           <div class="safe"></div>
         </div>
         <figcaption>
-          <div class="beat"><b>#19 · 0:44–0:46</b> Home, payoff <span class="tag">AI draft</span></div>
-          <p>Mirrors #3. In the final version the same family and room must match across both shots (one character reference for both).</p>
+          <div class="beat"><b>#19 · 0:44–0:46</b> Home, payoff <span class="tag gem">Gemini</span></div>
+          <p>Rendered as an edit of #3: same room, angle and wardrobe, bulb on, panels through the window.</p>
         </figcaption>
       </figure>
 

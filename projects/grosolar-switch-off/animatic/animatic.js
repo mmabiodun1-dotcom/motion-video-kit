@@ -73,12 +73,17 @@
   }
 
   // Projective transform that maps a w x h box onto a quad [TL, TR, BR, BL] (CSS matrix3d, origin 0 0).
-  function quadMatrix(w, hgt, q) {
+  function homog(q) {  // unit square -> quad
     const [[x0, y0], [x1, y1], [x2, y2], [x3, y3]] = q;
     const dx1 = x1 - x2, dx2 = x3 - x2, dx3 = x0 - x1 + x2 - x3, dy1 = y1 - y2, dy2 = y3 - y2, dy3 = y0 - y1 + y2 - y3;
     const den = dx1 * dy2 - dx2 * dy1;
     const g = (dx3 * dy2 - dx2 * dy3) / den, hh = (dx1 * dy3 - dx3 * dy1) / den;
-    const a = x1 - x0 + g * x1, b = x3 - x0 + hh * x3, c = x0, d = y1 - y0 + g * y1, e = y3 - y0 + hh * y3, f = y0;
+    return { a: x1 - x0 + g * x1, b: x3 - x0 + hh * x3, c: x0, d: y1 - y0 + g * y1, e: y3 - y0 + hh * y3, f: y0, g, hh };
+  }
+  // Map a point (u, v) of a w x h box placed on quad q to stage px.
+  function mapQuad(q, w, hgt, u, v) { const { a, b, c, d, e, f, g, hh } = homog(q), U = u / w, V = v / hgt, z = g * U + hh * V + 1; return [(a * U + b * V + c) / z, (d * U + e * V + f) / z]; }
+  function quadMatrix(w, hgt, q) {
+    const { a, b, c, d, e, f, g, hh } = homog(q);
     return `matrix3d(${[a / w, d / w, 0, g / w, b / hgt, e / hgt, 0, hh / hgt, 0, 0, 1, 0, c, f, 0, 1].map(v => +v.toFixed(8)).join(',')})`;
   }
   // A code-built app screen pinned onto a blank phone in a photo. quad is in source-image pixels.
@@ -204,7 +209,7 @@
     const copy = h('div', 'offer-copy');
     const logo = h('div', '', LOGO('Logo placeholder')); const l1 = h('div', 'l1', 'No Large Upfront Costs.'); const l2 = h('div', 'l2 grad-text', 'Predictable Monthly Cost.');
     copy.append(logo, l1, l2); copy.style.top = '840px'; layer.appendChild(copy);
-    const vo = addOverlays(layer, { vo: s.vo, voAt: 0.9 });
+    const vo = addOverlays(layer, { vo: s.vo, voAt: s.voAt ?? 0.2 });
     layer.querySelector('.shade-bot')?.remove();
     return {
       s, el: layer, win: [s.t0 - (s.xin || 0), s.t1], fadeIn: s.xin || 0,
@@ -221,10 +226,35 @@
   function buildPhone(shots) {
     const t0 = shots[0].t0, t1 = shots[shots.length - 1].t1, XIN = 0.35;
     const layer = h('div', 'layer');
-    if (available.has(TL.phonePlate)) { const p = h('div', 'plate'); const img = h('img'); img.src = `frames/${TL.phonePlate}.jpg`; img.alt = 'Lagos street'; p.appendChild(img); layer.appendChild(p); }
-    else layer.appendChild(h('div', 'street'));
-    const phone = h('div', 'phone'); const screen = h('div', 'screen'); phone.appendChild(screen); layer.appendChild(phone);
+    // Photo mode: the #11b hand-and-phone still, pushed in on the phone, with the screens corner-pinned into its
+    // blank grey screen (corners from screen_quad.py) and the thumb matted back on top.
+    // Fallback: a code-built phone on the #11a plate (or a gradient street).
+    const PQ = (window.SCREEN_QUADS || {})[TL.phoneShot];
+    const PHOTO = !!(PQ && available.has(TL.phoneShot));
+    const SW = 716; let SH = 1136, srcQuad, C = [540, 920], media = null, matte = null;
+    const dist = (p, r) => Math.hypot(p[0] - r[0], p[1] - r[1]);
+    if (PHOTO) {
+      const [iw, ih] = PQ.size, k = Math.max(1080 / iw, 1920 / ih), ox = (1080 - iw * k) / 2, oy = (1920 - ih * k) / 2;
+      srcQuad = PQ.quad.map(([x, y]) => [x * k + ox, y * k + oy]);
+      const [a, b, c, d] = srcQuad;
+      SH = Math.round(SW * ((dist(a, d) + dist(b, c)) / 2) / ((dist(a, b) + dist(d, c)) / 2));
+      C = [srcQuad.reduce((m, p) => m + p[0], 0) / 4, srcQuad.reduce((m, p) => m + p[1], 0) / 4];
+      media = h('div', 'media', `<img src="frames/${TL.phoneShot}.jpg" alt="A hand holds a phone up on a sunny Lagos street">`);
+      media.style.transformOrigin = `${C[0]}px ${C[1]}px`; layer.appendChild(media);
+      const wash = h('div'); wash.style.cssText = 'position:absolute;inset:0 0 auto 0;height:440px;background:linear-gradient(to bottom, rgba(245,249,255,.88), rgba(245,249,255,0))'; layer.appendChild(wash);
+    } else {
+      if (available.has(TL.phonePlate)) { const p = h('div', 'plate'); const img = h('img'); img.src = `frames/${TL.phonePlate}.jpg`; img.alt = 'Lagos street'; p.appendChild(img); layer.appendChild(p); }
+      else layer.appendChild(h('div', 'street'));
+      layer.appendChild(h('div', 'phone'));
+      srcQuad = [[182, 352], [898, 352], [898, 1488], [182, 1488]];
+    }
+    const screen = h('div', 'screen'); screen.style.cssText = `position:absolute;left:0;top:0;width:${SW}px;height:${SH}px;transform-origin:0 0;border-radius:${PHOTO ? 64 : 72}px`;
+    layer.appendChild(screen);
+    if (PHOTO && PQ.matte) { matte = h('div', 'media', `<img src="frames/${TL.phoneShot}.matte.png" alt="">`); matte.style.transformOrigin = media.style.transformOrigin; layer.appendChild(matte); }
     screen.appendChild(h('div', 'urlbar', 'grosolar.co'));
+    const PUSH = TL.phonePush || 1.6, CY = TL.phoneCenterY || 918;
+    const pushAt = t => PHOTO ? { s: PUSH * lerp(1, 1.04, seg(t, t0, t1)), D: [540 - C[0], CY - C[1]] } : { s: 1, D: [0, 0] };
+    const quadAt = t => { const { s, D } = pushAt(t); return srcQuad.map(([x, y]) => [C[0] + D[0] + s * (x - C[0]), C[1] + D[1] + s * (y - C[1])]); };
     const tileImg = id => available.has(id) ? `background-image:url(frames/${id}.jpg)` : 'background:#6B7C93';
     const ICON = {
       home: '<svg viewBox="0 0 24 24" fill="none" stroke="#002554" stroke-width="2" stroke-linejoin="round"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/></svg>',
@@ -273,35 +303,41 @@
     const q = (scr, k) => S[scr].querySelector(`[data-k="${k}"]`);
     const order = ['landing', 'info', 'property', 'energy', 'provider', 'proposal'];
     const starts = shots.map(x => x.t0);
-    const tap = h('div', 'tap'); tap.style.opacity = 0; layer.appendChild(tap);
-    const pill = h('div'); pill.style.cssText = 'position:absolute;background:linear-gradient(135deg,#FCD733,#FF9633);border-radius:99px;opacity:0'; layer.appendChild(pill);
+    const tap = h('div', 'tap'); tap.style.opacity = 0; tap.style.zIndex = 5; screen.appendChild(tap);
+    const pill = h('div'); pill.style.cssText = 'position:absolute;z-index:4;background:linear-gradient(135deg,#FCD733,#FF9633);border-radius:99px;opacity:0'; screen.appendChild(pill);
     const receipt = h('div', 'receipt', '<div class="crease"></div><div class="h">FUEL</div><i></i><i style="width:70%"></i><i></i><i style="width:55%"></i><div class="tot"><span>TOTAL</span><span>₦ 000,000</span></div>');
     receipt.style.opacity = 0; layer.appendChild(receipt);
 
     // Top-slot overlays (super or VO) per shot
     const tops = shots.map(s => {
-      let el = null;
-      if (s.sup) { el = h('p', 'super on-light', s.sup); el.style.cssText = 'top:110px;font-size:76px'; }
-      else if (s.vo) el = h('div', 'vo top', `<b>VO</b><span>${s.vo}</span>`);
-      if (el) { el.style.opacity = 0; layer.appendChild(el); }
-      return el;
+      const els = [];
+      if (s.vo) els.push([h('div', 'vo top', `<b>VO</b><span>${s.vo}</span>`), s.voAt ?? 0.2]);
+      if (s.sup) { const p = h('p', 'super on-light', s.sup); p.style.cssText = s.vo ? 'top:250px;font-size:48px' : 'top:110px;font-size:76px'; els.push([p, s.supAt ?? 0.3]); }
+      els.forEach(([el]) => { el.style.opacity = 0; layer.appendChild(el); });
+      return els;
     });
 
     // Positions inside the stage (unscaled px), measured once after layout.
     let G = null;
-    const rectIn = el => { const r = el.getBoundingClientRect(), sr = stage.getBoundingClientRect(), k = 1080 / sr.width; return { x: (r.left - sr.left) * k, y: (r.top - sr.top) * k, w: r.width * k, h: r.height * k }; };
+    const rectIn = el => { const r = el.getBoundingClientRect(), sr = screen.getBoundingClientRect(), k = SW / sr.width; return { x: (r.left - sr.left) * k, y: (r.top - sr.top) * k, w: r.width * k, h: r.height * k }; };
     const measure = () => {
       const save = order.map(k => S[k].style.transform); order.forEach(k => { S[k].style.transform = 'none'; });
-      const savePhone = phone.style.transform; phone.style.transform = 'none';
+      const saveScreen = screen.style.transform; screen.style.transform = 'none';
       G = {};
       order.forEach(k => { const b = q(k, 'btn'); if (b) G['btn_' + k] = rectIn(b); });
       G.fuel = rectIn(q('energy', 'fuel'));
       G.provB = rectIn(q('provider', 'provs').children[1]);
       G.home = rectIn(q('property', 'home'));
       order.forEach((k, i) => { S[k].style.transform = save[i]; });
-      phone.style.transform = savePhone;
+      screen.style.transform = saveScreen;
     };
-    window.__phoneGeom = () => { if (!G) measure(); return G; };
+    // Where the landing button sits on stage when the switch lands on it (t = start of #11).
+    window.__phoneBtn = () => {
+      if (!G) measure();
+      const r = G.btn_landing, q = quadAt(t0), cx = r.x + r.w / 2;
+      const c = mapQuad(q, SW, SH, cx, r.y + r.h / 2), top = mapQuad(q, SW, SH, cx, r.y), bot = mapQuad(q, SW, SH, cx, r.y + r.h);
+      return { x: c[0], y: c[1], h: bot[1] - top[1] };
+    };
 
     const tapAt = (lt, at, r) => { const p = seg(lt, at, at + 0.4); if (p > 0 && p < 1) { tap.style.left = (r.x + r.w / 2) + 'px'; tap.style.top = (r.y + r.h / 2) + 'px'; tap.style.opacity = (0.9 * (1 - p)).toFixed(3); tap.style.transform = `scale(${lerp(0.6, 1.3, E.out(p)).toFixed(3)})`; return true; } return false; };
     const typeIn = (el, text, t, a, b) => { const n = Math.round(text.length * seg(t, a, b)); el.innerHTML = text.slice(0, n) + (t >= a - 0.2 && t < b + 0.4 ? '<span class="caret"></span>' : ''); };
@@ -310,9 +346,12 @@
       s: shots[0], el: layer, win: [t0 - XIN, t1], fadeIn: XIN, multi: shots,
       update(t) {
         if (!G) measure();
-        // phone rises in
-        const rise = E.out(seg(t, t0 - XIN, t0 + 0.15)), drift = seg(t, t0, t1);
-        phone.style.transform = `translateY(${((1 - rise) * 90 - 18 * drift).toFixed(1)}px) scale(${lerp(1, 1.035, drift).toFixed(4)}) rotate(${(0.6 * Math.sin(drift * Math.PI * 2)).toFixed(3)}deg)`;
+        // push-in on the phone (slow drift over the whole sequence) and the screen pinned into it
+        const { s: sc, D } = pushAt(t), tf = `translate(${D[0].toFixed(2)}px, ${D[1].toFixed(2)}px) scale(${sc.toFixed(5)})`;
+        if (media) media.style.transform = tf;
+        if (matte) matte.style.transform = tf;
+        const Q = quadAt(t);
+        screen.style.transform = quadMatrix(SW, SH, Q);
         // which screen; slide transitions of 0.3s
         let idx = 0; starts.forEach((st, i) => { if (t >= st) idx = i; });
         order.forEach((k, i) => {
@@ -323,7 +362,7 @@
           S[k].style.visibility = (i === idx || i === idx - 1) ? 'visible' : 'hidden';
         });
         // top-slot overlays
-        shots.forEach((s, i) => { const el = tops[i]; if (!el) return; const lt = t - s.t0; showIn(el, lt, s.supAt ?? s.voAt ?? 0.2, s.t1 - s.t0, 20); if (t < s.t0 || t >= s.t1) el.style.opacity = 0; });
+        shots.forEach((s, i) => tops[i].forEach(([el, at]) => { const lt = t - s.t0; showIn(el, lt, at, s.t1 - s.t0, 20); if (t < s.t0 || t >= s.t1) el.style.opacity = 0; }));
 
         let tapped = false;
         // #11 landing: the switch lands as the button (pill grows from a circle)
@@ -350,7 +389,7 @@
         [...q('property', 'pills').children].forEach((p, i) => p.classList.toggle('on', i === pi));
         tapped = tapAt(t, 30.15, G.btn_property) || tapped;
         // #14 energy: the receipt flies in and folds into the fuel field
-        const f = G.fuel, fx = f.x + f.w / 2, fy = f.y + f.h / 2;
+        const f = G.fuel, [fx, fy] = mapQuad(Q, SW, SH, f.x + f.w / 2, f.y + f.h / 2);
         const fly = E.inOut(seg(t, 30.6, 31.2)), fold = E.in(seg(t, 31.2, 31.55));
         receipt.style.left = (fx - 165) + 'px'; receipt.style.top = (fy - 200) + 'px';
         receipt.style.opacity = (seg(t, 30.6, 30.7) * (1 - seg(t, 31.45, 31.55))).toFixed(3);
@@ -385,9 +424,11 @@
     const logo = h('div', '', LOGO('Logo placeholder · inverted SVG')); logo.firstChild.style.color = '#fff';
     const h3 = h('h3', '', 'Switch off the gen.<br><span class="grad-text">Switch on GroSolar.</span>');
     const sub = h('div', 'sub', 'No Large Upfront Costs.<br>Predictable Monthly Cost.');
-    const cta = h('div', 'cta', `<div class="btn">Get started at grosolar.co</div><small>WhatsApp ${TL.whatsapp}</small>`);
+    const conf = TL.whatsappConfirmed ? '' : ' <span style="font-size:22px;font-weight:700;letter-spacing:2px;background:#C8321E;color:#fff;padding:6px 10px;border-radius:8px;vertical-align:middle">TO CONFIRM</span>';
+    const cta = h('div', 'cta', `<div class="btn">Get started at grosolar.co</div><small>WhatsApp ${TL.whatsapp}${conf}</small>`);
     end.append(logo, h3, sub, cta); layer.appendChild(end);
     const fine = h('div', 'fine', 'Dramatisation · AI-generated imagery'); layer.appendChild(fine);
+    const vo = h('div', 'vo top', `<b>VO</b><span>${TL.endVo.text}</span>`); vo.style.opacity = 0; layer.appendChild(vo);
     return {
       s, el: layer, win: [s.t0 - 0.3, s.t1 + 1], fadeIn: 0.3,
       update(t) {
@@ -395,6 +436,7 @@
         end.style.transform = `scale(${lerp(1, 1.03, seg(lt, 0, dur)).toFixed(4)})`;
         [[logo, 0.3], [h3, 0.5], [sub, 0.8], [cta, 1.0]].forEach(([el, at]) => showIn(el, lt, at, dur + 2, 40));
         fine.style.opacity = seg(lt, 1.2, 1.5).toFixed(3);
+        showIn(vo, t - TL.endVo.at, 0, s.t1 - TL.endVo.at + 1, 20);
       }
     };
   }
@@ -411,11 +453,10 @@
     // Switch: offer (21.5-24.0) and sprout/end (54.2-60)
     let vis = 0, x = 540, y = 620, sc = 1, glyph = 1;
     if (t >= 21.5 && t < 24.0) {
-      const G = window.__phoneGeom ? window.__phoneGeom() : null;
-      const by = G ? G.btn_landing.y + G.btn_landing.h / 2 : 1380, bh = G ? G.btn_landing.h : 110;
+      const B = window.__phoneBtn ? window.__phoneBtn() : { x: 540, y: 1380, h: 110 };
       const m = E.inOut(seg(t, 23.6, 24.0));
-      vis = 1; sc = E.back(seg(t, 21.5, 22.0)) * lerp(1, bh / 300, m) * (1 + 0.03 * Math.sin((t - 21.5) * 4) * (1 - m));
-      y = lerp(620, by, m); glyph = 1 - m;
+      vis = 1; sc = E.back(seg(t, 21.5, 22.0)) * lerp(1, B.h / 300, m) * (1 + 0.03 * Math.sin((t - 21.5) * 4) * (1 - m));
+      x = lerp(540, B.x, m); y = lerp(620, B.y, m); glyph = 1 - m;
     } else if (t >= 54.2) {
       vis = 1; x = 540; y = 560; sc = E.back(seg(t, 54.2, 54.7));
       glyph = seg(t, 55.2, 55.6);
@@ -467,6 +508,7 @@
     const ids = new Set();
     TL.shots.forEach(s => { if (s.id) ids.add(s.id); (s.tiles || []).forEach(x => ids.add(x)); });
     if (TL.phonePlate) ids.add(TL.phonePlate);
+    if (TL.phoneShot) ids.add(TL.phoneShot);
     return Promise.all([...ids].map(id => new Promise(res => {
       const img = new Image();
       img.onload = () => { (img.decode ? img.decode() : Promise.resolve()).catch(() => {}).then(() => { available.add(id); res(); }); };
@@ -489,7 +531,7 @@
       if (s.cap) out.push({ start: s.t0 + (s.capAt ?? 0.25), end: s.t1, text: `${s.cap.who.toUpperCase()}: ${s.cap.line.replace(/"/g, '')}` });
       if (s.vo) out.push({ start: s.t0 + (s.voAt ?? 0.2), end: s.t1, text: `VO: ${s.vo}` });
     });
-    out.push({ start: 57.0, end: 60.0, text: 'VO: GroSolar. Switch off the gen.' });
+    out.push({ start: TL.endVo.at, end: TL.duration, text: `VO: ${TL.endVo.text}` });
     return out.sort((a, b) => a.start - b.start);
   };
 

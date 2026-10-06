@@ -99,10 +99,10 @@ body.showsafe #safe { display: block; }
 .haze { position: absolute; inset: 0; background: radial-gradient(1200px 900px at 50% 100%, rgba(180,160,140,.35), transparent 70%); mix-blend-mode: screen; }
 
 /* Price tag */
-.tag { position: absolute; left: 330px; top: 520px; width: 440px; height: 250px; transform-origin: 30px 125px; }
-.tag .body { position: absolute; inset: 0; background: #FFFDF5; border-radius: 26px 26px 26px 26px; clip-path: polygon(70px 0, 100% 0, 100% 100%, 70px 100%, 0 50%); box-shadow: 0 30px 60px rgba(0,0,0,.45); display: grid; place-items: center; padding-left: 60px; }
-.tag .body span { font-weight: 800; font-size: 76px; color: var(--navy); letter-spacing: -1px; }
-.tag .hole { position: absolute; left: 48px; top: 110px; width: 30px; height: 30px; border-radius: 50%; background: #2a2a2a; }
+.tag { position: absolute; left: 110px; top: 770px; width: 340px; height: 190px; transform-origin: 24px 95px; }
+.tag .body { position: absolute; inset: 0; background: #FFFDF5; border-radius: 26px 26px 26px 26px; clip-path: polygon(56px 0, 100% 0, 100% 100%, 56px 100%, 0 50%); box-shadow: 0 30px 60px rgba(0,0,0,.45); display: grid; place-items: center; padding-left: 60px; }
+.tag .body span { font-weight: 800; font-size: 58px; color: var(--navy); letter-spacing: -1px; }
+.tag .hole { position: absolute; left: 36px; top: 80px; width: 30px; height: 30px; border-radius: 50%; background: #2a2a2a; }
 .flash { position: absolute; inset: 0; background: radial-gradient(900px 900px at 50% 40%, #FFF6D0, #FCD733 60%, #FF9733); }
 
 /* Light brand world */
@@ -202,6 +202,7 @@ body.render #controls { display: none; }
   <div class="row" id="chips"></div>
 </div>
 <script src="timeline.js"></script>
+<script src="frames/quads.js"></script>
 <script src="animatic.js"></script>
 </body>
 </html>
