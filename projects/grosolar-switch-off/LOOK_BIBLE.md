@@ -52,6 +52,6 @@ e. Finals must be Gemini's "Download full size" files, not screen captures. The 
 |---|---|---|---|
 | **1 · LOCK** | Look bible and prompt library | Claude | Now |
 | **2 · KEYFRAMES** | Render every still in Gemini, download full size | Client team | All shots in `PROMPTS.md` done |
-| **3 · ANIMATIC** | 60 s vertical animatic cut from the stills: supers, temp VO timing, end card | Claude | **GroSolar sign-off.** Sign-off also confirms or kills the farm and factory scenes |
+| **3 · ANIMATIC** | 60 s vertical animatic cut from the stills: supers, temp VO timing, end card. Built in `animatic/` (frames drop in via `animatic/ingest.sh`) | Claude | **GroSolar sign-off.** Sign-off also confirms or kills the farm and factory scenes |
 | **4 · MOTION** | Gemini Veo image-to-video, before/after pairs as start/end frames. Priority: the generator hook, then the 4 befores, then the 4 afters. Video credits are daily and limited, so **no exploratory renders** | Client team renders, Claude logs and edits | Only after Stage 3 sign-off |
 | **5 · FINISH** | VO (English/Pidgin), music, 30 s and 15 s cut-downs | Claude | Final GroSolar approval |

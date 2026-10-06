@@ -45,7 +45,12 @@ Bar heights were measured per row (mean luma < 12) and cropped with a 2 px safet
 
 ## From Stage 2 on
 
-All new renders follow `LOOK_BIBLE.md` and use the numbered prompts in `PROMPTS.md`. Log each one here as it arrives:
+All new renders follow `LOOK_BIBLE.md` and use the numbered prompts in `PROMPTS.md`. Until sign-off these are Gemini's on-screen 572×1024 captures (animatic only); full-size downloads replace them at sign-off. Each one goes through `animatic/ingest.sh` and is logged here:
 
 | Shot | Prompt | Chat | Full-size file | Size | Status |
 |---|---|---|---|---|---|
+| #1 generator hook | PROMPTS #1 (edit of #4) | A · Compound | `01_generator_hook.png` | 572×1024 capture | **Approved** 2026-10-06. The panel's printed "ON" label is diegetic; keep it. No bars. **File not received yet: resend** |
+| #2 switch off | PROMPTS #2 (edit of #1) | A · Compound | `02_switch_off.png` | 572×1024 capture | **Approved.** "OFF" label, Dad's checked cuff, matches #1. **File not received yet: resend** |
+| #4 compound, before | PROMPTS #4 (fresh) | A · Compound | `04_compound_before.png` | 572×1024 capture | **Approved.** No bars. **File not received yet: resend** |
+| #17 installation | PROMPTS #17 (edit of #4) | A · Compound | `17_installation.png` | 572×1024 capture | **Approved.** Same angle as #4, generator covered; an empty jerrycan is still by the wall (accepted). **File not received yet: resend** |
+| #18 activation | PROMPTS #18 (edit of #17) | A · Compound | `18_activation.png` | 572×1024 capture | **Approved.** Phone screen blank grey, ready for the UI comp (`screenPin` in `animatic/timeline.js`; corners to be measured on the file). **File not received yet: resend** |
