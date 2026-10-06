@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Find the blank grey phone screen in a still and write what the animatic needs to pin a code-built screen onto it.
 
-Usage: python3 screen_quad.py <shot id>      e.g.  python3 screen_quad.py 11b
+Usage: python3 screen_quad.py <shot id> [--box x0,y0,x1,y1]   e.g.  python3 screen_quad.py 18 --box 260,450,360,600
+       --box limits the search to a region (source px) when other flat grey areas, like sky, are larger than the screen.
 Reads frames/<id>.jpg. Writes:
   frames/<id>.matte.png  the photo's pixels that sit in front of the screen (a thumb, fingers), transparent elsewhere
   frames/quads.js        window.SCREEN_QUADS[<id>] = corners [TL, TR, BR, BL] in source pixels
@@ -11,6 +12,7 @@ import json, os, re, subprocess, sys
 from collections import deque
 
 sid = sys.argv[1]
+box = [int(v) for v in sys.argv[sys.argv.index('--box') + 1].split(',')] if '--box' in sys.argv else None
 here = os.path.dirname(os.path.abspath(__file__))
 src = os.path.join(here, 'frames', f'{sid}.jpg')
 w, h = map(int, subprocess.check_output(['ffprobe', '-v', 'error', '-show_entries', 'stream=width,height', '-of', 'csv=p=0:s=x', src]).decode().strip().split('x'))
@@ -19,8 +21,9 @@ px = lambda x, y: rgb[(y * w + x) * 3:(y * w + x) * 3 + 3]
 
 # 1. Flat neutral grey: low saturation, mid luma, almost no local gradient.
 grey = bytearray(w * h)
-for y in range(h - 1):
-    for x in range(w - 1):
+bx0, by0, bx1, by1 = box if box else (0, 0, w - 1, h - 1)
+for y in range(max(0, by0), min(h - 1, by1)):
+    for x in range(max(0, bx0), min(w - 1, bx1)):
         r, g, b = px(x, y)
         if abs(r - g) < 12 and abs(g - b) < 12 and abs(r - b) < 14 and 85 < g < 220:
             r2, g2, b2 = px(x + 1, y); r3, g3, b3 = px(x, y + 1)
@@ -38,7 +41,7 @@ for start in range(w * h):
                 if 0 <= j < w * h and grey[j] and not seen[j]:
                     seen[j] = 1; dq.append(j)
         if len(comp) > len(best): best = comp
-if len(best) < 2000: sys.exit(f'No screen-sized grey region found in {src}')
+if len(best) < (800 if box else 2000): sys.exit(f'No screen-sized grey region found in {src}')
 mask = bytearray(w * h)
 for i in best: mask[i] = 1
 xs = [i % w for i in best]; ys = [i // w for i in best]
@@ -124,6 +127,7 @@ if os.path.exists(qfile):
     m = re.search(r'=\s*(\{.*\});', open(qfile).read(), re.S)
     if m: data = json.loads(m.group(1))
 data[sid] = {'quad': quad, 'size': [w, h], 'matte': bool(sum(grow))}
+if box: data[sid]['box'] = box
 open(qfile, 'w').write('// Written by screen_quad.py: blank phone screens found in stills (corners TL, TR, BR, BL in source px).\nwindow.SCREEN_QUADS = ' + json.dumps(data, indent=1) + ';\n')
 area = sum(grow)
 print(f'#{sid}: screen {len(best)} px, quad {quad}, occluder {area} px -> {out}')

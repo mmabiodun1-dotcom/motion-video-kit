@@ -89,15 +89,17 @@
   // A code-built app screen pinned onto a blank phone in a photo. quad is in source-image pixels.
   function addScreenPin(media, s) {
     const img = media.querySelector('img'); if (!img || !s.screenPin) return;
+    const found = (window.SCREEN_QUADS || {})[s.id];   // measured by screen_quad.py; falls back to the timeline's estimate
     const iw = img.naturalWidth, ih = img.naturalHeight, k = Math.max(1080 / iw, 1920 / ih), ox = (1080 - iw * k) / 2, oy = (1920 - ih * k) / 2;
-    const q = s.screenPin.quad.map(([x, y]) => [x * k + ox, y * k + oy]);
-    const W = 360, H = 760;
+    const q = (found ? found.quad : s.screenPin.quad).map(([x, y]) => [x * k + ox, y * k + oy]);
+    const W = 360, H = Math.round(W * (Math.hypot(q[3][0] - q[0][0], q[3][1] - q[0][1]) / Math.hypot(q[1][0] - q[0][0], q[1][1] - q[0][1])));
     const scr = h('div', '', `<div style="display:grid;gap:26px;justify-items:center;align-content:center;height:100%;padding:40px;text-align:center;color:#002554;font-family:var(--font)">
       <div style="width:120px;height:120px;border-radius:32px;background:linear-gradient(135deg,#FCD733,#FF9633)"></div>
       <div style="font-weight:800;font-size:46px;line-height:1">GroSolar NG</div>
       <div style="font-weight:600;font-size:24px;color:#7489A5;line-height:1.3">${s.screenPin.label || 'App screen from GroSolar to come'}</div></div>`);
     scr.style.cssText = `position:absolute;left:0;top:0;width:${W}px;height:${H}px;background:#F5F9FF;transform-origin:0 0;transform:${quadMatrix(W, H, q)};box-shadow:0 0 0 2px rgba(0,0,0,.25) inset`;
     media.appendChild(scr);
+    if (found && found.matte) { const m = h('img'); m.src = `frames/${s.id}.matte.png`; m.alt = ''; m.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover'; media.appendChild(m); }
   }
 
   // ---------- scene builders ----------

@@ -49,11 +49,11 @@ All new renders follow `LOOK_BIBLE.md` and use the numbered prompts in `PROMPTS.
 
 | Shot | Prompt | Chat | Full-size file | Size | Status |
 |---|---|---|---|---|---|
-| #1 generator hook | PROMPTS #1 (edit of #4) | A · Compound | `01_generator_hook.png` | 572×1024 capture | **Approved** 2026-10-06. The panel's printed "ON" label is diegetic; keep it. No bars. **File not received yet: resend** |
-| #2 switch off | PROMPTS #2 (edit of #1) | A · Compound | `02_switch_off.png` | 572×1024 capture | **Approved.** "OFF" label, Dad's checked cuff, matches #1. **File not received yet: resend** |
-| #4 compound, before | PROMPTS #4 (fresh) | A · Compound | `04_compound_before.png` | 572×1024 capture | **Approved.** No bars. **File not received yet: resend** |
-| #17 installation | PROMPTS #17 (edit of #4) | A · Compound | `17_installation.png` | 572×1024 capture | **Approved.** Same angle as #4, generator covered; an empty jerrycan is still by the wall (accepted). **File not received yet: resend** |
-| #18 activation | PROMPTS #18 (edit of #17) | A · Compound | `18_activation.png` | 572×1024 capture | **Approved.** Phone screen blank grey, ready for the UI comp (`screenPin` in `animatic/timeline.js`; corners to be measured on the file). **File not received yet: resend** |
+| #1 generator hook | PROMPTS #1 (edit of #4) | A · Compound | `01_generator_hook.png` | 572×1024 capture | **Approved** 2026-10-06. The panel's printed "ON" label is diegetic; keep it. No bars. **Received 2026-10-06 (resent), ingested.** |
+| #2 switch off | PROMPTS #2 (edit of #1) | A · Compound | `02_switch_off.png` | 572×1024 capture | **Approved.** "OFF" label, Dad's checked cuff, matches #1. **Received 2026-10-06 (resent), ingested.** |
+| #4 compound, before | PROMPTS #4 (fresh) | A · Compound | `04_compound_before.png` | 572×1024 capture | **Approved.** No bars. **Received 2026-10-06 (resent), ingested.** |
+| #17 installation | PROMPTS #17 (edit of #4) | A · Compound | `17_installation.png` | 572×1024 capture | **Approved.** Same angle as #4, generator covered; an empty jerrycan is still by the wall (accepted). **Received 2026-10-06 (resent), ingested.** |
+| #18 activation | PROMPTS #18 (edit of #17) | A · Compound | `18_activation.png` | 572×1024 capture | **Approved.** Phone screen blank grey, ready for the UI comp (`screenPin` in `animatic/timeline.js`; corners measured with `screen_quad.py 18 --box 260,450,360,600`). **Received 2026-10-06 (resent), ingested.** |
 | #3 home, before | PROMPTS #3 (fresh) | B · Home | `frames/gemini/03_home_before.png` | 572×1024 capture | **Approved.** Mum, Daughter, phone torch, dead bulb, oil lamp on the table. In the animatic |
 | #19 home, after | PROMPTS #19 (edit of #3) | B · Home | `frames/gemini/19_home_after.png` (from .webp, lossless PNG) | 572×1024 capture | **Approved.** Same room and angle, bulb on, panels through the window: a clean match cut with #3. In the animatic |
 | #9 "Solar? E too cost." | PROMPTS #9 (fresh) | C · Market | `frames/gemini/09_too_cost_market.png` (from .webp) | 572×1024 capture | **Approved.** Real brand names stripped off boxes and batteries in Gemini; tag blank for the code-built "₦ ???,???" stamp. In the animatic |

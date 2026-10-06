@@ -41,8 +41,8 @@ window.TIMELINE = {
       push: [1.06, 1.0, 30, -30, 0, 0], sup: "Installed by GroSolar's partner solar providers", supAt: 0.3, dram: true },
     { n: '18', id: '18', t0: 41.5, t1: 44.0, kind: 'photo', mood: 'after', title: 'Activation', prompt: 'Chat A · #18 (edit of #17)',
       push: [1.05, 1.0, 0, 0, 0, 0], vo: 'Your plan, inside the GroSolar app.', dram: true,
-      // Blank grey phone screen in the photo, corners in source pixels (TL, TR, BR, BL). Estimated from the chat preview; re-measure on the real file.
-      screenPin: { quad: [[289, 486], [331, 485], [330, 577], [287, 575]], label: 'App screen from GroSolar to come' } },
+      // Blank grey phone screen: corners measured by `python3 screen_quad.py 18 --box 260,450,360,600` (frames/quads.js).
+      screenPin: { quad: [[289.6, 485], [327, 485], [327, 573], [287, 573]], label: 'App screen from GroSolar to come' } },
     { n: '19', id: '19', t0: 44.0, t1: 46.5, kind: 'photo', mood: 'after', title: 'Home, payoff', prompt: 'Chat B · #19 (edit of #3)',
       push: [1.0, 1.06, 0, 0, 0, -20], cap: { who: 'Mum', line: '"Light dey!"' }, dram: true },
     { n: '20', id: '20', t0: 46.5, t1: 48.5, kind: 'photo', mood: 'after', title: 'Barbershop, payoff', prompt: 'Chat E · #20 fix',
@@ -57,7 +57,7 @@ window.TIMELINE = {
   // #11-16: the #11b hand-and-phone still, pushed in phonePush x and centred at phoneCenterY, screens pinned into its grey screen.
   // Falls back to a code-built phone on the #11a plate when 11b (or its quad from screen_quad.py) is missing.
   phoneShot: '11b',
-  phonePush: 1.6,
+  phonePush: 1.9,
   phoneCenterY: 960,
   phonePlate: '11a',
   whatsapp: '+234 705 370 0000',
