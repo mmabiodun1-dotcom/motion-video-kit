@@ -23,7 +23,7 @@ A **round on/off switch**. It starts on the generator, becomes the **Get started
 | 4 | 6.5–9.0 | The compound: dad tugging the generator's pull-cord, fumes, the neighbour's gen roaring next door. | Line (dad): **"Who go buy fuel today?"** | Pain: fuel, noise | Hard cut on the cord pull |
 | 5 | 9.0–11.5 | A barbershop: clippers die halfway through a cut. The customer looks at the mirror. | Line (barber): **"Abeg, on the gen!"** | Pain #2: small business | Hard cut on the clipper silence |
 | 6 | 11.5–14.0 | A poultry farm / irrigation pump. A farmer lines up jerrycans in the sun. **[TBC: farms served]** Fallback: a pharmacy keeping its medicine fridge on a gen. | Super: **Diesel today. Diesel tomorrow.** | Pain #3: farms (or a second small business) | Push in on a jerrycan |
-| 7 | 14.0–16.5 | A factory yard: a diesel tanker refilling a big genset; a manager signs a fuel invoice. **[TBC: C&I served]** Fallback: an office or bakery with a big diesel gen. | — | Pain #4: commercial & industrial (or a larger business) | Frame splits into four |
+| 7 | 14.0–16.5 | A factory yard: a worker in a face mask refuels a smoking genset enclosure from a diesel tanker; a worried manager checks a tablet. **[TBC: C&I served]** Fallback: an office or bakery with a big diesel gen. | — | Pain #4: commercial & industrial (or a larger business) | Frame splits into four |
 | 8 | 16.5–19.0 | The four worlds as a 2×2 grid, all generators running, haze everywhere. The grid collapses into one crumpled **fuel receipt**. | VO: **"Everybody dey run gen."** | Wall → one actor: everyone shares this problem | Receipt is flicked off frame |
 
 ## Act 2 · The turn (19–24 s)
@@ -56,8 +56,8 @@ Same four worlds and framing as Act 1, now in daylight or warm light. Echoing th
 |---|---|---|---|---|---|
 | 19 | 44.0–46.5 | Home at night: lights on, the child writing, the generator under a cloth cover, quiet. | Line (mum): **"Light dey!"** | Payoff: home | Whip pan right (mirrors #3) |
 | 20 | 46.5–48.5 | The barber finishes the cut and spins the chair to the mirror; clippers humming. | Line (customer): **"Correct!"** | Payoff: small business | Hard cut |
-| 21 | 48.5–51.0 | The farm: panels in the field, pump running, water flowing. **[TBC]** (or the fallback from #6, fridge humming) | — | Payoff: farm | Drone rise |
-| 22 | 51.0–53.0 | A factory roof: an aerial of the array over a working site. **[TBC]** (or the fallback from #7) | — | Payoff: C&I | Frame splits into four |
+| 21 | 48.5–51.0 | The farm: a small array in the field, an electric pump running, water flowing, no fuel cans. **[TBC]** (or the fallback from #6, fridge humming) | — | Payoff: farm | Drone rise |
+| 22 | 51.0–53.0 | The same factory yard: the manager and the masked worker shake hands by the silent generator enclosure, panels on the factory roof. **[TBC]** (or the fallback from #7) | — | Payoff: C&I | Frame splits into four |
 | 23 | 53.0–55.0 | The 2×2 grid again, now bright and quiet. It collapses into a single sprout rising into a line, the "Gro" motif. | VO: **"Gen don rest."** | Close the story | The line curves into the sun |
 
 ## End card (55–60 s)

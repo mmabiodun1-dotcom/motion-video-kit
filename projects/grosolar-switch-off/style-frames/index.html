@@ -78,13 +78,14 @@ section.act { display: grid; gap: 16px; }
 .act-head h2 { font-family: var(--display); font-size: 24px; font-weight: 800; margin: 0; }
 .act-head span { color: var(--muted); font-size: 14px; }
 
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 28px 20px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 28px 20px; }
 figure.card { margin: 0; display: grid; gap: 10px; align-content: start; min-width: 0; }
 figcaption { display: grid; gap: 4px; font-size: 13.5px; }
 .beat { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; font-weight: 700; font-variant-numeric: tabular-nums; }
 .beat b { white-space: nowrap; font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--muted); }
 .tag { font-size: 11px; font-weight: 700; letter-spacing: .04em; padding: 2px 7px; border-radius: 6px; background: var(--tag-bg); color: var(--tag-ink); }
 .tag.tbc { background: var(--tbc-bg); color: var(--tbc-ink); }
+.tag.gem { background: var(--ok-bg); color: var(--ok-ink); }
 figcaption p { margin: 0; color: var(--muted); }
 
 /* ---------- The 9:16 frame. All internal sizes in cqw so 1cqw = 10.8px at 1080 wide. ---------- */
@@ -225,8 +226,9 @@ figcaption p { margin: 0; color: var(--muted); }
     <div class="chips">
       <span class="chip ok">Brand colours and wording from grosolar.co</span>
       <span class="chip tbc">Logo: placeholder until SVG arrives</span>
-      <span class="chip tbc">Photos: low-res previews; full size in Canva</span>
-      <span class="chip tbc">Farm and factory: not generated yet</span>
+      <span class="chip">Photos: Canva drafts (low-res) and Gemini drafts (572×1024)</span>
+      <span class="chip tbc">Farm and factory: not yet confirmed as GroSolar customers</span>
+      <span class="chip tbc">Factory payoff (#22): file still to come</span>
     </div>
   </header>
 
@@ -293,27 +295,44 @@ figcaption p { margin: 0; color: var(--muted); }
 
       <figure class="card">
         <div class="frame">
-          <img class="shot" src="previews/05-barbershop.jpg" alt="Barber holds dead clippers while the customer stares at a half-finished cut">
-          <span class="lowres">Low-res preview</span>
+          <img class="shot" src="previews/gemini-05-barbershop-before.jpg" alt="Barber with a phone torch looks up at a dead bulb, the boy in the chair has a half-finished cut; a generator sits outside the door">
+          <span class="lowres">Gemini draft</span>
           <div class="shade-bot"></div>
           <div class="cap"><span class="who">Barber</span><span class="line">"Abeg, on the gen!"</span></div>
           <span class="dram">Dramatisation</span>
           <div class="safe"></div>
         </div>
         <figcaption>
-          <div class="beat"><b>#5 · 0:09–0:11</b> Barbershop <span class="tag">AI draft</span></div>
-          <p>Needs a regenerate: the customer's cut should read as half-done, and the light should look more "off".</p>
+          <div class="beat"><b>#5 · 0:09–0:11</b> Barbershop <span class="tag gem">Gemini</span></div>
+          <p>Redo works: the half-finished cut reads clearly, the bulb is dead, and the barber works by phone torch. The idle generator outside the door sets up the payoff.</p>
         </figcaption>
       </figure>
 
       <figure class="card">
         <div class="frame">
-          <div class="pending"><div><b>Farm</b>Not generated yet. Canva and ElevenLabs credits ran out. Prompt is ready.</div></div>
+          <img class="shot" src="previews/gemini-06-farm-before.jpg" alt="Tired farmer beside yellow jerrycans and a smoking diesel water pump in a vegetable field">
+          <span class="lowres">Gemini draft · bars cropped</span>
+          <div class="shade-top"></div>
+          <p class="super">Diesel today.<br><em>Diesel tomorrow.</em></p>
+          <span class="dram">Dramatisation</span>
           <div class="safe"></div>
         </div>
         <figcaption>
-          <div class="beat"><b>#6 · 0:11–0:14</b> Farm <span class="tag tbc">TBC: farms served?</span></div>
-          <p>Jerrycans lined up in the sun. Fallback if GroSolar doesn't serve farms: a pharmacy keeping its medicine fridge on a gen.</p>
+          <div class="beat"><b>#6 · 0:11–0:14</b> Farm <span class="tag gem">Gemini</span><span class="tag tbc">TBC: farms served?</span></div>
+          <p>Jerrycans and a smoking diesel pump, farmer wiping his brow. Black bars cropped, so the top needs extending for the final. Fallback if GroSolar doesn't serve farms: a pharmacy keeping its medicine fridge on a gen.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="card">
+        <div class="frame">
+          <img class="shot" src="previews/gemini-07-factory-before.jpg" alt="A worker in a face mask refuels a smoking generator enclosure from a diesel tanker while a manager checks a tablet">
+          <span class="lowres">Gemini draft</span>
+          <span class="dram">Dramatisation</span>
+          <div class="safe"></div>
+        </div>
+        <figcaption>
+          <div class="beat"><b>#7 · 0:14–0:16</b> Factory <span class="tag gem">Gemini</span><span class="tag tbc">TBC: C&amp;I served?</span></div>
+          <p>Tanker refuelling the genset, smoke over the roof, a worried manager. No words: the frame splits into four next. The worker's face mask fits the fumes; keep him identical in the payoff.</p>
         </figcaption>
       </figure>
 
@@ -458,12 +477,40 @@ figcaption p { margin: 0; color: var(--muted); }
 
       <figure class="card">
         <div class="frame">
-          <div class="pending"><div><b>Factory roof</b>Not generated yet. Credits ran out. Prompt is ready.</div></div>
+          <img class="shot" src="previews/gemini-20-barbershop-after.jpg" alt="Same barber and boy, bulb on, the boy smiling at a finished cut; solar panels on the neighbour's roof and the generator covered outside">
+          <span class="lowres">Gemini draft · bar cropped</span>
+          <div class="shade-bot"></div>
+          <div class="cap"><span class="who">Customer</span><span class="line">"Correct!"</span></div>
+          <span class="dram">Dramatisation</span>
           <div class="safe"></div>
         </div>
         <figcaption>
-          <div class="beat"><b>#22 · 0:51–0:53</b> Factory <span class="tag tbc">TBC: C&amp;I served?</span></div>
-          <p>Aerial of a roof array over a working site at golden hour. Fallback: an office or bakery roof.</p>
+          <div class="beat"><b>#20 · 0:46–0:48</b> Barbershop, payoff <span class="tag gem">Gemini</span></div>
+          <p>Same barber, boy and framing as #5: bulb on, cut finished, generator covered outside, panels on the neighbour's roof. The barber still holds the phone torch; remove it in the regen.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="card">
+        <div class="frame">
+          <img class="shot" src="previews/gemini-21-farm-after.jpg" alt="Smiling farmer beside a small solar array, water flowing from a pump into the vegetable beds">
+          <span class="lowres">Gemini draft · bars cropped</span>
+          <span class="dram">Dramatisation</span>
+          <div class="safe"></div>
+        </div>
+        <figcaption>
+          <div class="beat"><b>#21 · 0:48–0:51</b> Farm, payoff <span class="tag gem">Gemini</span><span class="tag tbc">Regen: electric pump</span><span class="tag tbc">TBC: farms served?</span></div>
+          <p>Smiling farmer, small array, water flowing. The pump is still the diesel one and the jerrycans are still there, which contradicts the story: regenerate with an electric solar pump and no fuel cans.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="card">
+        <div class="frame">
+          <div class="pending"><div><b>Factory, payoff</b>Received in chat but the file didn't reach the project. Resend it and it goes here.</div></div>
+          <div class="safe"></div>
+        </div>
+        <figcaption>
+          <div class="beat"><b>#22 · 0:51–0:53</b> Factory, payoff <span class="tag gem">Gemini</span><span class="tag tbc">TBC: C&amp;I served?</span></div>
+          <p>Same manager and masked worker shaking hands by the silent generator enclosure, panels on the factory roof. Replaces the aerial idea; the handshake mirrors the worried manager in #7.</p>
         </figcaption>
       </figure>
 
@@ -494,7 +541,7 @@ figcaption p { margin: 0; color: var(--muted); }
 
   <section class="panel">
     <h2>What's still needed for final frames</h2>
-    <p class="note">Logo SVG files from GroSolar · confirmation on farms and commercial &amp; industrial · the WhatsApp number · GroSolar NG app screens for #18 · image credits to regenerate the photo scenes at full size (barbershop redo, farm, factory, installers, and a matched family across #3 and #19).</p>
+    <p class="note">Logo SVG files from GroSolar · confirmation on farms and commercial &amp; industrial · the WhatsApp number · GroSolar NG app screens for #18 · full-size regenerations: #21 with an electric pump, #20 without the torch, the installers (#17), and the generator, home and home-payoff shots at full size with a matched family across #3 and #19. Gemini frames with cropped bars need their tops extended to full 9:16.</p>
   </section>
 </div>
 
