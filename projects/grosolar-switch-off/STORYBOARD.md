@@ -99,7 +99,7 @@ Same four worlds and framing as Act 1, now in daylight or warm light. Echoing th
 - **15 s:** #1–2, #10, #16, #24.
 
 ## Open items before building
-1. GroSolar approval to use the name, logo and app, or agreement that this is a labelled concept or spec pitch.
+1. ~~GroSolar approval to use the name, logo and app~~ Resolved: client film, made with GroSolar. Still needs GroSolar sign-off on the final script and claims.
 2. Screens from the real app for each step (#11–18), or the closest real equivalents.
 3. Confirm farms and commercial & industrial are served, and the exact names of the plan categories.
 4. Confirm the ad wording "No big upfront cost" / "Pay monthly", plus any real numbers they want shown.

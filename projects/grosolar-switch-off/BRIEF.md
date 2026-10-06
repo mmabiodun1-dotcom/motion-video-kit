@@ -1,5 +1,7 @@
 # GroSolar — "Switch Off" · Brief
 
+**Status:** client film, made with GroSolar.
+
 ## The business
 GroSolar Energy (Lagos, Nigeria · grosolar.co). It owns solar equipment and provides it as a subscription: customers get solar power with no big upfront payment and pay a monthly fee. Installation and operation are done through local solar installer partners. Customers manage their subscription in the **GroSolar NG** app (Google Play).
 
@@ -47,7 +49,7 @@ Warm, funny in Act 1 (the pain everyone recognises), calm and confident from the
 - App features the real app doesn't have.
 
 ## Brand
-To collect from GroSolar: logo (vector), brand colours, fonts, app screenshots of each step, WhatsApp business number, and approval to use the name and app. Until then the film is a labelled concept.
+This is a **client film**: we are working with GroSolar. To collect from them: logo (vector), brand colours, fonts, app screenshots of each step, WhatsApp business number, and sign-off on the script and every claim before release. AI-generated people and places still carry a small "Dramatisation" label.
 
 ## Assets we have
 None yet. Footage is AI-generated stills animated to video, plus code-built motion (HTML/GSAP) for all UI, type and transitions.
