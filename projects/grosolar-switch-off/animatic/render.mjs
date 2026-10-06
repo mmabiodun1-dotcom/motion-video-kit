@@ -2,6 +2,7 @@
 // Usage: node render.mjs [--fps 24] [--from 0] [--to 60] [--out out/animatic.mp4] [--slate 1] [--scale 1]
 //   --scale 0.5 renders 540x960 for quick checks.
 //   --stills 1,3.6,25 writes JPEG stills at those times to out/stills/ instead of a video.
+//   --safecheck reports text/UI inside the TikTok/Reels UI zones instead of rendering.
 import { spawn, execFileSync } from 'node:child_process';
 import { mkdtempSync, writeFileSync, rmSync, mkdirSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -44,6 +45,38 @@ for (let i = 0; i < 80; i++) { await sleep(150); try { if (await evaluate('!!win
 await evaluate('window.__ready');
 const info = await evaluate('window.__info()');
 console.log(`Rendering ${from}-${to}s at ${fps} fps, ${W}x${H}. Placeholders for shots: ${info.missing.join(', ') || 'none'}`);
+
+// --safecheck: sample every 0.1 s and report any visible text/UI element inside the TikTok/Reels UI zones
+// (bottom 20% = y > 1536, right 12% = x > 950). The review slate and TBC bugs are review-only and listed separately.
+if (process.argv.includes('--safecheck')) {
+  const probe = `(() => {
+    const SEL = '.super, .cap .who, .cap .line, .vo, .dram, .tbc-bug, .tag, .receipt, .end h3, .end .sub, .end .btn, .end small, .fine, .screen .btn, .screen h3, .screen .toast, .screen .step, .screen .field, .screen .prop, .screen .loads, .screen .provs, .screen .choice, .screen .pills, .switch, #slate';
+    const sr = document.getElementById('stage').getBoundingClientRect(), k = 1080 / sr.width, out = [];
+    for (const el of document.querySelectorAll(SEL)) {
+      let op = 1, n = el, hidden = false;
+      while (n && n.id !== 'stage') { const cs = getComputedStyle(n); if (cs.visibility === 'hidden' || cs.display === 'none') { hidden = true; break; } op *= +cs.opacity; n = n.parentElement; }
+      if (hidden || op < 0.05) continue;
+      let r = el.getBoundingClientRect(); const clip = el.closest('.screen');
+      if (clip) { const c = clip.getBoundingClientRect(); r = { left: Math.max(r.left, c.left), right: Math.min(r.right, c.right), top: Math.max(r.top, c.top), bottom: Math.min(r.bottom, c.bottom) }; r.width = r.right - r.left; if (r.width <= 0 || r.bottom <= r.top) continue; }
+      const x0 = (r.left - sr.left) * k, x1 = (r.right - sr.left) * k, y1 = (r.bottom - sr.top) * k, y0 = (r.top - sr.top) * k;
+      if (x1 < 0 || x0 > 1080 || y1 < 0 || y0 > 1920 || r.width === 0) continue;
+      const bot = y1 > 1536 + 2, right = x1 > 950 + 2;
+      if (bot || right) out.push({ el: (el.className && el.className.baseVal === undefined ? el.className : el.tagName).toString().split(' ')[0] || el.id, text: (el.textContent || '').trim().slice(0, 40), zone: [bot && 'bottom ' + Math.round(y1), right && 'right ' + Math.round(x1)].filter(Boolean).join(', ') });
+    }
+    return out;
+  })()`;
+  const hits = new Map();
+  for (let t = 0; t < 60; t += 0.1) {
+    await evaluate(`window.__seek(${t.toFixed(3)})`);
+    for (const hgt of await evaluate(probe)) { const key = `${hgt.el}|${hgt.text}|${hgt.zone.split(' ')[0]}`; if (!hits.has(key)) hits.set(key, { ...hgt, from: t, to: t }); else hits.get(key).to = t; }
+  }
+  const rows = [...hits.values()];
+  const review = rows.filter(r => r.el === 'slate' || r.el === 'tbc-bug'), real = rows.filter(r => !review.includes(r));
+  console.log(real.length ? 'SAFE-ZONE VIOLATIONS:' : 'SAFE-ZONE: no text or UI in the bottom 20% or right 12% (sampled every 0.1 s).');
+  real.forEach(r => console.log(`  ${r.from.toFixed(1)}-${r.to.toFixed(1)}s  ${r.el}  "${r.text}"  ${r.zone}`));
+  if (review.length) { console.log('Review-only markers in the zones (not in the client cut):'); review.forEach(r => console.log(`  ${r.from.toFixed(1)}-${r.to.toFixed(1)}s  ${r.el}  "${r.text}"  ${r.zone}`)); }
+  await cleanup(); process.exit(0);
+}
 
 const stills = arg('stills', '');
 if (stills) {

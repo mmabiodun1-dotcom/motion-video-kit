@@ -58,7 +58,7 @@ body.render #stage { transform: none !important; }
 .vo b { flex: none; font-size: 24px; letter-spacing: 3px; color: var(--navy); background: var(--yellow); padding: 8px 14px; border-radius: 10px; }
 
 .dram { position: absolute; left: 76px; bottom: 395px; font-weight: 500; font-size: 26px; letter-spacing: .5px; color: rgba(255,255,255,.75); }
-.tbc-bug { position: absolute; right: 30px; top: 30px; font-weight: 700; font-size: 24px; color: #fff; background: rgba(200,50,30,.85); padding: 8px 14px; border-radius: 10px; }
+.tbc-bug { position: absolute; right: 150px; top: 30px; font-weight: 700; font-size: 24px; color: #fff; background: rgba(200,50,30,.85); padding: 8px 14px; border-radius: 10px; }
 
 /* Slate bug for review copies */
 #slate { position: absolute; left: 30px; top: 30px; z-index: 50; font: 600 26px/1 var(--font); color: #fff; background: rgba(0,0,0,.5); padding: 10px 16px; border-radius: 10px; font-variant-numeric: tabular-nums; letter-spacing: .5px; }
@@ -167,13 +167,13 @@ body.showsafe #safe { display: block; }
 
 /* End card */
 .endbg { position: absolute; inset: 0; background: radial-gradient(860px 640px at 50% 28%, rgba(255,151,51,.38), rgba(255,151,51,0) 70%), var(--navy); }
-.end { position: absolute; inset: 0; display: grid; justify-items: center; align-content: start; text-align: center; padding: 780px 80px 0; gap: 44px; color: #fff; transform-origin: 50% 40%; }
-.end h3 { margin: 0; font-weight: 800; font-size: 92px; line-height: 1.02; }
-.end .sub { font-weight: 600; font-size: 40px; line-height: 1.3; color: #CFE0F5; }
+.end { position: absolute; inset: 0; display: grid; justify-items: center; align-content: start; text-align: center; padding: 770px 150px 0 130px; gap: 30px; color: #fff; transform-origin: 50% 40%; }
+.end h3 { margin: 0; font-weight: 800; font-size: 80px; line-height: 1.04; }
+.end .sub { font-weight: 600; font-size: 36px; line-height: 1.3; color: #CFE0F5; }
 .end .cta { display: grid; gap: 22px; justify-items: center; }
-.end .cta .btn { padding: 34px 70px; font-size: 42px; }
-.end .cta small { font-weight: 600; font-size: 36px; color: #fff; font-variant-numeric: tabular-nums; }
-.end .fine { position: absolute; left: 0; right: 0; bottom: 395px; font-weight: 500; font-size: 24px; color: rgba(255,255,255,.55); }
+.end .cta .btn { padding: 30px 60px; font-size: 40px; }
+.end .cta small { font-weight: 600; font-size: 32px; color: #fff; font-variant-numeric: tabular-nums; }
+.fine { position: absolute; z-index: 2; text-align: center; left: 130px; right: 150px; bottom: 395px; font-weight: 500; font-size: 24px; color: rgba(255,255,255,.55); }
 
 /* Preview controls */
 #controls { height: 120px; display: grid; grid-template-rows: auto auto; gap: 8px; padding: 10px 20px; border-top: 1px solid var(--ui-line); }

@@ -255,7 +255,7 @@
     if (PHOTO && PQ.matte) { matte = h('div', 'media', `<img src="frames/${TL.phoneShot}.matte.png" alt="">`); matte.style.transformOrigin = media.style.transformOrigin; layer.appendChild(matte); }
     screen.appendChild(h('div', 'urlbar', 'grosolar.co'));
     const PUSH = TL.phonePush || 1.6, CY = TL.phoneCenterY || 918;
-    const pushAt = t => PHOTO ? { s: PUSH * lerp(1, 1.04, seg(t, t0, t1)), D: [540 - C[0], CY - C[1]] } : { s: 1, D: [0, 0] };
+    const pushAt = t => PHOTO ? { s: PUSH * lerp(1, 1.02, seg(t, t0, t1)), D: [540 - C[0], CY - C[1]] } : { s: 1, D: [0, 0] };
     const quadAt = t => { const { s, D } = pushAt(t); return srcQuad.map(([x, y]) => [C[0] + D[0] + s * (x - C[0]), C[1] + D[1] + s * (y - C[1])]); };
     const tileImg = id => available.has(id) ? `background-image:url(frames/${id}.jpg)` : 'background:#6B7C93';
     const ICON = {
@@ -313,8 +313,8 @@
     // Top-slot overlays (super or VO) per shot
     const tops = shots.map(s => {
       const els = [];
-      if (s.vo) els.push([h('div', 'vo top', `<b>VO</b><span>${s.vo}</span>`), s.voAt ?? 0.2]);
-      if (s.sup) { const p = h('p', 'super on-light', s.sup); p.style.cssText = s.vo ? 'top:250px;font-size:48px' : 'top:110px;font-size:76px'; els.push([p, s.supAt ?? 0.3]); }
+      if (s.vo) { const v = h('div', 'vo top', `<b>VO</b><span>${s.vo}</span>`); v.style.top = '100px'; els.push([v, s.voAt ?? 0.2]); }
+      if (s.sup) { const p = h('p', 'super on-light', s.sup); p.style.cssText = s.vo ? 'top:220px;font-size:34px;right:140px;white-space:nowrap' : 'top:110px;font-size:76px'; els.push([p, s.supAt ?? 0.3]); }
       els.forEach(([el]) => { el.style.opacity = 0; layer.appendChild(el); });
       return els;
     });
@@ -395,7 +395,7 @@
         const fly = E.inOut(seg(t, 30.6, 31.2)), fold = E.in(seg(t, 31.2, 31.55));
         receipt.style.left = (fx - 165) + 'px'; receipt.style.top = (fy - 200) + 'px';
         receipt.style.opacity = (seg(t, 30.6, 30.7) * (1 - seg(t, 31.45, 31.55))).toFixed(3);
-        receipt.style.transform = `translate(${lerp(330, 0, fly).toFixed(1)}px, ${lerp(-560, 0, fly).toFixed(1)}px) rotate(${lerp(18, 0, fly).toFixed(2)}deg) scale(${lerp(1, 0.6, fly) * lerp(1, 0.9, fold)}, ${(lerp(1, 0.6, fly) * lerp(1, 0.05, fold)).toFixed(4)})`;
+        receipt.style.transform = `translate(${lerp(120, 0, fly).toFixed(1)}px, ${lerp(-620, 0, fly).toFixed(1)}px) rotate(${lerp(18, 0, fly).toFixed(2)}deg) scale(${lerp(1, 0.6, fly) * lerp(1, 0.9, fold)}, ${(lerp(1, 0.6, fly) * lerp(1, 0.05, fold)).toFixed(4)})`;
         q('energy', 'fuel').classList.toggle('hot', t >= 31.45);
         q('energy', 'fuelv').style.opacity = seg(t, 31.45, 31.6).toFixed(2);
         q('energy', 'fuelt').style.opacity = seg(t, 31.55, 31.7).toFixed(2);

@@ -58,7 +58,7 @@ window.TIMELINE = {
   // Falls back to a code-built phone on the #11a plate when 11b (or its quad from screen_quad.py) is missing.
   phoneShot: '11b',
   phonePush: 1.9,
-  phoneCenterY: 960,
+  phoneCenterY: 925,
   phonePlate: '11a',
   whatsapp: '+234 705 370 0000',
   whatsappConfirmed: false,

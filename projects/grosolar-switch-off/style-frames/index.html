@@ -79,6 +79,11 @@ section.act { display: grid; gap: 16px; }
 .anim-notes { display: grid; gap: 10px; font-size: 14px; color: var(--muted); max-width: 62ch; min-width: 0; }
 .anim-notes p { margin: 0; }
 .anim-notes b { color: var(--ink); }
+.kf { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 10px; }
+.kf figure { margin: 0; display: grid; gap: 4px; min-width: 0; }
+.kf img { width: 100%; max-width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 8px; display: block; background: #0A1424; }
+.kf figcaption { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.kf figcaption b { color: var(--ink); }
 @media (max-width: 640px) { .anim-row { grid-template-columns: 1fr; } .anim-row video { max-width: 320px; } }
 .stages { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; counter-reset: st; }
 .stages li { counter-increment: st; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 4px; align-content: start; min-width: 0; }
@@ -241,8 +246,8 @@ figcaption p { margin: 0; color: var(--muted); }
     <div class="chips">
       <span class="chip ok">Brand colours and wording from grosolar.co</span>
       <span class="chip tbc">Logo: placeholder until SVG arrives</span>
-      <span class="chip ok">Stage 3 · Animatic v1</span>
-      <span class="chip tbc">Files to resend: #1, #2, #4, #17, #18, #6, #20, #21</span>
+      <span class="chip ok">Stage 3 · Animatic v2, every keyframe in</span>
+      <span class="chip tbc">Awaiting GroSolar sign-off</span>
       <span class="chip tbc">Farm and factory: not yet confirmed as GroSolar customers</span>
 
     </div>
@@ -287,14 +292,36 @@ figcaption p { margin: 0; color: var(--muted); }
   </section>
 
   <section class="panel anim">
-    <h2>Animatic v1 · 60 s · 1080×1920 · 30 fps</h2>
+    <h2>Animatic v2 · 60 s · 1080×1920 · 30 fps</h2>
     <div class="anim-row">
-      <video controls playsinline preload="metadata" poster="animatic_v1_poster.jpg" src="animatic_v1.mp4" aria-label="GroSolar Switch Off animatic v1"></video>
+      <video controls playsinline preload="metadata" poster="animatic_v2_poster.jpg" src="animatic_v2.mp4" aria-label="GroSolar Switch Off animatic v2"></video>
       <div class="anim-notes">
         <p><b>For GroSolar sign-off.</b> Gemini stills with slow Ken Burns moves, code-built screens and supers, and the VO and dialogue as on-screen captions (no voice yet). Before/after pairs share framing and moves, so the payoffs match-cut.</p>
-        <p><b>Still placeholders:</b> #1, #2, #4, #17, #18 (approved, files not received). <b>Old versions in use:</b> #6, #20, #21 (fixes approved, files not received).</p>
+        <p><b>Every keyframe is in.</b> No placeholders. All frames are Gemini's 572×1024 on-screen captures; full-size downloads replace them at sign-off.</p>
+        <p><b>Checks:</b> every caption, super, button and end-card line stays out of the TikTok/Reels zones (sampled every 0.1 s). The only exception is the fuel receipt for one frame as it's flicked off screen.</p>
         <p><b>Open for GroSolar:</b> farm and factory scenes, the WhatsApp number (marked TO CONFIRM on the end card), the logo SVG, and real app screens for #18.</p>
       </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>All keyframes · Stage 2 complete (animatic quality)</h2>
+    <div class="kf">
+      <figure><img src="previews/kf/01.jpg" alt="Shot #1: Generator ON" loading="lazy"><figcaption><b>#1</b> 0:00 · Generator ON</figcaption></figure>
+      <figure><img src="previews/kf/02.jpg" alt="Shot #2: Switch off" loading="lazy"><figcaption><b>#2</b> 0:02 · Switch off</figcaption></figure>
+      <figure><img src="previews/kf/03.jpg" alt="Shot #3: Home, cut" loading="lazy"><figcaption><b>#3</b> 0:04 · Home, cut</figcaption></figure>
+      <figure><img src="previews/kf/04.jpg" alt="Shot #4: Compound" loading="lazy"><figcaption><b>#4</b> 0:06 · Compound</figcaption></figure>
+      <figure><img src="previews/kf/05.jpg" alt="Shot #5: Barbershop" loading="lazy"><figcaption><b>#5</b> 0:09 · Barbershop</figcaption></figure>
+      <figure><img src="previews/kf/06.jpg" alt="Shot #6: Farm" loading="lazy"><figcaption><b>#6</b> 0:11 · Farm</figcaption></figure>
+      <figure><img src="previews/kf/07.jpg" alt="Shot #7: Factory" loading="lazy"><figcaption><b>#7</b> 0:14 · Factory</figcaption></figure>
+      <figure><img src="previews/kf/09.jpg" alt="Shot #9: Too cost" loading="lazy"><figcaption><b>#9</b> 0:19 · Too cost</figcaption></figure>
+      <figure><img src="previews/kf/11b.jpg" alt="Shot #11–16: Phone plate" loading="lazy"><figcaption><b>#11–16</b> 0:24 · Phone plate</figcaption></figure>
+      <figure><img src="previews/kf/17.jpg" alt="Shot #17: Installation" loading="lazy"><figcaption><b>#17</b> 0:38 · Installation</figcaption></figure>
+      <figure><img src="previews/kf/18.jpg" alt="Shot #18: Activation" loading="lazy"><figcaption><b>#18</b> 0:41 · Activation</figcaption></figure>
+      <figure><img src="previews/kf/19.jpg" alt="Shot #19: Home, lit" loading="lazy"><figcaption><b>#19</b> 0:44 · Home, lit</figcaption></figure>
+      <figure><img src="previews/kf/20.jpg" alt="Shot #20: Barbershop" loading="lazy"><figcaption><b>#20</b> 0:46 · Barbershop</figcaption></figure>
+      <figure><img src="previews/kf/21.jpg" alt="Shot #21: Farm" loading="lazy"><figcaption><b>#21</b> 0:48 · Farm</figcaption></figure>
+      <figure><img src="previews/kf/22.jpg" alt="Shot #22: Factory" loading="lazy"><figcaption><b>#22</b> 0:51 · Factory</figcaption></figure>
     </div>
   </section>
 
@@ -305,14 +332,14 @@ figcaption p { margin: 0; color: var(--muted); }
 
       <figure class="card">
         <div class="frame">
-          <img class="shot" src="previews/01-generator.jpg" alt="Macro of a generator control panel with a glowing round switch">
-          <span class="lowres">Low-res preview</span>
+          <img class="shot" src="previews/kf/02.jpg" alt="Dad's hand flips the generator switch to OFF">
+          <span class="lowres">Gemini</span>
           <div class="shade-top"></div>
           <p class="super">What if you never had to switch it <em>on</em> again?</p>
           <div class="safe"></div>
         </div>
         <figcaption>
-          <div class="beat"><b>#1–2 · 0:00–0:04</b> Hook <span class="tag">AI draft</span></div>
+          <div class="beat"><b>#1–2 · 0:00–0:04</b> Hook <span class="tag gem">Gemini</span></div>
           <p>Roar, the hand flips the switch, dead silence, the line lands. The round switch is the object we carry through the film.</p>
         </figcaption>
       </figure>
@@ -349,8 +376,8 @@ figcaption p { margin: 0; color: var(--muted); }
 
       <figure class="card">
         <div class="frame">
-          <img class="shot" src="previews/gemini-06-farm-before.jpg" alt="Tired farmer beside yellow jerrycans and a smoking diesel water pump in a vegetable field">
-          <span class="lowres">Gemini draft · bars cropped</span>
+          <img class="shot" src="previews/kf/06.jpg" alt="Tired farmer beside yellow jerrycans and a smoking diesel water pump in a vegetable field">
+          <span class="lowres">Gemini · fixed</span>
           <div class="shade-top"></div>
           <p class="super">Diesel today.<br><em>Diesel tomorrow.</em></p>
           <span class="dram">Dramatisation</span>
@@ -358,7 +385,7 @@ figcaption p { margin: 0; color: var(--muted); }
         </div>
         <figcaption>
           <div class="beat"><b>#6 · 0:11–0:14</b> Farm <span class="tag gem">Gemini</span><span class="tag tbc">TBC: farms served?</span></div>
-          <p>Jerrycans and a smoking diesel pump, farmer wiping his brow. Black bars cropped, so the top needs extending for the final. Fallback if GroSolar doesn't serve farms: a pharmacy keeping its medicine fridge on a gen.</p>
+          <p>Jerrycans and a smoking diesel pump, farmer wiping his brow. Bars fixed in Gemini by extending sky and soil. Fallback if GroSolar doesn't serve farms: a pharmacy keeping its medicine fridge on a gen.</p>
         </figcaption>
       </figure>
 
@@ -531,8 +558,8 @@ figcaption p { margin: 0; color: var(--muted); }
 
       <figure class="card">
         <div class="frame">
-          <img class="shot" src="previews/gemini-20-barbershop-after.jpg" alt="Same barber and boy, bulb on, the boy smiling at a finished cut; solar panels on the neighbour's roof and the generator covered outside">
-          <span class="lowres">Gemini draft · bar cropped</span>
+          <img class="shot" src="previews/kf/20.jpg" alt="Same barber and boy, bulb on, the boy smiling at a finished cut; solar panels on the neighbour's roof and the generator covered outside">
+          <span class="lowres">Gemini · fixed</span>
           <div class="shade-bot"></div>
           <div class="cap"><span class="who">Customer</span><span class="line">"Correct!"</span></div>
           <span class="dram">Dramatisation</span>
@@ -540,20 +567,20 @@ figcaption p { margin: 0; color: var(--muted); }
         </div>
         <figcaption>
           <div class="beat"><b>#20 · 0:46–0:48</b> Barbershop, payoff <span class="tag gem">Gemini</span></div>
-          <p>Same barber, boy and framing as #5: bulb on, cut finished, generator covered outside, panels on the neighbour's roof. The barber still holds the phone torch; remove it in the regen.</p>
+          <p>Same barber, boy and framing as #5: bulb on, cut finished, generator covered outside, panels on the neighbour's roof. Fixed: torch gone, his hand rests on the boy's shoulder.</p>
         </figcaption>
       </figure>
 
       <figure class="card">
         <div class="frame">
-          <img class="shot" src="previews/gemini-21-farm-after.jpg" alt="Smiling farmer beside a small solar array, water flowing from a pump into the vegetable beds">
-          <span class="lowres">Gemini draft · bars cropped</span>
+          <img class="shot" src="previews/kf/21.jpg" alt="Smiling farmer beside a small solar array, water flowing from a pump into the vegetable beds">
+          <span class="lowres">Gemini · fixed</span>
           <span class="dram">Dramatisation</span>
           <div class="safe"></div>
         </div>
         <figcaption>
-          <div class="beat"><b>#21 · 0:48–0:51</b> Farm, payoff <span class="tag gem">Gemini</span><span class="tag tbc">Regen: electric pump</span><span class="tag tbc">TBC: farms served?</span></div>
-          <p>Smiling farmer, small array, water flowing. The pump is still the diesel one and the jerrycans are still there, which contradicts the story: regenerate with an electric solar pump and no fuel cans.</p>
+          <div class="beat"><b>#21 · 0:48–0:51</b> Farm, payoff <span class="tag gem">Gemini</span><span class="tag tbc">TBC: farms served?</span></div>
+          <p>Fixed: a blue electric pump cabled to the array, no jerrycans.</p>
         </figcaption>
       </figure>
 
