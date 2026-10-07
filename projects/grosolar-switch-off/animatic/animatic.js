@@ -8,6 +8,8 @@
   const RENDER = params.has('render');
   if (RENDER) document.body.classList.add('render');
   if (params.get('slate') === '0') document.body.classList.add('noslate');
+  // Client cut: no review slate, no TBC bugs. Everything else (captions, Dramatisation labels, TO CONFIRM) stays.
+  if (params.has('client')) document.body.classList.add('noslate', 'client');
 
   // ---------- helpers ----------
   const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));

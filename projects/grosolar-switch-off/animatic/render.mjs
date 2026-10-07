@@ -2,6 +2,7 @@
 // Usage: node render.mjs [--fps 24] [--from 0] [--to 60] [--out out/animatic.mp4] [--slate 1] [--scale 1]
 //   --scale 0.5 renders 540x960 for quick checks.
 //   --stills 1,3.6,25 writes JPEG stills at those times to out/stills/ instead of a video.
+//   --client renders the client cut (no review slate, no TBC bugs).
 //   --safecheck reports text/UI inside the TikTok/Reels UI zones instead of rendering.
 import { spawn, execFileSync } from 'node:child_process';
 import { mkdtempSync, writeFileSync, rmSync, mkdirSync, existsSync } from 'node:fs';
@@ -14,6 +15,7 @@ const arg = (k, d) => { const i = process.argv.indexOf('--' + k); return i > 0 ?
 const fps = +arg('fps', 24), from = +arg('from', 0), to = +arg('to', 60), scale = +arg('scale', 1);
 const out = resolve(here, arg('out', 'out/animatic.mp4'));
 const slate = arg('slate', '1') !== '0';
+const client = process.argv.includes('--client');   // client cut: hides the review slate and TBC bugs
 const chrome = process.env.CHROME || ['/opt/pw-browsers/chromium-1194/chrome-linux/chrome', '/usr/bin/chromium', '/usr/bin/google-chrome'].find(existsSync);
 if (!chrome) throw new Error('Chromium not found; set CHROME=/path/to/chrome');
 
@@ -39,7 +41,7 @@ const evaluate = async expr => { const r = await send('Runtime.evaluate', { expr
 
 await send('Page.enable'); await send('Runtime.enable');
 await send('Emulation.setDeviceMetricsOverride', { width: 1080, height: 1920, deviceScaleFactor: scale, mobile: false });
-const url = pathToFileURL(join(here, 'index.html')).href + `?render=1${slate ? '' : '&slate=0'}`;
+const url = pathToFileURL(join(here, 'index.html')).href + `?render=1${slate ? '' : '&slate=0'}${client ? '&client=1' : ''}`;
 await send('Page.navigate', { url });
 for (let i = 0; i < 80; i++) { await sleep(150); try { if (await evaluate('!!window.__ready')) break; } catch {} }
 await evaluate('window.__ready');

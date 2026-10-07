@@ -23,7 +23,7 @@ A 60 s vertical (1080×1920) animatic for GroSolar sign-off, built as one determ
 ## Preview and render
 
 - **Preview:** open `index.html` in a browser. Space plays, the arrow keys step one frame, the shot chips jump (red = placeholder), and "Safe zones" shows the TikTok/Reels UI areas.
-- **Render:** `node render.mjs --out out/animatic-vN.mp4` (about 3–5 minutes). Options: `--scale 0.5` for a fast half-size check, `--from 20 --to 30` for a section, `--stills 3.5,24,56` for stills, `--slate 0` to hide the review slate.
+- **Render:** `node render.mjs --out out/animatic-vN.mp4` (about 3–5 minutes). Add `--client` for the client cut (no review slate, no TBC bugs). Options: `--scale 0.5` for a fast half-size check, `--from 20 --to 30` for a section, `--stills 3.5,24,56` for stills, `--slate 0` to hide the review slate.
 - Output lands in `out/`. MP4s are git-ignored, so send renders directly rather than committing them.
 
 ## Notes
