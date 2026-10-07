@@ -17,8 +17,9 @@ A 60 s vertical (1080×1920) animatic for GroSolar sign-off, built as one determ
 ## Drop in new frames
 
 1. Put the files in `inbox/`, named with their shot number first: `04.png`, `#4 compound.webp`, `11a-street.jpg`.
-2. Run `./ingest.sh`. It archives each original in `../frames/gemini/original/`, crops any black bars, and writes `frames/NN.jpg`.
-3. Re-render. Nothing else needs to change.
+2. Run `./ingest.sh`. It archives each original in `../frames/gemini/` under its own name, crops any flat-black letterbox bars, and writes `frames/NN.jpg`.
+3. For a still with a blank phone screen, run `python3 screen_quad.py NN` (add `--box x0,y0,x1,y1` if sky or another grey area is bigger than the screen). It writes the screen corners to `frames/quads.js` and a matte for any thumb or fingers in front of the screen.
+4. Re-render. Nothing else needs to change.
 
 ## Preview and render
 
@@ -28,8 +29,9 @@ A 60 s vertical (1080×1920) animatic for GroSolar sign-off, built as one determ
 
 ## Notes
 
-- The review slate (top left) shows the shot number, title, timecode and "placeholder" where a frame is pending. Turn it off for the client copy only if they ask.
+- The review slate (top left) shows the shot number, title, timecode and "placeholder" where a frame is pending. `--client` removes it and the red TBC bugs; captions, "Dramatisation" labels and the WhatsApp "TO CONFIRM" badge stay.
+- `--safecheck` reports any text or UI inside the TikTok/Reels zones (bottom 20%, right 12%), sampled every 0.1 s.
 - Every VO and dialogue line is on screen as a caption. The `.srt` written next to each render is the VO script with timings, ready for the voice session.
 - The logo is still a dashed placeholder (`LOGO()` in `animatic.js`). Swap in the SVG when it arrives.
-- The #11b hand-and-phone plate isn't used yet: the code-built phone sits on the #11a street plate. Corner-pinning the screens onto the #11b phone is a Stage 4 job.
+- #11–#16 use the #11b hand-and-phone still, pushed in `phonePush` (1.9) and centred at `phoneCenterY`; the screens are corner-pinned into its grey screen with the thumb matted on top. Without #11b it falls back to a code-built phone on the #11a plate.
 - There's no audio. VO and music come in Stage 5.
