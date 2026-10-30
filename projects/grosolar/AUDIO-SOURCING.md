@@ -22,7 +22,25 @@ The mix is automatic: drop the files into the folders below and run `build/mix/m
 
 Splice downloads cost credits (they come with a paid plan), so the ad uses **free, commercially licensed** audio instead. The build environment cannot reach these sites, so the owner downloads candidates and attaches them; they are then screened with the kit's scripts (`scripts/sfx-candidates.py`, `scripts/loudness.sh`) and the best fit is mixed.
 
-## Where to get it (free, allowed in ads)
+## Shortlist (found by web search, 30 Oct 2026; not yet listened to)
+
+The build environment cannot open Pixabay, so these come from search results only: listen first, and check the licence line on each page says "Pixabay Content License" (avoid anything marked "Content ID").
+
+**Music bed (pick 2–3 to send):**
+1. "Afrobeat 2026 Instrumental Music Background", ejah_music. Tagged laid back, bright, uplifting; probably the best fit under a voice. https://pixabay.com/music/upbeat-afrobeat-2026-instrumental-music-background-327258/
+2. "Afrobeat Music – Feelgood Groove", MusicInMedia (about 2:34; loop versions also exist). Search "feelgood groove" on https://pixabay.com/music/search/feelgood/
+3. "Island Pearl (Happy Afrobeat Instrumental)", SunnyFruit (about 5:21). Search on https://pixabay.com/music/search/afrobeat%20happy/
+4. "Match Out – Free Afro Amapiano Instrumental", artbybigvee. Energetic log drums: good energy, may be busy under the voice. https://pixabay.com/music/afrobeat-match-out-free-afro-amapiano-instrumental-178406/
+5. Browse more: https://pixabay.com/music/search/afrobeat%20ad/ and https://pixabay.com/music/search/happy%20afro%20pop/
+
+**Sound effects:**
+- Generator: "Small Diesel Generator", freesound_community. https://pixabay.com/sound-effects/technology-small-diesel-generator-61728/ (more: https://pixabay.com/sound-effects/search/generator%20running/)
+- Light switch: "Light Switch", freesound_community. https://pixabay.com/sound-effects/light-switch-81967
+- Whoosh: pick a short, soft one from https://pixabay.com/sound-effects/search/whoosh/
+- Stamp: search "stamp" or "thud" on https://pixabay.com/sound-effects/
+- Crowd cheer (optional layer under the "Light don come!" recording): https://pixabay.com/sound-effects/search/crowded%20cheering/
+
+
 
 | Source | Licence | Notes |
 |---|---|---|
