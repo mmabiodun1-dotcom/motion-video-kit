@@ -25,7 +25,7 @@ I'm writing from GroSolar Energy, a Lagos-based solar financing company. We have
 
 We are requesting a **synchronisation licence** for both the **master recording** and the **composition**, on these terms:
 
-- **Use:** music bed under a 30-second brand ad (voiceover on top). About 30 seconds of the song, edited for length and faded at the end. No changes to lyrics or melody, and no remixing.
+- **Use:** the ad opens with 6 seconds of the song (0:29–0:35, the NEPA/generator lyric), then continues with **the instrumental version of "Rara"** under our voiceover for the remaining 24 seconds. About 30 seconds in total, edited for length and faded at the end. No changes to lyrics or melody, and no remixing.
 - **Media:** Instagram, Facebook, TikTok and WhatsApp (organic posts and paid promotion), plus GroSolar's own website.
 - **Territory:** Nigeria.
 - **Term:** 12 months from first publication, with an option to renew.
@@ -34,7 +34,7 @@ We are requesting a **synchronisation licence** for both the **master recording*
 Could you please let us know:
 1. Whether this use is possible, and who handles the master and publishing rights.
 2. The fee and any conditions.
-3. How we would receive a high-quality audio file (WAV or 320 kbps MP3) once the licence is agreed.
+3. How we would receive high-quality audio files (WAV or 320 kbps MP3) once the licence is agreed: the full song **and the instrumental** (or the stems, if that is easier).
 
 We can share the video in advance for approval. Thank you, and we look forward to hearing from you.
 
