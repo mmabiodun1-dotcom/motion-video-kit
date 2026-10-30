@@ -6,3 +6,6 @@ snapshots/
 
 # Client photos/footage (GPS-stamped, private)
 projects/*/assets/
+
+# HyperFrames local render cache
+.hyperframes/
