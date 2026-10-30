@@ -46,10 +46,10 @@ Pick 2–3 tracks that are:
 
 | For | Search | Moment in the ad |
 |---|---|---|
-| Light switch / power cut | "light switch click" or "power off" | 0.38 s, the bulb goes out |
-| Generator | "generator running" or "petrol engine idle" | 0.85–1.6 s, then hard cut to silence |
+| Light switch / power cut | "light switch click" or "power off" | 0.21 s, the bulb goes out (on the first downbeat) |
+| Generator | "generator running" or "petrol engine idle" | 2.56–6.0 s, hard stop with the song on the switch flip |
 | Soft transition | "soft whoosh" or "swoosh short" | each scene wipe (one file, reused) |
-| Stamp | "stamp" or "rubber stamp" | 14.9 s, OWNED. |
+| Stamp | "stamp" or "rubber stamp" | 18.45 s, OWNED. |
 
 Optional: "ui pop" or "soft click" for each project card landing and the kW counter.
 
