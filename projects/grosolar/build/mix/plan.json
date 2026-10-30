@@ -1,0 +1,42 @@
+{
+  "total": 30.0,
+  "opening": {
+    "song": "../../assets/audio/rara-src/rara.mp3",
+    "song_in": 29.0,
+    "cut": 6.0,
+    "resume": 6.4,
+    "target_lufs": -14,
+    "generator": "../../assets/audio/sfx/generator.mp3",
+    "generator_in": 0.0,
+    "generator_at": 2.56,
+    "generator_db_under_song": -14
+  },
+  "cheer": {
+    "file": "../../assets/audio/cheer/light-don-come.m4a",
+    "in": 0.0,
+    "dur": 0.6,
+    "at": 6.4,
+    "target_lufs": -15
+  },
+  "bed": {
+    "candidates": [
+      {"file": "../../assets/audio/bed/rara-instrumental.wav", "in": 35.0, "note": "licensed Rara instrumental: continue from the same point in the song"},
+      {"file": "../../assets/audio/bed/free-afro.mp3", "in": 0.0, "note": "free fallback (Pixabay or similar)"}
+    ],
+    "target_lufs": -20,
+    "duck_db": 8,
+    "fade_in": 0.12,
+    "fade_out": 1.2
+  },
+  "voice": {
+    "target_lufs": -16,
+    "lines": [
+      {"id": 1, "file": "../../assets/audio/vo/vo.m4a", "in": 0.0, "out": 1.5, "at": 6.9, "slot_end": 8.4},
+      {"id": 2, "file": "../../assets/audio/vo/vo.m4a", "in": 0.0, "out": 5.8, "at": 8.45, "slot_end": 14.3},
+      {"id": 3, "file": "../../assets/audio/vo/vo.m4a", "in": 0.0, "out": 1.8, "at": 14.35, "slot_end": 16.2},
+      {"id": 4, "file": "../../assets/audio/vo/vo.m4a", "in": 0.0, "out": 3.7, "at": 16.25, "slot_end": 20.0},
+      {"id": 5, "file": "../../assets/audio/vo/vo.m4a", "in": 0.0, "out": 1.5, "at": 20.1, "slot_end": 24.6},
+      {"id": 6, "file": "../../assets/audio/vo/vo.m4a", "in": 0.0, "out": 5.2, "at": 24.7, "slot_end": 30.0}
+    ]
+  }
+}

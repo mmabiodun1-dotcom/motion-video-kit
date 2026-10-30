@@ -5,13 +5,13 @@ Tone: warm, confident, unhurried; like telling a friend good news, not shouting 
 
 ## The six lines
 
-The ad now opens with 6 seconds of Tekno's "Rara" (0:29–0:35, the NEPA/generator lyric) and **no voice over it**. The song and the generator stop dead on the switch flip at 6.0 s, there are 0.4 s of silence, and the voice starts at 6.4 s.
+The ad now opens with 6 seconds of Tekno's "Rara" (0:29–0:35, the NEPA/generator lyric) and **no voice over it**. The song and the generator stop dead on the switch flip at 6.0 s, there are 0.4 s of silence, a short "Light don come!" cheer at 6.4 s, and the voice starts at 6.9 s.
 
 Record each line **three times** in a row, with a 2-second pause between takes. One file for everything is fine.
 
 | # | Line | Plays (re-timed cut) | Time it must fit |
 |---|---|---|---|
-| 1 | Less generator. More sun. | 6.4–8.4 s, right after the silence | about 2 s |
+| 1 | Less generator. More sun. | 6.9–8.4 s, right after the cheer | about 1.5 s: say it crisply |
 | 2 | GroSolar funds your solar, for homes, businesses and industry, with nothing upfront. | 8.4–14.3 s | about 5.9 s (a short pause after "solar" is good) |
 | 3 | Installed and maintained for you. | 14.3–16.2 s | about 1.9 s |
 | 4 | Pay in instalments. Once it's paid off, it's yours. | 16.2–20.0 s | about 3.8 s: **tight**, keep it brisk but clear |

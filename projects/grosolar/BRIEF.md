@@ -74,7 +74,7 @@ Real project numbers (owner-supplied). Only projects that are **installed and ru
 
 - Ad style and look: owner wants something **unique and premium, not a template look**; **chosen: the mix** of "The Switch-Off" hook, "From Sun to Yours" explainer and "Powering Lagos" proof (see `STORYBOARD.md`)
 - Voiceover: **recorded female voice** (owner's choice, changed from AI because Nigerian AI voices need a paid ElevenLabs plan); see `VOICEOVER.md`
-- Music: **free, commercially licensed** (Pixabay or similar; Splice dropped because downloads cost credits), warm uplifting Afro-house groove kept under the voice; see `AUDIO-SOURCING.md`. Owner's preferred track: **Tekno, "Rara"**, used only once a sync licence (master + publishing) is signed; request drafted in `MUSIC-LICENCE-REQUEST.md`. Launch plan: free track first, swap in "Rara" if licensed
+- Music: **free, commercially licensed** (Pixabay or similar; Splice dropped because downloads cost credits), warm uplifting Afro-house groove kept under the voice; see `AUDIO-SOURCING.md`. Owner's preferred track: **Tekno, "Rara"**, used only once a sync licence (master + publishing) is signed; request drafted in `MUSIC-LICENCE-REQUEST.md`. **Decided:** 6 s of Rara (0:29–0:35) to open, then the Rara instrumental (requested with the licence); free instrumental as the bed until then; "Light don come!" cheer at 6.4 s. Mix: `build/mix/`
 - Whether AI-generated imagery is used for supporting shots (if so, labelled per the kit's rules)
 
 ## Sources used for this draft
