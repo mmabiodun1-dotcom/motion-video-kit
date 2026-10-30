@@ -171,7 +171,7 @@ const bulb=(day)=>`
   <path d="M818 362 h64 v8 q22 30 22 62 a54 54 0 1 1 -108 0 q0 -32 22 -62z" fill="url(#sg${day?'d':'n'})" stroke="${day?'#002552':'#FFE9A8'}" stroke-width="5"/></g>
   <g class="off"><path d="M818 362 h64 v8 q22 30 22 62 a54 54 0 1 1 -108 0 q0 -32 22 -62z" fill="#0B3A73" stroke="#B9C7DA" stroke-width="5"/>
   <path d="M836 432 q14 -22 28 0" fill="none" stroke="#5F7699" stroke-width="4"/></g>`;
-// a realistic Nigerian "I better pass my neighbour" petrol generator (~440 px): black tubular frame and carry handle,
+// a realistic Nigerian open-frame petrol generator on a wheel kit (~550 px, drawn at 1.25x): black tubular frame and carry handle,
 // glossy red fuel tank with cap and gauge, finned engine block, red recoil starter with pull handle, air filter,
 // perforated silver muffler (smoke comes out of it), red alternator with a control panel (voltmeter, on/off switch, two sockets),
 // rubber feet; a yellow 25-litre jerrycan beside it. The night version is the same drawing, dimmed.
@@ -192,7 +192,7 @@ const gen=(day)=>{
    <radialGradient id="cap_${id}"><stop offset="0" stop-color="#f5f5f5"/><stop offset="1" stop-color="#8d939a"/></radialGradient>
    <linearGradient id="jer_${id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F6CB3A"/><stop offset="1" stop-color="#C79312"/></linearGradient>
   </defs>
-  <g id="genbody_${id}">
+  <g id="genbody_${id}"><g transform="translate(-260,-397.5) scale(1.25)">
    <ellipse cx="822" cy="1600" rx="240" ry="20" fill="#000" opacity="${day?.1:.35}"/>
    <rect x="612" y="1300" width="420" height="278" rx="30" fill="none" stroke="${tube}" stroke-width="16"/>
    <!-- muffler (exhaust outlet top-left) -->
@@ -216,7 +216,8 @@ const gen=(day)=>{
    <rect x="940" y="1392" width="36" height="38" rx="6" fill="#2b2e33"/>
    <g id="lever_${id}" transform="rotate(-40 958 1411)"><rect x="952" y="1384" width="12" height="30" rx="5" fill="#FE9636" stroke="#000" stroke-width="2"/></g>
    ${sock(866,1452)}${sock(934,1452)}
-   <circle cx="923" cy="1514" r="7" fill="#000" stroke="#444" stroke-width="2"/>
+   <rect x="866" y="1504" width="18" height="22" rx="3" fill="#000" stroke="#555" stroke-width="2"/><rect x="890" y="1504" width="18" height="22" rx="3" fill="#000" stroke="#555" stroke-width="2"/>
+   <circle cx="962" cy="1515" r="13" fill="url(#cap_${id})" stroke="#444" stroke-width="2"/><rect x="959" y="1505" width="6" height="20" rx="2" fill="#333"/>
    ${[0,1,2,3,4].map(k=>`<rect x="${858+k*30}" y="1540" width="18" height="6" rx="3" fill="#5E0B0B"/>`).join('')}
    <!-- fuel tank with cap and gauge -->
    <rect x="690" y="1240" width="300" height="92" rx="42" fill="url(#tank_${id})" stroke="#5E0B0B" stroke-width="3"/>
@@ -230,10 +231,18 @@ const gen=(day)=>{
    <line x1="612" y1="1330" x2="612" y2="1560" stroke="${tube}" stroke-width="18" stroke-linecap="round"/><line x1="1032" y1="1330" x2="1032" y2="1560" stroke="${tube}" stroke-width="18" stroke-linecap="round"/>
    <line x1="634" y1="1578" x2="1010" y2="1578" stroke="${tube}" stroke-width="18" stroke-linecap="round"/>
    <line x1="606" y1="1340" x2="606" y2="1550" stroke="${hi}" stroke-width="3" opacity=".7"/>
-   <rect x="620" y="1582" width="48" height="16" rx="4" fill="#0d0d0d"/><rect x="976" y="1582" width="48" height="16" rx="4" fill="#0d0d0d"/>
-  </g>
+   <!-- folding push handles (left) -->
+   <path d="M616 1312 L556 1300" stroke="${tube}" stroke-width="14" stroke-linecap="round"/><rect x="532" y="1290" width="34" height="20" rx="9" fill="#0d0d0d"/>
+   <path d="M616 1352 L560 1344" stroke="${tube}" stroke-width="10" stroke-linecap="round" opacity=".85"/>
+   <!-- rubber foot (left) and wheel kit (right) -->
+   <rect x="620" y="1582" width="48" height="16" rx="4" fill="#0d0d0d"/>
+   <rect x="960" y="1566" width="80" height="14" rx="5" fill="${tube}"/>
+   <circle cx="1000" cy="1588" r="42" fill="#121314" stroke="#2e3135" stroke-width="6"/>
+   <circle cx="1000" cy="1588" r="20" fill="url(#cap_${id})" stroke="#555" stroke-width="3"/><circle cx="1000" cy="1588" r="6" fill="#333"/>
+   ${[0,1,2,3,4,5].map(k=>{const a=k*Math.PI/3;return `<line x1="${1000+26*Math.cos(a)}" y1="${1588+26*Math.sin(a)}" x2="${1000+36*Math.cos(a)}" y2="${1588+36*Math.sin(a)}" stroke="#2a2c2f" stroke-width="4"/>`;}).join('')}
+  </g></g>
   <!-- 25-litre jerrycan -->
-  <g><rect x="472" y="1440" width="48" height="28" rx="12" fill="none" stroke="#D9A91C" stroke-width="11"/>
+  <g transform="translate(-130,0)"><rect x="472" y="1440" width="48" height="28" rx="12" fill="none" stroke="#D9A91C" stroke-width="11"/>
    <rect x="458" y="1460" width="96" height="132" rx="14" fill="url(#jer_${id})" stroke="#7a5a05" stroke-width="3"/>
    <rect x="474" y="1486" width="64" height="86" rx="8" fill="none" stroke="#B88A0E" stroke-width="4"/>
    <rect x="530" y="1444" width="24" height="20" rx="4" fill="#C62828" stroke="#6b0f0f" stroke-width="2"/></g>
@@ -242,7 +251,7 @@ const defs=`<defs>
   <linearGradient id="sgn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6DA4C"/><stop offset=".5" stop-color="#FCBA34"/><stop offset="1" stop-color="#FE9636"/></linearGradient>
   <linearGradient id="sgd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6DA4C"/><stop offset=".5" stop-color="#FCBA34"/><stop offset="1" stop-color="#FE9636"/></linearGradient>
   <radialGradient id="glow"><stop offset="0" stop-color="#F6DA4C" stop-opacity=".8"/><stop offset="1" stop-color="#FCBA34" stop-opacity="0"/></radialGradient></defs>`;
-const puffs=[0,1,2,3,4].map(()=>`<circle class="puff" cx="600" cy="1314" r="22" fill="#AEB6C0"/>`).join('');
+const puffs=[0,1,2,3,4].map(()=>`<circle class="puff" cx="492" cy="1245" r="22" fill="#AEB6C0"/>`).join('');
 const openText=(day)=>`
   <div class="A ot1"><p class="h" style="font-size:176px;color:${day?'#002552':'#fff'}">NO</p></div>
   <div class="A ot2"><p class="h" style="font-size:176px;color:${day?'#002552':'#fff'}">LIGHT.</p></div>
@@ -331,7 +340,7 @@ function draw(t){
     $('night').querySelectorAll('.puff').forEach((p,i)=>{
       let bt=-9; runBeats.forEach((b,j)=>{if(j%5===i&&t>=b) bt=b;});
       const age=t-bt, k=cl(age/1.4), alive=bt>0&&age<1.4;
-      p.setAttribute('cy',1314-280*k); p.setAttribute('cx',600-55*k+18*Math.sin(k*6+i)); p.setAttribute('r',16+50*eo(k));
+      p.setAttribute('cy',1245-300*k); p.setAttribute('cx',492-55*k+20*Math.sin(k*6+i)); p.setAttribute('r',16+50*eo(k));
       p.style.opacity=alive?(1-k)*.9*(1-P(t,STOP,STOP+.3)):0;
     });
     // sunlight wipe 6.65-7.55, beam 6.6-7.65: day region is x + .55y < c
