@@ -22,7 +22,7 @@ html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--n
 .chip{position:absolute;display:flex;align-items:center;gap:18px;background:#fff;border-radius:18px;padding:12px 26px;color:var(--navy);white-space:nowrap}
 .kw{font-weight:800;letter-spacing:-.02em}
 </style></head>
-<body><div id="root" data-composition-id="grosolar" data-width="1080" data-height="1920" data-duration="29.9">
+<body><div id="root" data-composition-id="grosolar" data-width="1080" data-height="1920" data-duration="30">
 
 <!-- ===== OPENING 0-4.15: night layer; day layer revealed by the sunlight wipe ===== -->
 <div class="L" id="open">
@@ -138,7 +138,11 @@ const wipeUp=(el,u,d=.32)=>{el.style.clipPath=`inset(${1920*(1-eo(P(u,0,d)))}px 
 const wipeLeft=(el,u,d=.4)=>{el.style.clipPath=`inset(0 0 0 ${1080*(1-eo(P(u,0,d)))}px)`;};
 
 // scene start times (global seconds)
-const T={s4:3.85,s5:5.95,s6:8.35,s7:10.2,s8:12.4,s9:16.65,s10:23.15};
+const T={s4:8.4,s5:10.35,s6:12.6,s7:14.3,s8:16.2,s9:20.0,s10:24.6,end:30.0};
+// scene lengths in cut 4: each scene keeps its choreography, compressed into its new slot (u is in cut-4 local seconds)
+const OLD={s4:2.1,s5:2.4,s6:1.85,s7:2.2,s8:4.25,s10:6.75};
+// beat grid of the Rara clip (0:29.000-0:35.000 placed at 0.0); downbeats 0.21, 2.56, 4.90
+const BEATS=[.21,.79,1.37,1.95,2.56,3.14,3.72,4.32,4.90,5.48,6.06];
 
 // ---------- opening: shop + generator, night and day versions of one composition ----------
 const shop=(day)=>`
@@ -247,50 +251,57 @@ $('cards').innerHTML=CARDS.map(([f,kw,lab],i)=>`
 
 // ---------- render: everything is a function of t ----------
 function draw(t){
-  // ===== OPENING 0-4.15 =====
+  // ===== OPENING 0-8.4: Rara clip 0-6.0, hard stop on the switch flip, silence, "Less generator. More sun.", sunlight wipe =====
   vis($('open'),t<T.s4+.4);
   if(t<T.s4+.4){
-    $('open').style.transform=`scale(${1+.04*P(t,0,4.2)})`;
-    const lit=t<.3||(t>=.34&&t<.38);          // bulb on at frame 0, flickers, clicks off at 0.38
+    $('open').style.transform=`scale(${1+.04*P(t,0,8.6)})`;
+    const lit=t<.12||(t>=.15&&t<.21);          // bulb on at frame 0, flickers, clicks off on the first downbeat (0.21)
     $('night').style.background=lit?'#0B3A73':'#002552';
+    const RUN0=2.56, STOP=6.0, run=t>=RUN0&&t<STOP;
+    let lastBeat=-9; BEATS.forEach(b=>{if(t>=b&&b>=RUN0&&b<STOP) lastBeat=b;});
+    const kick=run?Math.exp(-(t-lastBeat)*9):0;  // a jolt on every beat while the generator runs
     for(const day of [0,1]){
       const host=$(day?'day':'night'), q=s=>host.querySelector(s), qa=s=>host.querySelectorAll(s);
       const on=day?true:lit; qa('.lit').forEach(e=>e.style.opacity=on?1:0); qa('.off').forEach(e=>e.style.opacity=on?0:1);
-      q('.bulbg').setAttribute('transform',`rotate(${(t<.38?0:5*Math.sin((t-.38)*3.2)*Math.exp(-(t-.38)*.5))} 850 0)`);
-      // NO / LIGHT. slam in right after the click; AGAIN? from the right; all exit up 1.6-1.9
-      const slam=(el,a,y)=>{const k=P(t,a,a+.14),o=eo(P(t,1.58,1.78));tf(el,80,y-40*o,L(1.25,1,eo(k)),0,k*(1-o));};
-      slam(q('.ot1'),.4,300); slam(q('.ot2'),.48,468);
-      mv(q('.ot3'),t,80,654,{a:.66,d:.28,dx:420,dy:0,b:1.58,d2:.2,ey:-40});
-      // Less / generator. / More sun. arrive only after the first lines have gone
-      mv(q('.ot4'),t,80,300,{a:1.76,d:.36,dy:140,b:T.s4-.15,d2:.15,ey:-40});
-      mv(q('.ot5'),t,80,450,{a:1.82,d:.36,dy:140,b:T.s4-.13,d2:.13,ey:-40});
-      mv(q('.ot6'),t,80,620,{a:1.9,d:.36,dy:140,b:T.s4-.11,d2:.11,ey:-40});
-      // generator rolls in 0.55-0.85, runs (shake + smoke) to 1.6, switch flips, dead still
+      q('.bulbg').setAttribute('transform',`rotate(${(t<.21?0:5*Math.sin((t-.21)*3.2)*Math.exp(-(t-.21)*.35))} 850 0)`);
+      // NO 0.79, LIGHT. 0.87, AGAIN? 1.37; hold to 5.95, exit 5.95-6.15
+      const slam=(el,a,y)=>{const k=P(t,a,a+.14),o=eo(P(t,5.95,6.15));tf(el,80,y-40*o,L(1.25,1,eo(k)),0,k*(1-o));};
+      slam(q('.ot1'),.79,300); slam(q('.ot2'),.87,468);
+      mv(q('.ot3'),t,80,654,{a:1.37,d:.28,dx:420,dy:0,b:5.95,d2:.2,ey:-40});
+      // Less / generator. / More sun. in 6.16 / 6.22 / 6.30; gone before the inverter scene wipes in
+      mv(q('.ot4'),t,80,300,{a:6.16,d:.36,dy:140,b:T.s4-.15,d2:.15,ey:-40});
+      mv(q('.ot5'),t,80,450,{a:6.22,d:.36,dy:140,b:T.s4-.13,d2:.13,ey:-40});
+      mv(q('.ot6'),t,80,620,{a:6.30,d:.36,dy:140,b:T.s4-.11,d2:.11,ey:-40});
+      // generator rolls in 1.95-2.56, kicks on at 2.56, shakes to 6.0 with a jolt per beat; lever 6.0-6.1; dead still after
       const g=q('#gen_'+(day?'d':'n')), gb=q('#genbody_'+(day?'d':'n')), lv=q('#lever_'+(day?'d':'n'));
-      const gi=eo(P(t,.55,.85)); g.setAttribute('transform',`translate(${420*(1-gi)},0)`); g.style.opacity=gi;
-      const run=t>=.85&&t<1.6; gb.setAttribute('transform',`translate(${run?6*Math.sin(t*2*Math.PI*7.5):0},${run?3*Math.sin(t*2*Math.PI*10+1):0})`);
-      lv.setAttribute('transform',`rotate(${t<1.6?-40:L(-40,40,eo(P(t,1.6,1.7)))} 945 1510)`);
+      const gi=eo(P(t,1.95,2.56)); g.setAttribute('transform',`translate(${420*(1-gi)},0)`); g.style.opacity=gi;
+      const sx=run?6*Math.sin(t*2*Math.PI*7.5)+8*kick:0, sy=run?3*Math.sin(t*2*Math.PI*10+1)-6*kick:0;
+      gb.setAttribute('transform',`translate(${sx},${sy})`);
+      lv.setAttribute('transform',`rotate(${t<STOP?-40:L(-40,40,eo(P(t,STOP,STOP+.1)))} 945 1510)`);
     }
+    // smoke: a puff bursts from the exhaust on every beat 2.56-5.48; all smoke clears 6.0-6.3
+    const runBeats=BEATS.filter(b=>b>=RUN0&&b<STOP);
     $('night').querySelectorAll('.puff').forEach((p,i)=>{
-      const run=t>=.85&&t<1.6; const k=cl(run?((t*1.5+i*.2)%1):((1.6*1.5+i*.2)%1)+(t-1.6)*.9);
-      p.setAttribute('cy',1385-260*k); p.setAttribute('cx',602-40*k+18*Math.sin(k*6+i)); p.setAttribute('r',16+46*k);
-      p.style.opacity=t<.85?0:(1-k)*.85*(1-P(t,1.6,1.9));
+      let bt=-9; runBeats.forEach((b,j)=>{if(j%5===i&&t>=b) bt=b;});
+      const age=t-bt, k=cl(age/1.4), alive=bt>0&&age<1.4;
+      p.setAttribute('cy',1385-260*k); p.setAttribute('cx',602-40*k+18*Math.sin(k*6+i)); p.setAttribute('r',16+50*eo(k));
+      p.style.opacity=alive?(1-k)*.9*(1-P(t,STOP,STOP+.3)):0;
     });
-    // sunlight wipe 2.25-3.15: day region is x + .55y < c
-    const w=eio(P(t,2.25,3.15)), c=L(-420,2560,w);
+    // sunlight wipe 6.65-7.55, beam 6.6-7.65: day region is x + .55y < c
+    const w=eio(P(t,6.65,7.55)), c=L(-420,2560,w);
     $('day').style.clipPath=`polygon(0 0, ${c}px 0, ${c-1056}px 1920px, 0 1920px)`;
-    tf($('beam'),c-528-150,960-1350,1,28.8,P(t,2.2,2.35)*(1-P(t,3.05,3.25)));
+    tf($('beam'),c-528-150,960-1350,1,28.8,P(t,6.6,6.75)*(1-P(t,7.45,7.65)));
   }
 
   // ===== logo bug (S4 -> S9) =====
   vis($('bug'),t>=T.s4&&t<T.s10+.2); tf($('bug'),80,258,1,0,eo(P(t,T.s4+.15,T.s4+.45))*(1-P(t,T.s10-.25,T.s10)));
 
   // ===== S4 inverter: push in until the GroSolar sticker owns the card =====
-  {const u=t-T.s4; vis($('s4'),u>=0&&t<T.s5+.4);
+  {const u=(t-T.s4)*OLD.s4/(T.s5-T.s4); vis($('s4'),u>=0&&t<T.s5+.4);
    if(u>=0&&t<T.s5+.4){
     wipeUp($('s4'),u);
-    mv($('s4h1'),u,80,330,{a:.15,d:.4,dy:120,b:T.s5-T.s4-.15,d2:.15,ey:-40});
-    mv($('s4h2'),u,80,442,{a:.21,d:.4,dy:120,b:T.s5-T.s4-.13,d2:.13,ey:-40});
+    mv($('s4h1'),u,80,330,{a:.15,d:.4,dy:120,b:OLD.s4-.15,d2:.15,ey:-40});
+    mv($('s4h2'),u,80,442,{a:.21,d:.4,dy:120,b:OLD.s4-.13,d2:.13,ey:-40});
     tf($('s4card'),160,L(900,620,eo(P(u,0,.5))),1,0,1);
     // origin 0 0 + scale 2.2 puts the sticker (22%,16% of the photo) at about (48%,35%) of the card
     $('s4img').style.transform=`scale(${1+1.2*eio(P(u,.7,2.25))})`;
@@ -298,7 +309,7 @@ function draw(t){
   }}
 
   // ===== S5 home / business / industry =====
-  {const u=t-T.s5; vis($('s5'),u>=0&&t<T.s6+.4);
+  {const u=(t-T.s5)*OLD.s5/(T.s6-T.s5); vis($('s5'),u>=0&&t<T.s6+.4);
    if(u>=0&&t<T.s6+.4){
     wipeUp($('s5'),u);
     $('s5in').style.transform=`scale(${1+.06*P(u,0,2.8)})`;
@@ -312,19 +323,19 @@ function draw(t){
       tf(bs,175,b.y-109+60*(1-rin),L(.95,1,li),0,L(.55,1,li)*rin); bs.style.filter=`grayscale(${1-li})`;
       const shimmer=.85+.15*Math.sin(u*5+i);
       bs.querySelectorAll('.wl').forEach(w=>w.style.opacity=li*shimmer); bs.querySelectorAll('.pv').forEach(p=>p.style.opacity=L(.35,1,li));
-      mv($('lab'+i),u,700,ny-6,{a:at+.06,d:.32,dx:110,dy:0,b:T.s6-T.s5-.15,d2:.15,ey:-40});
+      mv($('lab'+i),u,700,ny-6,{a:at+.06,d:.32,dx:110,dy:0,b:OLD.s5-.15,d2:.15,ey:-40});
     });
   }}
 
   // ===== S6 nothing upfront =====
-  {const u=t-T.s6; vis($('s6'),u>=0&&t<T.s7+.4);
+  {const u=(t-T.s6)*OLD.s6/(T.s7-T.s6); vis($('s6'),u>=0&&t<T.s7+.4);
    if(u>=0&&t<T.s7+.4){
     wipeUp($('s6'),u);
     $('s6in').style.transform=`scale(${1+.035*P(u,0,2.2)})`;
     tf($('s6beam'),L(-420,-80,P(u,0,2.3)),-400,1,28,1);
-    mv($('s6a'),u,80,640,{a:.15,d:.36,dy:160,b:T.s7-T.s6-.15,d2:.15,ey:-40});
-    mv($('s6b'),u,80,812,{a:.21,d:.36,dy:160,b:T.s7-T.s6-.13,d2:.13,ey:-40});
-    const uw=eo(P(u,.6,1.1)); tf($('s6u'),80,1010,1,0,P(u,.6,.65)*(1-P(u,T.s7-T.s6-.25,T.s7-T.s6-.05))); $('s6u').style.width=(860*uw)+'px';
+    mv($('s6a'),u,80,640,{a:.15,d:.36,dy:160,b:OLD.s6-.15,d2:.15,ey:-40});
+    mv($('s6b'),u,80,812,{a:.21,d:.36,dy:160,b:OLD.s6-.13,d2:.13,ey:-40});
+    const uw=eo(P(u,.6,1.1)); tf($('s6u'),80,1010,1,0,P(u,.6,.65)*(1-P(u,OLD.s6-.25,OLD.s6-.05))); $('s6u').style.width=(860*uw)+'px';
   }}
 
   // ===== finance small print: on from the offer to the projects; hidden while S7's photo moves in =====
@@ -334,61 +345,61 @@ function draw(t){
    tf($('fine'),80,1440,1,0,on);}
 
   // ===== S7 installed and maintained: hillside array, big =====
-  {const u=t-T.s7; vis($('s7'),u>=0&&t<T.s8+.45);
+  {const u=(t-T.s7)*OLD.s7/(T.s8-T.s7); vis($('s7'),u>=0&&t<T.s8+.45);
    if(u>=0&&t<T.s8+.45){
     wipeUp($('s7'),u);
     tf($('s7ph'),0,L(900,660,eo(P(u,0,.55))),1,0,1);
     $('s7img').style.transform=`scale(${1.06+.08*P(u,0,2.6)})`;
-    mv($('s7a'),u,80,350,{b:T.s8-T.s7-.15,d2:.15,ey:-40,a:.15,d:.36,dy:110});
-    mv($('s7b'),u,80,450,{b:T.s8-T.s7-.13,d2:.13,ey:-40,a:.21,d:.36,dy:110});
-    mv($('s7c'),u,80,550,{b:T.s8-T.s7-.11,d2:.11,ey:-40,a:.27,d:.36,dy:110});
-    tf($('s7badge'),840,600,back(P(u,.6,.95)),0,P(u,.6,.7)*(1-P(u,T.s8-T.s7-.25,T.s8-T.s7-.05)));
+    mv($('s7a'),u,80,350,{b:OLD.s7-.15,d2:.15,ey:-40,a:.15,d:.36,dy:110});
+    mv($('s7b'),u,80,450,{b:OLD.s7-.13,d2:.13,ey:-40,a:.21,d:.36,dy:110});
+    mv($('s7c'),u,80,550,{b:OLD.s7-.11,d2:.11,ey:-40,a:.27,d:.36,dy:110});
+    tf($('s7badge'),840,600,back(P(u,.6,.95)),0,P(u,.6,.7)*(1-P(u,OLD.s7-.25,OLD.s7-.05)));
     $('s7check').setAttribute('stroke-dashoffset',110*(1-eo(P(u,.85,1.2))));
-    mv($('s7chip'),u,80,1330,{a:.95,d:.35,dy:40,b:T.s8-T.s7-.15,d2:.15,ey:-20});
+    mv($('s7chip'),u,80,1330,{a:.95,d:.35,dy:40,b:OLD.s7-.15,d2:.15,ey:-20});
   }}
 
   // ===== S8 installers full screen: pay in instalments -> OWNED =====
-  {const u=t-T.s8; vis($('s8'),u>=0&&t<T.s9+.45);
+  {const u=(t-T.s8)*OLD.s8/(T.s9-T.s8); vis($('s8'),u>=0&&t<T.s9+.45);
    if(u>=0&&t<T.s9+.45){
     wipeLeft($('s8'),u);
     $('s8img').style.transform=`scale(${1.75-.15*P(u,0,4.6)})`;
-    mv($('s8a'),u,80,360,{a:.1,d:.38,dx:700,dy:0,b:T.s9-T.s8-.15,d2:.15,ey:-40});
-    mv($('s8b'),u,80,468,{a:.18,d:.38,dx:700,dy:0,b:T.s9-T.s8-.13,d2:.13,ey:-40});
+    mv($('s8a'),u,80,360,{a:.1,d:.38,dx:700,dy:0,b:OLD.s8-.15,d2:.15,ey:-40});
+    mv($('s8b'),u,80,468,{a:.18,d:.38,dx:700,dy:0,b:OLD.s8-.13,d2:.13,ey:-40});
     tf($('s8track'),80,1160,1,0,eo(P(u,.45,.75)));
     tf($('s8ticks'),80,1236,1,0,eo(P(u,.55,.85)));
     let f=0; for(let k=0;k<9;k++) f+=eo(P(u,.7+k*.19,.7+k*.19+.16))/9;
     $('s8fill').style.width=(100*f)+'%';
     // OWNED. lands above the bar's right end, inside x 80-940
-    const sp=P(u,2.5,2.68), wob=sp>=1?.018*Math.sin((u-2.68)*40)*Math.exp(-(u-2.68)*9):0;
-    tf($('s8stamp'),405,1000,L(1.6,1,eo(sp))+wob,-6,P(u,2.5,2.56));
-    mv($('s8c'),u,80,1300,{a:2.85,d:.38,dy:50,b:T.s9-T.s8-.15,d2:.15,ey:-40});
+    const SU=2.25*OLD.s8/(T.s9-T.s8), sp=P(u,SU,SU+.18), wob=sp>=1?.018*Math.sin((u-SU-.18)*40)*Math.exp(-(u-SU-.18)*9):0;
+    tf($('s8stamp'),405,1000,L(1.6,1,eo(sp))+wob,-6,P(u,SU,SU+.06));
+    mv($('s8c'),u,80,1300,{a:SU+.35,d:.38,dy:50,b:OLD.s8-.15,d2:.15,ey:-40});
   }}
 
-  // ===== S9 four real projects, snapping kW counter =====
+  // ===== S9 four real projects, snapping kW counter (local real seconds, 4.6 s) =====
   {const u=t-T.s9; vis($('s9'),u>=0&&t<T.s10+.35);
    if(u>=0&&t<T.s10+.35){
-    wipeLeft($('s9'),u,.4);
-    mv($('s9a'),u,80,355,{a:.4,d:.38,dy:90,b:6.0,d2:.25,ey:0});
-    mv($('s9b'),u,80,442,{a:.46,d:.38,dy:90,b:6.02,d2:.25,ey:0});
-    const LAND=[.55,1.85,3.15,4.45], ROT=[-1.5,1.5,-1.2,1.2], KW=[100,200,300,450];
-    const col=eio(P(u,6.15,6.65)), cx=190, cy=410;
+    wipeLeft($('s9'),u,.35);
+    mv($('s9a'),u,80,355,{a:.3,d:.36,dy:90,b:4.0,d2:.22,ey:0});
+    mv($('s9b'),u,80,442,{a:.36,d:.36,dy:90,b:4.02,d2:.22,ey:0});
+    const LAND=[.4,1.2,2.0,2.8], ROT=[-1.5,1.5,-1.2,1.2], KW=[100,200,300,450], IN=.4;
+    const col=eio(P(u,4.15,4.6)), cx=190, cy=410;
     LAND.forEach((ld,i)=>{
-      const ii=eo(P(u,ld-.45,ld)), later=LAND.filter(x=>u>=x&&x>ld).length;
+      const ii=eo(P(u,ld-IN,ld)), later=LAND.filter(x=>u>=x&&x>ld).length;
       const bx=90+1150*(1-ii), by=575-20*later, sc=Math.pow(.96,later);
-      tf($('pc'+i),L(bx,cx-450,col),L(by,cy-450,col),L(sc,.04,col),L(ROT[i]+10*(1-ii),0,col),(u>=ld-.45?1:0)*(1-P(u,6.45,6.65)));
-      $('pd'+i).style.opacity=later>0?.35*cl((u-LAND[i+1])/.3):0; // earlier cards dim as the next lands
-      $('pi'+i).style.transform=`scale(${1.1-.08*P(u,ld-.45,ld+2.6)})`;
+      tf($('pc'+i),L(bx,cx-450,col),L(by,cy-450,col),L(sc,.04,col),L(ROT[i]+10*(1-ii),0,col),(u>=ld-IN?1:0)*(1-P(u,4.45,4.6)));
+      $('pd'+i).style.opacity=later>0?.35*cl((u-LAND[i+1])/.25):0; // earlier cards dim as the next lands
+      $('pi'+i).style.transform=`scale(${1.1-.08*P(u,ld-IN,ld+2)})`;
     });
     // counter snaps to the running total the moment each card lands (no in-between values)
     let n=-1; LAND.forEach((ld,i)=>{if(u>=ld) n=i;});
-    $('kwnum').textContent=(n<0?100:KW[n])+' kW'; $('kwsub').textContent=u>=5.0?'across 4 sites':'installed';
+    $('kwnum').textContent=(n<0?100:KW[n])+' kW'; $('kwsub').textContent=u>=3.1?'across 4 sites':'installed';
     const lastLand=n<0?LAND[0]:LAND[n], pop=1+.12*Math.exp(-(u-lastLand)*10)*(u>=lastLand?1:0);
-    tf($('kwpill'),940-$('kwpill').offsetWidth,528,pop*back(P(u,.55,.8)),0,P(u,.55,.62)*(1-P(u,6.05,6.25)));
-    tf($('s9glow'),cx-300,cy-300,L(.1,1.3,eo(P(u,6.3,6.75))),0,P(u,6.3,6.45)*(1-P(u,6.6,6.85)));
+    tf($('kwpill'),940-$('kwpill').offsetWidth,528,pop*back(P(u,.4,.62)),0,P(u,.4,.46)*(1-P(u,4.05,4.2)));
+    tf($('s9glow'),cx-300,cy-300,L(.1,1.3,eo(P(u,4.25,4.65))),0,P(u,4.25,4.37)*(1-P(u,4.6,4.85)));
   }}
 
   // ===== S10 end card =====
-  {const u=t-T.s10; vis($('s10'),u>=0);
+  {const u=(t-T.s10)*OLD.s10/(T.end-T.s10); vis($('s10'),u>=0);
    if(u>=0){
     tf($('e_glow'),190-350,410-350,L(1.3,.5,eo(P(u,0,.8)))*(1+.05*Math.sin(u*2.4)),0,L(1,.4,P(u,.4,1.2)));
     $('e_block').style.transform=`scale(${1+.03*P(u,.8,6.6)})`;
@@ -407,7 +418,7 @@ function draw(t){
 // ---------- timeline: GSAP only drives t ----------
 const st={t:0};
 window.__timelines=window.__timelines||{};
-window.__timelines.grosolar=gsap.timeline({paused:true}).to(st,{t:29.9,duration:29.9,ease:'none',onUpdate:()=>draw(st.t)});
+window.__timelines.grosolar=gsap.timeline({paused:true}).to(st,{t:30,duration:30,ease:'none',onUpdate:()=>draw(st.t)});
 draw(0);
 </script>
 </body></html>
