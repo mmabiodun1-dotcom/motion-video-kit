@@ -20,8 +20,16 @@
   },
   "bed": {
     "candidates": [
-      {"file": "../../assets/audio/bed/rara-instrumental.wav", "in": 35.0, "note": "licensed Rara instrumental: continue from the same point in the song"},
-      {"file": "../../assets/audio/bed/free-afro.mp3", "in": 0.0, "note": "free fallback (Pixabay or similar)"}
+      {
+        "file": "../../assets/audio/bed/rara-instrumental.wav",
+        "in": 35.0,
+        "note": "licensed Rara instrumental: continue from the same point in the song"
+      },
+      {
+        "file": "../../assets/audio/bed/ejah-afrobeat-2026-instrumental.mp3",
+        "in": 0.0,
+        "note": "owner pick (30 Oct): \"Afrobeat 2026 Instrumental Music Background\" by ejah_music, Pixabay Content License; https://pixabay.com/music/upbeat-afrobeat-2026-instrumental-music-background-327258/"
+      }
     ],
     "target_lufs": -20,
     "duck_db": 8,
@@ -31,12 +39,54 @@
   "voice": {
     "target_lufs": -16,
     "lines": [
-      {"id": 1, "file": "../../assets/audio/vo/vo.m4a", "in": 0.0, "out": 1.5, "at": 6.9, "slot_end": 8.4},
-      {"id": 2, "file": "../../assets/audio/vo/vo.m4a", "in": 0.0, "out": 5.8, "at": 8.45, "slot_end": 14.3},
-      {"id": 3, "file": "../../assets/audio/vo/vo.m4a", "in": 0.0, "out": 1.8, "at": 14.35, "slot_end": 16.2},
-      {"id": 4, "file": "../../assets/audio/vo/vo.m4a", "in": 0.0, "out": 3.7, "at": 16.25, "slot_end": 20.0},
-      {"id": 5, "file": "../../assets/audio/vo/vo.m4a", "in": 0.0, "out": 1.5, "at": 20.1, "slot_end": 24.6},
-      {"id": 6, "file": "../../assets/audio/vo/vo.m4a", "in": 0.0, "out": 5.2, "at": 24.7, "slot_end": 30.0}
+      {
+        "id": 1,
+        "file": "../../assets/audio/vo/vo.m4a",
+        "in": 0.0,
+        "out": 1.5,
+        "at": 6.9,
+        "slot_end": 8.4
+      },
+      {
+        "id": 2,
+        "file": "../../assets/audio/vo/vo.m4a",
+        "in": 0.0,
+        "out": 5.8,
+        "at": 8.45,
+        "slot_end": 14.3
+      },
+      {
+        "id": 3,
+        "file": "../../assets/audio/vo/vo.m4a",
+        "in": 0.0,
+        "out": 1.8,
+        "at": 14.35,
+        "slot_end": 16.2
+      },
+      {
+        "id": 4,
+        "file": "../../assets/audio/vo/vo.m4a",
+        "in": 0.0,
+        "out": 3.7,
+        "at": 16.25,
+        "slot_end": 20.0
+      },
+      {
+        "id": 5,
+        "file": "../../assets/audio/vo/vo.m4a",
+        "in": 0.0,
+        "out": 1.5,
+        "at": 20.1,
+        "slot_end": 24.6
+      },
+      {
+        "id": 6,
+        "file": "../../assets/audio/vo/vo.m4a",
+        "in": 0.0,
+        "out": 5.2,
+        "at": 24.7,
+        "slot_end": 30.0
+      }
     ]
   }
 }

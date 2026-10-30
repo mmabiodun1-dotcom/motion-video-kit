@@ -7,7 +7,7 @@ The mix is automatic: drop the files into the folders below and run `build/mix/m
 | Part | Put the file here | Notes |
 |---|---|---|
 | Rara instrumental (after licence) | `assets/audio/bed/rara-instrumental.wav` | Picks up at 0:35 of the instrumental, so the groove continues where the vocal clip stopped |
-| Free fallback bed | `assets/audio/bed/free-afro.mp3` | Used only while the instrumental isn't there |
+| Free fallback bed | `assets/audio/bed/ejah-afrobeat-2026-instrumental.mp3` | **Owner's pick:** "Afrobeat 2026 Instrumental Music Background" by ejah_music. Used only while the Rara instrumental isn't there |
 | Voiceover | `assets/audio/vo/vo.m4a` | Cut points for each line go into `build/mix/plan.json` |
 | Cheer | `assets/audio/cheer/light-don-come.m4a` | See below |
 | Generator sound | `assets/audio/sfx/generator.mp3` | Replaces the synthesized placeholder |
